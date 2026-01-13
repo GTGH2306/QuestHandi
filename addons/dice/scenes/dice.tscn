@@ -1,0 +1,50 @@
+[gd_scene load_steps=6 format=3 uid="uid://bf4lc4wm0veko"]
+
+[ext_resource type="Script" uid="uid://bff5jklrm4yru" path="res://scripts/dice.gd" id="1_27nyo"]
+[ext_resource type="PackedScene" uid="uid://cda7sx88eqmiu" path="res://models/dice.glb" id="2_mg5ex"]
+[ext_resource type="PackedScene" uid="uid://c6ppejbjn1day" path="res://scenes/face_marker.tscn" id="3_oi81l"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_27nyo"]
+bounce = 0.2
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_27nyo"]
+
+[node name="Dice" type="RigidBody3D"]
+mass = 10.0
+physics_material_override = SubResource("PhysicsMaterial_27nyo")
+script = ExtResource("1_27nyo")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_27nyo")
+
+[node name="Sketchfab_Scene" parent="." instance=ExtResource("2_mg5ex")]
+transform = Transform3D(1.175, 0, 0, 0, 1.175, 0, 0, 0, 1.175, 0, 0, 0)
+
+[node name="FaceMarkers" type="Node3D" parent="."]
+visible = false
+
+[node name="face_1" parent="FaceMarkers" instance=ExtResource("3_oi81l")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5011446, 0)
+face_value = 1
+
+[node name="face_2" parent="FaceMarkers" instance=ExtResource("3_oi81l")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.50205636, -0.00091159344, 0)
+face_value = 2
+
+[node name="face_3" parent="FaceMarkers" instance=ExtResource("3_oi81l")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.11355e-05, -0.50060815)
+face_value = 3
+
+[node name="face_4" parent="FaceMarkers" instance=ExtResource("3_oi81l")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.334724e-05, 0.49914807)
+face_value = 4
+
+[node name="face_5" parent="FaceMarkers" instance=ExtResource("3_oi81l")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5047847, -0.00091159344, 0)
+face_value = 5
+
+[node name="face_6" parent="FaceMarkers" instance=ExtResource("3_oi81l")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5029678, 0)
+face_value = 6
+
+[connection signal="sleeping_state_changed" from="." to="." method="_on_sleeping_state_changed"]

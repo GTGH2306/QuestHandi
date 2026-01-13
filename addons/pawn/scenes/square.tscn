@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://bmq8ujnv43jkb"]
+
+[ext_resource type="Script" uid="uid://84slqlhj8jja" path="res://addons/pawn/scripts/square.gd" id="1_rb13l"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8lkhj"]
+albedo_color = Color(0.62, 0.56668, 0.5456, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_8lkhj"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2eeqm"]
+size = Vector3(3.0021973, 0.20166016, 3.0039063)
+
+[node name="Square" type="StaticBody3D"]
+script = ExtResource("1_rb13l")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(3, 0, 0, 0, 0.2, 0, 0, 0, 3, 0, -0.1, 0)
+material_override = SubResource("StandardMaterial3D_8lkhj")
+mesh = SubResource("BoxMesh_8lkhj")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1027832, 0)
+visible = false
+shape = SubResource("BoxShape3D_2eeqm")
+
+[node name="RayCast_Pos1" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -1, 8.742278e-08, 0, -8.742278e-08, -1, 0, 0, 0)
+
+[node name="RayCast_Pos2" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -1, 8.742278e-08, 0, -8.742278e-08, -1, 0.8767443, 0, 0.8402133)
+
+[node name="RayCast_Pos3" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -1, 8.742278e-08, 0, -8.742278e-08, -1, -0.8523903, 0, 0.82194793)
+
+[node name="RayCast_Pos4" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -1, 8.742278e-08, 0, -8.742278e-08, -1, 0.8706558, 0, -0.8280364)
+
+[node name="RayCast_Pos5" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -1, 8.742278e-08, 0, -8.742278e-08, -1, -0.8463018, 0, -0.8402133)

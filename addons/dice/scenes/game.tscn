@@ -1,0 +1,71 @@
+[gd_scene load_steps=10 format=3 uid="uid://b3ebubwr4obll"]
+
+[ext_resource type="PackedScene" uid="uid://bf4lc4wm0veko" path="res://scenes/dice.tscn" id="1_uwrxv"]
+[ext_resource type="Script" uid="uid://ca3vhhpapriwf" path="res://scripts/total_label.gd" id="2_yqjtg"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_uwrxv"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_yqjtg"]
+sky_material = SubResource("ProceduralSkyMaterial_uwrxv")
+
+[sub_resource type="Environment" id="Environment_lnu2h"]
+background_mode = 2
+sky = SubResource("Sky_yqjtg")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mwb40"]
+albedo_color = Color(0.26400003, 0.32890004, 0.33, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_80nbo"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_e2o6t"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_uwrxv"]
+font_size = 32
+
+[node name="Game" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 3.5286555, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_lnu2h")
+
+[node name="Floor" type="StaticBody3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_mwb40")
+mesh = SubResource("PlaneMesh_80nbo")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+visible = false
+shape = SubResource("WorldBoundaryShape3D_e2o6t")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.31980285, 0.94748414, 0, -0.94748414, 0.31980285, 0, 10.783889, 6.2784386)
+current = true
+
+[node name="Dice" parent="." instance=ExtResource("1_uwrxv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5117935, 0.8589603, -0.099616945)
+ThrowForce = Vector3(0, 12, 0)
+
+[node name="Dice2" parent="." instance=ExtResource("1_uwrxv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7142926, 0.8589603, 0.42916965)
+ThrowForce = Vector3(0, 13, 0)
+
+[node name="TotalLabel" type="Label" parent="."]
+offset_left = 20.0
+offset_top = 21.0
+offset_right = 186.0
+offset_bottom = 66.0
+text = " "
+label_settings = SubResource("LabelSettings_uwrxv")
+script = ExtResource("2_yqjtg")
+
+[connection signal="dice_landed" from="Dice" to="TotalLabel" method="_on_dice_dice_landed"]
+[connection signal="dice_landed" from="Dice2" to="TotalLabel" method="_on_dice_2_dice_landed"]

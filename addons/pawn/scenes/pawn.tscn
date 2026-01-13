@@ -1,0 +1,52 @@
+[gd_scene load_steps=10 format=3 uid="uid://c8gjf0dmpb7ay"]
+
+[ext_resource type="ArrayMesh" uid="uid://d2kgh2wufyvjy" path="res://addons/pawn/models/pawn.obj" id="1_f14ny"]
+[ext_resource type="Script" uid="uid://xdqah1pvavky" path="res://addons/pawn/scripts/pawn.gd" id="1_o6oh4"]
+[ext_resource type="PackedScene" uid="uid://cuhqxxv8b5484" path="res://addons/pawn/models/pawn_cat.glb" id="3_3gb7b"]
+[ext_resource type="PackedScene" uid="uid://c05o270umvav2" path="res://addons/pawn/models/pawn_dog.glb" id="4_jgcxt"]
+[ext_resource type="PackedScene" uid="uid://br123nxpf636p" path="res://addons/pawn/models/pawn_turtoise.glb" id="5_lbydf"]
+[ext_resource type="PackedScene" uid="uid://dogxrp0ad6xwj" path="res://addons/pawn/models/pawn_penguin.glb" id="6_7r2m0"]
+[ext_resource type="PackedScene" uid="uid://bl2h73xvtrjm1" path="res://addons/pawn/models/pawn_bunny.glb" id="7_gp3wc"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_o6oh4"]
+height = 2.1755981
+radius = 0.8959961
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3gb7b"]
+albedo_color = Color(0, 0, 0, 1)
+metallic = 0.23
+metallic_specular = 0.2
+roughness = 0.57
+backlight = Color(0.4310883, 0.23045215, 0.15234518, 1)
+
+[node name="Pawn" type="AnimatableBody3D"]
+script = ExtResource("1_o6oh4")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, 0, 0.38293412, 0)
+shape = SubResource("CylinderShape3D_o6oh4")
+
+[node name="pawn_basemodel" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_3gb7b")
+mesh = ExtResource("1_f14ny")
+
+[node name="pawn_cat" parent="." instance=ExtResource("3_3gb7b")]
+transform = Transform3D(0.18, 0, 0, 0, 0.18, 0, 0, 0, 0.18, 0, 0, 0)
+visible = false
+
+[node name="pawn_tortoise" parent="." instance=ExtResource("5_lbydf")]
+transform = Transform3D(0.18, 0, 0, 0, 0.18, 0, 0, 0, 0.18, 0, 0, 0)
+visible = false
+
+[node name="pawn_penguin" parent="." instance=ExtResource("6_7r2m0")]
+transform = Transform3D(0.18, 0, 0, 0, 0.18, 0, 0, 0, 0.18, 0, 0, 0)
+visible = false
+
+[node name="pawn_bunny" parent="." instance=ExtResource("7_gp3wc")]
+transform = Transform3D(0.18, 0, 0, 0, 0.18, 0, 0, 0, 0.18, 0, 0, 0)
+visible = false
+
+[node name="pawn_dog" parent="." instance=ExtResource("4_jgcxt")]
+transform = Transform3D(0.18, 0, 0, 0, 0.18, 0, 0, 0, 0.18, 0, 0, 0)
+visible = false

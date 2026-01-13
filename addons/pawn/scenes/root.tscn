@@ -1,0 +1,76 @@
+[gd_scene load_steps=10 format=3 uid="uid://c7w7g2x4p4pe3"]
+
+[ext_resource type="PackedScene" uid="uid://c8gjf0dmpb7ay" path="res://scenes/pawn.tscn" id="1_pq8q7"]
+[ext_resource type="Script" uid="uid://bj8ycybn01w5c" path="res://scripts/root.gd" id="1_pyidc"]
+[ext_resource type="PackedScene" uid="uid://bmq8ujnv43jkb" path="res://scenes/square.tscn" id="3_vvh5c"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_pyidc"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_vvh5c"]
+sky_material = SubResource("ProceduralSkyMaterial_pyidc")
+
+[sub_resource type="Environment" id="Environment_28aoi"]
+background_mode = 2
+sky = SubResource("Sky_vvh5c")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jnlp7"]
+albedo_color = Color(0.28, 0.23660001, 0.196, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_l8v81"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_vyht1"]
+
+[node name="Root" type="Node3D"]
+script = ExtResource("1_pyidc")
+
+[node name="Pawn" parent="." instance=ExtResource("1_pq8q7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.1472607, 0.015512705, 2.216433)
+color = Color(0.8422707, 0.00018573657, 0.020470489, 1)
+
+[node name="Pawn2" parent="." instance=ExtResource("1_pq8q7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.8423076, 0.015512705, 3.3536134)
+color = Color(0.0002928275, 0.30574912, 0.9306488, 1)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.5821473, -0.45346835, 0.6748859, 0, 0.8300329, 0.55771446, -0.81308335, -0.32467195, 0.4832014, 6.474298, 5.929515, 4.7254963)
+current = true
+
+[node name="World" type="Node3D" parent="."]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="World"]
+transform = Transform3D(-0.8660254, -0.3674574, 0.33907986, -0.051378913, 0.73997045, 0.67067426, -0.4973533, 0.56339943, -0.6597127, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="World"]
+environment = SubResource("Environment_28aoi")
+
+[node name="Floor" type="StaticBody3D" parent="World"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="World/Floor"]
+transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_jnlp7")
+mesh = SubResource("PlaneMesh_l8v81")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Floor"]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+visible = false
+shape = SubResource("WorldBoundaryShape3D_vyht1")
+
+[node name="Timer" type="Timer" parent="World"]
+one_shot = true
+autostart = true
+
+[node name="Square" parent="." instance=ExtResource("3_vvh5c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6697896, 0.2, 2.3904777)
+
+[node name="Square2" parent="." instance=ExtResource("3_vvh5c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6697896, 0.2, -1.5915911)
+
+[node name="Square3" parent="." instance=ExtResource("3_vvh5c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6697896, 0.2, -5.531742)
+
+[connection signal="timeout" from="World/Timer" to="." method="_on_timer_timeout"]
