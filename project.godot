@@ -14,3 +14,22 @@ config/name="QuestHandi"
 run/main_scene="uid://c87b1oigv7le6"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+Globals="*res://globals.gd"
+FileManager="*res://file_manager.gd"
+
+[file_customization]
+
+folder_colors={
+"res://addons/": "purple"
+}
+
+[gui]
+
+theme/default_font_multichannel_signed_distance_field=true
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0

@@ -1,0 +1,129 @@
+[gd_scene load_steps=6 format=3 uid="uid://clq3npke6u0g3"]
+
+[ext_resource type="Theme" uid="uid://bv4c3vimv3v1m" path="res://scenes/theme.tres" id="1_6f23y"]
+[ext_resource type="Script" uid="uid://b8yoa76r0q6ma" path="res://scenes/question_card.gd" id="1_kwf6q"]
+[ext_resource type="Texture2D" uid="uid://vxfftnh1e42w" path="res://questions/images/AccessibleFauteuil.png" id="2_6f23y"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_nuuas"]
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_6f23y"]
+font_size = 14
+font_color = Color(0, 0, 0, 1)
+
+[node name="QuestionCard" type="Panel"]
+anchors_preset = -1
+anchor_left = 0.34300002
+anchor_right = 0.657
+anchor_bottom = 1.0
+offset_left = -0.13601685
+offset_top = 50.0
+offset_right = 0.13598633
+offset_bottom = -50.0
+grow_horizontal = 2
+theme = ExtResource("1_6f23y")
+script = ExtResource("1_kwf6q")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 5
+
+[node name="TitleFlow" type="VFlowContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Title" type="Label" parent="MarginContainer/TitleFlow"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "Question VIOLETTE pour l'équipe PINGOUIN"
+label_settings = SubResource("LabelSettings_nuuas")
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/TitleFlow"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Question" type="Label" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(100, 10)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "Comment s’appelle l’aide financière personnalisée attribuée par la MDPH, versée par le Conseil Départemental et destinée à compenser des charges précises ? (aides humaines, techniques, aménagements,…)"
+label_settings = SubResource("LabelSettings_nuuas")
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Image" type="TextureRect" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_6f23y")
+texture = ExtResource("2_6f23y")
+stretch_mode = 3
+
+[node name="HSeparator2" type="HSeparator" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_6f23y")
+
+[node name="ShowAnswer" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Afficher la réponse"
+
+[node name="Reponse" type="Label" parent="MarginContainer/VBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(100, 10)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "Il s’agit d’une aide financière destinée à compenser les dépenses liées à la situation de handicap de l’enfant de moins de 20 ans"
+label_settings = SubResource("LabelSettings_nuuas")
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="HSeparator3" type="HSeparator" parent="MarginContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_6f23y")
+
+[node name="TrueFalseSelect" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/TrueFalseSelect"]
+layout_mode = 2
+text = "L'équipe a répondu "
+label_settings = SubResource("LabelSettings_6f23y")
+
+[node name="OptionButton" type="OptionButton" parent="MarginContainer/VBoxContainer/TrueFalseSelect"]
+layout_mode = 2
+item_count = 2
+popup/item_0/text = "Faux"
+popup/item_0/id = 0
+popup/item_1/text = "Vrai"
+popup/item_1/id = 1
+
+[node name="Validate" type="Button" parent="MarginContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+disabled = true
+text = "Valider"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/ShowAnswer" to="." method="_on_show_answer_pressed"]
+[connection signal="item_selected" from="MarginContainer/VBoxContainer/TrueFalseSelect/OptionButton" to="." method="_on_option_button_item_selected"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Validate" to="." method="_on_validate_pressed"]

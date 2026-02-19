@@ -12,6 +12,7 @@ enum Model { BASE, CAT, DOG, BUNNY, PENGUIN, TORTOISE }
 	Model.TORTOISE: $pawn_tortoise
 }
 var current_model:Model = Model.BASE
+#permet de changer le modèle du pion
 @export var model: Model:
 	get:
 		return current_model

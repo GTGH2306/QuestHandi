@@ -1,0 +1,15 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://fvdkbix2j03p"
+valid=false
+
+[deps]
+
+source_file="res://questions/questions_blue.csv"
+
+[params]
+
+compress=true
+delimiter=0

@@ -7,6 +7,7 @@ func initialize(winner: Team) -> void:
 	$Label.text = str("L'équipe ", winner.team_name, " a gagnée !")
 
 
+#Remet à l'écran principale
 func _on_button_pressed() -> void:
 	var start_instance: StartMenu = start_menu.instantiate()
 	get_tree().root.add_child(start_instance)

@@ -2,11 +2,13 @@ extends Node3D
 class_name Game
 
 var dice_res := preload("res://addons/dice/scenes/dice.tscn")
-var question_interface := preload("res://scenes/question_menu.tscn")
+var question_interface := preload("res://scenes/question_card.tscn")
 var end_screen := preload("res://scenes/end_screen.tscn")
 @onready var pos_d1: Vector3 = $DiceSpawn.position
 var trw: Vector3 = Vector3(-8, 0, 0)
 @onready var pos_d2: Vector3 = $DiceSpawn.position + Vector3(1.5,0,0)
+
+var question_manager: QuestionManager
 
 var nbTeams: int
 var current_turn = 0
@@ -21,11 +23,17 @@ var Teams: Array[Team] = [
 func initialize(nbPawns: int) -> void:
 	nbTeams = nbPawns
 	var start_square: Square = $Board.get_children()[0]
-	
+	#Pour chaque équipe, ajoute un pion de l'équipe.
+	#A CHANGER les équipes doivent être des animaux choisi à l'acceuil
+	#A CHANGER l'ordre des équipe doit être aléatoire
 	for i in nbTeams:
 		$Teams.add_child(Teams[i])
 		Teams[i].team_pawn.position = start_square.positions[i].global_position
+	#Assure la présence des fichiers et créer l'objet permettant de gérer les questions
+	FileManager.ensure_folders()
+	question_manager = QuestionManager.new()
 
+#Supprime les dés exustabts et lance des nouveaux dés. 1seul en cas de dernière réponse fausse.
 func throw_dice() -> void:
 	for die in $Dices.get_children():
 		die.queue_free()
@@ -42,7 +50,7 @@ func throw_dice() -> void:
 		d2.connect("dice_landed", _on_dice_landing)
 		$Dices.add_child(d2)
 		d2.global_position = pos_d2
-
+#Permet de récuperer les dés sur le plateau, utile pour en prendre le résultat final
 func get_array_dice(array: Array) -> Array[Dice]:
 	var result: Array[Dice]
 	for node in array:
@@ -50,11 +58,11 @@ func get_array_dice(array: Array) -> Array[Dice]:
 			result.append(node)
 	return result
 
-
 func _on_button_pressed() -> void:
 	throw_dice()
 	$BoutonLancerDes/Button.disabled = true
 
+#Lorsqu'un dé s'arrête, si tout les dés sont arrêtés, appel la fonctions pour bouger le pion courant
 func _on_dice_landing(_value: int) -> void:
 	var dices : Array[Dice] = get_array_dice($Dices.get_children())
 	var total:int = 0
@@ -83,15 +91,20 @@ func move_current_pawn(squares: int) -> void:
 
 func _on_team_moved(target : Square) -> void:
 	if target is QuestionSquare:
-		ask_question(Teams[current_turn], target.question_name)
+		ask_question(Teams[current_turn], target.question_color)
 	if target is ForcedMoveSquare:
 		move_current_pawn(target.forced_move)
 
-func ask_question(team: Team, question_clr: String) -> void:
-	var qst_menu: QuestionMenu = question_interface.instantiate()
-	qst_menu.initialize(team, question_clr)
+func ask_question(team: Team, question_clr: Globals.clr) -> void:
+	var qst_menu: QuestionCard = question_interface.instantiate()
+	var question: Question = question_manager.draw_question(question_clr)
+	qst_menu.initialize(question, question_clr, team)
 	$".".add_child(qst_menu)
-	qst_menu.connect("question_answered", end_turn)
+	qst_menu.question_answered.connect(_on_question_answered)
+
+func _on_question_answered(result : bool):
+	Teams[current_turn].last_response = result
+	end_turn()
 
 func end_turn() -> void:
 	if current_turn + 1 >= nbTeams:

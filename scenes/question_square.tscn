@@ -75,7 +75,7 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_pr6w6")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hs0qk"]
-albedo_color = Color(1, 0, 0, 1)
+albedo_color = Color(0.77, 0.52052, 0.14629999, 1)
 metallic = 0.29
 metallic_specular = 0.68
 roughness = 0.45
@@ -85,7 +85,7 @@ grow_amount = 0.02
 
 [node name="QuestionSquare" instance=ExtResource("1_hs0qk")]
 script = ExtResource("2_xw5ls")
-question_name = "Rouge"
+question_color = 0
 
 [node name="SquareModel" type="MeshInstance3D" parent="." index="0"]
 transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, -0.20218098, 0)
@@ -95,7 +95,6 @@ surface_material_override/1 = SubResource("StandardMaterial3D_hs0qk")
 
 [node name="MeshInstance3D" parent="." index="1"]
 transform = Transform3D(3, 0, 0, 0, 0.115, 0, 0, 0, 3, 0, -0.14721385, 0)
-visible = false
 material_override = SubResource("StandardMaterial3D_hs0qk")
 
 [node name="CollisionShape3D" parent="." index="2"]
@@ -120,3 +119,7 @@ visible = false
 [node name="RayCast_Pos5" parent="." index="7"]
 transform = Transform3D(1, 0, 0, 0, -1, 8.742278e-08, 0, -8.742278e-08, -1, -0.7005408, -0.08213958, -0.6750177)
 visible = false
+
+[node name="Square" parent="." index="8"]
+visible = false
+surface_material_override/1 = null

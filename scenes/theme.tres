@@ -1,0 +1,6 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://bv4c3vimv3v1m"]
+
+[ext_resource type="StyleBox" uid="uid://bvf1s1wxqvce" path="res://panel_style_box_flat.tres" id="1_nx7ni"]
+
+[resource]
+Panel/styles/panel = ExtResource("1_nx7ni")

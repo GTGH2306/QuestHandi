@@ -1,0 +1,15 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://b0sklbcsnp1u8"
+valid=false
+
+[deps]
+
+source_file="res://questions/questions_orange.csv"
+
+[params]
+
+compress=true
+delimiter=0
