@@ -1,0 +1,45 @@
+[gd_scene load_steps=4 format=3 uid="uid://bdqc1nv4s5n7e"]
+
+[ext_resource type="PackedScene" uid="uid://c8gjf0dmpb7ay" path="res://addons/pawn/scenes/pawn.tscn" id="1_5xvty"]
+
+[sub_resource type="Animation" id="Animation_4h1ux"]
+resource_name = "rotating"
+length = 4.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../../Pawn:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 6.2831855, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7nkln"]
+_data = {
+&"rotating": SubResource("Animation_4h1ux")
+}
+
+[node name="PawnRotating" type="Node3D"]
+
+[node name="Pawn" parent="." instance=ExtResource("1_5xvty")]
+model = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../SubViewport/Camera3D")
+libraries = {
+&"": SubResource("AnimationLibrary_7nkln")
+}
+autoplay = "rotating"
+
+[node name="SubViewport" type="SubViewport" parent="."]
+transparent_bg = true
+handle_input_locally = false
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 0.9832549, 0.18223552, 0, -0.18223552, 0.9832549, 0, 0.50479114, 0.953973)

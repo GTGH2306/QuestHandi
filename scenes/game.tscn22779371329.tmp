@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://dgl3qways310j"]
+[gd_scene load_steps=18 format=3 uid="uid://dgl3qways310j"]
 
 [ext_resource type="Script" uid="uid://dhy8nnvj8edw" path="res://scripts/game.gd" id="1_uwrxv"]
 [ext_resource type="PackedScene" uid="uid://bmq8ujnv43jkb" path="res://addons/pawn/scenes/square.tscn" id="2_yqjtg"]
@@ -26,147 +26,6 @@ reflected_light_source = 2
 tonemap_mode = 2
 glow_enabled = true
 
-[sub_resource type="Shader" id="Shader_iywne"]
-code = "// NOTE: Shader automatically converted from Godot Engine 4.5.1.stable's StandardMaterial3D.
-
-shader_type spatial;
-render_mode blend_mix, depth_draw_always, cull_back, diffuse_burley, specular_schlick_ggx;
-
-uniform vec4 albedo : source_color;
-uniform sampler2D texture_albedo : source_color, filter_linear_mipmap, repeat_enable;
-uniform ivec2 albedo_texture_size;
-uniform float point_size : hint_range(0.1, 128.0, 0.1);
-
-uniform float roughness : hint_range(0.0, 1.0);
-uniform sampler2D texture_metallic : hint_default_white, filter_linear_mipmap, repeat_enable;
-uniform vec4 metallic_texture_channel;
-uniform sampler2D texture_roughness : hint_roughness_r, filter_linear_mipmap, repeat_enable;
-
-uniform float specular : hint_range(0.0, 1.0, 0.01);
-uniform float metallic : hint_range(0.0, 1.0, 0.01);
-
-uniform sampler2D texture_refraction : filter_linear_mipmap, repeat_enable;
-uniform float refraction : hint_range(-1.0, 1.0, 0.001);
-uniform vec4 refraction_texture_channel;
-uniform sampler2D screen_texture : hint_screen_texture, repeat_disable, filter_linear_mipmap;
-uniform sampler2D depth_texture : hint_depth_texture, repeat_disable, filter_nearest;
-
-uniform sampler2D texture_normal : hint_roughness_normal, filter_linear_mipmap, repeat_enable;
-uniform float normal_scale : hint_range(-16.0, 16.0);
-varying vec3 uv1_triplanar_pos;
-
-uniform float uv1_blend_sharpness : hint_range(0.0, 150.0, 0.001);
-varying vec3 uv1_power_normal;
-
-uniform vec3 uv1_scale;
-uniform vec3 uv1_offset;
-uniform vec3 uv2_scale;
-uniform vec3 uv2_offset;
-
-void vertex() {
-	vec3 normal = MODEL_NORMAL_MATRIX * NORMAL;
-
-	TANGENT = vec3(0.0, 0.0, -1.0) * abs(normal.x);
-	TANGENT += vec3(1.0, 0.0, 0.0) * abs(normal.y);
-	TANGENT += vec3(1.0, 0.0, 0.0) * abs(normal.z);
-	TANGENT = inverse(MODEL_NORMAL_MATRIX) * normalize(TANGENT);
-
-	BINORMAL = vec3(0.0, 1.0, 0.0) * abs(normal.x);
-	BINORMAL += vec3(0.0, 0.0, -1.0) * abs(normal.y);
-	BINORMAL += vec3(0.0, 1.0, 0.0) * abs(normal.z);
-	BINORMAL = inverse(MODEL_NORMAL_MATRIX) * normalize(BINORMAL);
-
-	// UV1 Triplanar: Enabled (with World Triplanar)
-	uv1_power_normal = pow(abs(normal), vec3(uv1_blend_sharpness));
-	uv1_triplanar_pos = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz * uv1_scale + uv1_offset + TIME * 0.01;
-	uv1_power_normal /= dot(uv1_power_normal, vec3(1.0));
-	uv1_triplanar_pos *= vec3(1.0, -1.0, 1.0);
-}
-
-vec4 triplanar_texture(sampler2D p_sampler, vec3 p_weights, vec3 p_triplanar_pos) {
-	vec4 samp = vec4(0.0);
-	samp += texture(p_sampler, p_triplanar_pos.xy) * p_weights.z;
-	samp += texture(p_sampler, p_triplanar_pos.xz) * p_weights.y;
-	samp += texture(p_sampler, p_triplanar_pos.zy * vec2(-1.0, 1.0)) * p_weights.x;
-	return samp;
-}
-
-void fragment() {
-	vec4 albedo_tex = triplanar_texture(texture_albedo, uv1_power_normal, uv1_triplanar_pos);
-	ALBEDO = albedo.rgb * albedo_tex.rgb;
-
-	float metallic_tex = dot(triplanar_texture(texture_metallic, uv1_power_normal, uv1_triplanar_pos), metallic_texture_channel);
-	METALLIC = metallic_tex * metallic;
-	SPECULAR = specular;
-
-	vec4 roughness_texture_channel = vec4(1.0, 0.0, 0.0, 0.0);
-	float roughness_tex = dot(triplanar_texture(texture_roughness, uv1_power_normal, uv1_triplanar_pos), roughness_texture_channel);
-	ROUGHNESS = roughness_tex * roughness;
-
-	// Normal Map: Enabled
-	NORMAL_MAP = triplanar_texture(texture_normal, uv1_power_normal, uv1_triplanar_pos).rgb;
-	NORMAL_MAP_DEPTH = normal_scale;
-
-	// Refraction: Enabled (with normal map texture)
-	vec3 unpacked_normal = NORMAL_MAP;
-	unpacked_normal.xy = unpacked_normal.xy * 2.0 - 1.0;
-	unpacked_normal.z = sqrt(max(0.0, 1.0 - dot(unpacked_normal.xy, unpacked_normal.xy)));
-	vec3 ref_normal = normalize(mix(
-			NORMAL,
-			TANGENT * unpacked_normal.x + BINORMAL * unpacked_normal.y + NORMAL * unpacked_normal.z,
-			NORMAL_MAP_DEPTH));
-	vec2 ref_ofs = SCREEN_UV - ref_normal.xy * dot(triplanar_texture(texture_refraction, uv1_power_normal, uv1_triplanar_pos), refraction_texture_channel) * refraction;
-
-	float ref_amount = 1.0 - albedo.a * albedo_tex.a;
-
-	float refraction_depth_tex = textureLod(depth_texture, ref_ofs, 0.0).r;
-	vec4 refraction_view_pos = INV_PROJECTION_MATRIX * vec4(SCREEN_UV * 2.0 - 1.0, refraction_depth_tex, 1.0);
-	refraction_view_pos.xyz /= refraction_view_pos.w;
-
-	// If the depth buffer is lower then the model's Z position, use the refracted UV, otherwise use the normal screen UV.
-	// At low depth differences, decrease refraction intensity to avoid sudden discontinuities.
-	EMISSION += textureLod(screen_texture, mix(SCREEN_UV, ref_ofs, smoothstep(0.0, 1.0, VERTEX.z - refraction_view_pos.z)), ROUGHNESS * 8.0).rgb * ref_amount * EXPOSURE;
-	ALBEDO *= 1.0 - ref_amount;
-	// Force transparency on the material (required for refraction).
-	ALPHA = 1.0;
-}
-"
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_p57ef"]
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_gee14"]
-noise = SubResource("FastNoiseLite_p57ef")
-seamless = true
-as_normal_map = true
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_0tnpc"]
-noise = SubResource("FastNoiseLite_p57ef")
-seamless = true
-as_normal_map = true
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_vtaks"]
-render_priority = 0
-shader = SubResource("Shader_iywne")
-shader_parameter/albedo = Color(0.19, 0.2944999, 0.76, 0.6862745)
-shader_parameter/albedo_texture_size = Vector2i(0, 0)
-shader_parameter/point_size = 1.0
-shader_parameter/roughness = 0.24
-shader_parameter/metallic_texture_channel = Vector4(1, 0, 0, 0)
-shader_parameter/specular = 0.5
-shader_parameter/metallic = 0.0
-shader_parameter/texture_refraction = SubResource("NoiseTexture2D_0tnpc")
-shader_parameter/refraction = 0.05
-shader_parameter/refraction_texture_channel = Vector4(1, 0, 0, 0)
-shader_parameter/texture_normal = SubResource("NoiseTexture2D_gee14")
-shader_parameter/normal_scale = 1.0
-shader_parameter/uv1_blend_sharpness = 1.0
-shader_parameter/uv1_scale = Vector3(0.01, 0.01, 0.01)
-shader_parameter/uv1_offset = Vector3(0, 0, 0)
-shader_parameter/uv2_scale = Vector3(1, 1, 1)
-shader_parameter/uv2_offset = Vector3(0, 0, 0)
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_uwrxv"]
-
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_iywne"]
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_p57ef"]
@@ -179,8 +38,23 @@ normalize = false
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_u5sy4"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8cj0n"]
+albedo_color = Color(0.21843222, 0.41763243, 0.99999624, 1)
+albedo_texture = SubResource("NoiseTexture2D_p57ef")
+metallic = 0.35
+metallic_specular = 0.85
+metallic_texture_channel = 2
+roughness = 0.39
+emission_energy_multiplier = 0.56
+emission_operator = 1
+subsurf_scatter_strength = 0.7
+subsurf_scatter_texture = SubResource("NoiseTexture2D_u5sy4")
+refraction_scale = 1.0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_uwrxv"]
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iywne"]
-albedo_color = Color(0.062100008, 0.11753995, 0.27, 1)
+albedo_color = Color(0.23052326, 0.42962512, 1, 1)
 albedo_texture = SubResource("NoiseTexture2D_p57ef")
 metallic = 1.0
 metallic_specular = 1.0
@@ -192,26 +66,15 @@ subsurf_scatter_strength = 0.7
 subsurf_scatter_texture = SubResource("NoiseTexture2D_u5sy4")
 refraction_scale = 1.0
 
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_yqjtg"]
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yqjtg"]
 albedo_color = Color(1, 0, 0.916667, 1)
 
 [sub_resource type="SphereMesh" id="SphereMesh_lnu2h"]
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_iywne"]
-
-[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_p57ef"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_iywne"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_p57ef"]
-size = Vector3(1, 5.0078125, 20.375)
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_iywne"]
-viewport_path = NodePath("DicesView")
-
 [node name="Game" type="Node3D"]
 script = ExtResource("1_uwrxv")
-sensitivity = null
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.74551547, -0.5727076, -0.3408996, 0.31884915, -0.75562865, 0.5721545, -0.58527076, 0.31785452, 0.74594, 0, 0, 0)
@@ -221,20 +84,27 @@ metadata/_edit_lock_ = true
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_yqjtg")
 
-[node name="Floor" type="Node3D" parent="."]
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.86504316, 0.30509698, -0.39826655, 7.2117388e-09, 0.79383796, 0.6081294, 0.50169754, -0.52605814, 0.6867041, 4.7781262, 9.0660515, 11.407959)
+
+[node name="Floor" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, -17)
 metadata/_edit_lock_ = true
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
 transform = Transform3D(1000, 0, 0, 0, 1000, 0, 0, 0, 1000, 0, 0, 0)
-material_override = SubResource("ShaderMaterial_vtaks")
+material_override = SubResource("StandardMaterial3D_8cj0n")
 transparency = 0.14
 mesh = SubResource("PlaneMesh_uwrxv")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="Floor"]
-transform = Transform3D(1000, 0, 0, 0, 1000, 0, 0, 0, 1000, 0, -8.364729, 0)
+transform = Transform3D(1000, 0, 0, 0, 1000, 0, 0, 0, 1000, 0, -3.0273285, 0)
 material_override = SubResource("StandardMaterial3D_iywne")
 mesh = SubResource("PlaneMesh_uwrxv")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0)
+shape = SubResource("WorldBoundaryShape3D_yqjtg")
 
 [node name="Teams" type="Node3D" parent="."]
 
@@ -342,7 +212,6 @@ question_color = 3
 [node name="ForcedMoveSquare6" parent="Board" instance=ExtResource("4_lbhrr")]
 transform = Transform3D(0.33954245, 0, 0.9405907, 0, 1, 0, -0.9405907, 0, 0.33954245, -63.39166, 30.895874, 4.671733)
 icon = "Ladder"
-forced_move = 8
 color = Color(0.95686275, 0.6431373, 0.3764706, 1)
 
 [node name="QuestionSquare21" parent="Board" instance=ExtResource("3_lnu2h")]
@@ -429,9 +298,6 @@ question_color = 1
 transform = Transform3D(-0.6280854, 0, 0.7781446, 0, 1, 0, -0.77814454, 0, -0.62808543, -92.68116, 57.66374, -34.57574)
 question_color = 2
 
-[node name="ForcedMoveSquare10" parent="Board" instance=ExtResource("4_lbhrr")]
-transform = Transform3D(-0.9434196, 0, 0.33160135, 0, 1, 0, -0.33160135, 0, -0.9434196, -85.47066, 57.205116, -41.00016)
-
 [node name="QuestionSquare41" parent="Board" instance=ExtResource("3_lnu2h")]
 transform = Transform3D(-0.9899473, 0, -0.14143683, 0, 1, 0, 0.14143682, 0, -0.98994744, -82.00182, 57.24446, -49.61627)
 question_color = 3
@@ -458,11 +324,14 @@ question_color = 3
 [node name="FinishSquare" parent="Board" instance=ExtResource("2_yqjtg")]
 transform = Transform3D(-1.3913634, 0, -0.5604532, 0, 1.5000002, 0, 0.5604532, 0, -1.3913634, -98.62309, 70.17082, -100.53924)
 
+[node name="ForcedMoveSquare10" parent="Board" instance=ExtResource("4_lbhrr")]
+transform = Transform3D(-0.9434196, 0, 0.33160135, 0, 1, 0, -0.33160135, 0, -0.9434196, -85.47066, 57.205116, -41.00016)
+
 [node name="Dices" type="Node3D" parent="."]
 transform = Transform3D(0.34779277, -0.5701647, 0.7442798, 0, 0.79383796, 0.6081293, -0.93757147, -0.21150298, 0.2760911, 10.73012, 17.920567, -3.4849)
 
 [node name="DiceSpawn" type="Marker3D" parent="."]
-transform = Transform3D(0.6277915, -0.47335666, 0.61790884, 0, 0.7938381, 0.6081294, -0.7783817, -0.38177842, 0.4983648, 9.017854, -74.674545, -2.6226044e-06)
+transform = Transform3D(0.34779277, -0.5701647, 0.7442798, 0, 0.79383796, 0.6081293, -0.93757147, -0.21150298, 0.2760911, 30.127567, 5.705367, -42.647995)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="DiceSpawn"]
 material_override = SubResource("StandardMaterial3D_yqjtg")
@@ -501,96 +370,7 @@ text = "Tour de l'équipe: Rouge"
 
 [node name="MapModel" parent="." instance=ExtResource("5_iywne")]
 transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0.36101484, -1.1920929e-07, -0.80618525)
+visible = false
 metadata/_edit_lock_ = true
 
-[node name="CameraPivot" type="Node3D" parent="."]
-unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.227457, 9.0885935, 9.514626)
-
-[node name="x_pivot" type="Node3D" parent="CameraPivot"]
-
-[node name="SpringArm3D" type="SpringArm3D" parent="CameraPivot/x_pivot"]
-spring_length = 10.0
-
-[node name="Camera3D" type="Camera3D" parent="CameraPivot/x_pivot/SpringArm3D"]
-unique_name_in_owner = true
-
-[node name="DicesView" type="SubViewport" parent="."]
-transparent_bg = true
-size = Vector2i(1024, 1024)
-
-[node name="Camera3D" type="Camera3D" parent="DicesView"]
-transform = Transform3D(-4.371139e-08, -1, -4.371139e-08, 0, -4.371139e-08, 1, -1, 4.371139e-08, 1.9106855e-15, 2.360796, -67.83871, 0)
-projection = 1
-size = 11.29832
-
-[node name="DicesFloor" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -77.733086, 0)
-visible = false
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="DicesFloor"]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
-visible = false
-mesh = SubResource("PlaneMesh_iywne")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="DicesFloor"]
-shape = SubResource("WorldBoundaryShape3D_p57ef")
-
-[node name="Wall" type="StaticBody3D" parent="DicesFloor"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5249593, 2.278267, 0)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="DicesFloor/Wall"]
-transform = Transform3D(1, 0, 0, 0, 5.03527, 0, 0, 0, 20.38601, 0, 0, 0)
-mesh = SubResource("BoxMesh_iywne")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="DicesFloor/Wall"]
-shape = SubResource("BoxShape3D_p57ef")
-
-[node name="Wall2" type="StaticBody3D" parent="DicesFloor"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.900341, -1.3901367, 0)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="DicesFloor/Wall2"]
-transform = Transform3D(0.5685331, 4.1423173, 0, -0.8226604, 2.8627179, 0, 0, 0, 20.38601, 1.1974697, 2.042572, -1.9073486e-06)
-mesh = SubResource("BoxMesh_iywne")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="DicesFloor/Wall2"]
-shape = SubResource("BoxShape3D_p57ef")
-
-[node name="Wall3" type="StaticBody3D" parent="DicesFloor"]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.24074185, 2.278267, -5.999114)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="DicesFloor/Wall3"]
-transform = Transform3D(1, 0, 0, 0, 5.03527, 0, 0, 0, 20.38601, 0, 0, 0)
-mesh = SubResource("BoxMesh_iywne")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="DicesFloor/Wall3"]
-shape = SubResource("BoxShape3D_p57ef")
-
-[node name="Wall4" type="StaticBody3D" parent="DicesFloor"]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.24074185, 2.278267, 6.111122)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="DicesFloor/Wall4"]
-transform = Transform3D(1, 0, 0, 0, 5.03527, 0, 0, 0, 20.38601, 0, 0, 0)
-mesh = SubResource("BoxMesh_iywne")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="DicesFloor/Wall4"]
-shape = SubResource("BoxShape3D_p57ef")
-
-[node name="TextureRect" type="TextureRect" parent="."]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -3.0
-offset_top = 251.0
-offset_right = -753.0
-offset_bottom = 5.0
-grow_horizontal = 2
-grow_vertical = 0
-texture = SubResource("ViewportTexture_iywne")
-expand_mode = 1
-stretch_mode = 4
-
-[node name="LandingTimer" type="Timer" parent="."]
-
 [connection signal="pressed" from="BoutonLancerDes/Button" to="." method="_on_button_pressed"]
-[connection signal="timeout" from="LandingTimer" to="." method="_on_landing_timer_timeout"]

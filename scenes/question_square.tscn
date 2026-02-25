@@ -75,7 +75,7 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_pr6w6")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hs0qk"]
-albedo_color = Color(0.77, 0.52052, 0.14629999, 1)
+albedo_color = Color(0.99, 0, 0, 1)
 metallic = 0.29
 metallic_specular = 0.68
 roughness = 0.45
@@ -86,6 +86,7 @@ grow_amount = 0.02
 [node name="QuestionSquare" instance=ExtResource("1_hs0qk")]
 script = ExtResource("2_xw5ls")
 question_color = 0
+color = Color(0.99, 0, 0, 1)
 
 [node name="SquareModel" type="MeshInstance3D" parent="." index="0"]
 transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, -0.20218098, 0)
@@ -105,19 +106,19 @@ transform = Transform3D(1, 0, 0, 0, -1, 8.742278e-08, 0, -8.742278e-08, -1, 0, -
 visible = false
 
 [node name="RayCast_Pos2" parent="." index="4"]
-transform = Transform3D(1, 0, 0, 0, -1, 8.742278e-08, 0, -8.742278e-08, -1, 0.6095164, -0.08213958, 0.6507244)
+transform = Transform3D(1, 0, 0, 0, -1, 8.742278e-08, 0, -8.742278e-08, -1, 0.861027, -0.08213958, 0.8475589)
 visible = false
 
 [node name="RayCast_Pos3" parent="." index="5"]
-transform = Transform3D(1, 0, 0, 0, -1, 8.742278e-08, 0, -8.742278e-08, -1, -0.7066295, -0.08213958, 0.661611)
+transform = Transform3D(1, 0, 0, 0, -1, 8.742278e-08, 0, -8.742278e-08, -1, -0.84332013, -0.08213958, 0.8420427)
 visible = false
 
 [node name="RayCast_Pos4" parent="." index="6"]
-transform = Transform3D(1, 0, 0, 0, -1, 8.742278e-08, 0, -8.742278e-08, -1, 0.61314464, -0.08213958, -0.69199306)
+transform = Transform3D(1, 0, 0, 0, -1, 8.742278e-08, 0, -8.742278e-08, -1, 0.87012315, -0.08213958, -0.8450866)
 visible = false
 
 [node name="RayCast_Pos5" parent="." index="7"]
-transform = Transform3D(1, 0, 0, 0, -1, 8.742278e-08, 0, -8.742278e-08, -1, -0.7005408, -0.08213958, -0.6750177)
+transform = Transform3D(1, 0, 0, 0, -1, 8.742278e-08, 0, -8.742278e-08, -1, -0.84269905, -0.08213958, -0.84998167)
 visible = false
 
 [node name="Square" parent="." index="8"]

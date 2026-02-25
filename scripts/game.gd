@@ -8,30 +8,38 @@ var end_screen := preload("res://scenes/end_screen.tscn")
 var trw: Vector3 = Vector3(-8, 0, 0)
 @onready var pos_d2: Vector3 = $DiceSpawn.position + Vector3(1.5,0,0)
 
+@export var sensitivity: float = 0.5
+
+var asking_question: bool = false
+var _pitch: float = 0.0
+var _yaw: float = 0.0
+
 var question_manager: QuestionManager
 
-var nbTeams: int
 var current_turn = 0
-var Teams: Array[Team] = [
-	Team.new(Color.CRIMSON, "Rouge" ),
-	Team.new(Color.CORNFLOWER_BLUE, "Bleue" ),
-	Team.new(Color.FOREST_GREEN, "Verte" ),
-	Team.new(Color.ORANGE, "Orange"),
-	Team.new(Color.HOT_PINK, "Rose")
-]
+var Teams: Array[Team]
 
-func initialize(nbPawns: int) -> void:
-	nbTeams = nbPawns
+func initialize(teams_playing: Array[Team]) -> void:
+	Teams = teams_playing
+	Teams.shuffle()
 	var start_square: Square = $Board.get_children()[0]
-	#Pour chaque équipe, ajoute un pion de l'équipe.
-	#A CHANGER les équipes doivent être des animaux choisi à l'acceuil
-	#A CHANGER l'ordre des équipe doit être aléatoire
-	for i in nbTeams:
+	#Pour chaque équipe, ajoute le pion de l'équipe.
+	for i in Teams.size():
+		Teams[i].connect('team_moved', _on_team_moved)
+		Teams[i].connect('team_landed', _on_team_landed)
+		
 		$Teams.add_child(Teams[i])
-		Teams[i].team_pawn.position = start_square.positions[i].global_position
+		var target_pos: Vector3 = start_square.positions[i].global_position
+		var target_rot: Vector3 = start_square.global_rotation
+		
+		Teams[i].team_pawn.transform = Transform3D(Basis.from_euler(target_rot), target_pos)
+
+	$BoutonLancerDes/Label.text = str("Tour de l'équipe: ", Teams[current_turn].team_name)
 	#Assure la présence des fichiers et créer l'objet permettant de gérer les questions
 	FileManager.ensure_folders()
 	question_manager = QuestionManager.new()
+	%CameraPivot.global_position = Teams[current_turn].team_pawn.pivot_point.global_position
+	%CameraPivot.reparent(Teams[current_turn].team_pawn.pivot_point)
 
 #Supprime les dés exustabts et lance des nouveaux dés. 1seul en cas de dernière réponse fausse.
 func throw_dice() -> void:
@@ -74,26 +82,50 @@ func _on_dice_landing(_value: int) -> void:
 	if all_landed:
 		move_current_pawn(total)
 
-func move_current_pawn(squares: int) -> void:
+func forced_move(squares: int) -> void:
 	var target_square_pos: int = Teams[current_turn].square_pos + squares
-	if target_square_pos >= $Board.get_children().size() - 1:
-		target_square_pos = $Board.get_children().size() - 1
-		#print("L'équipe ", Teams[current_turn].team_name, " a gagnée!")
-		var end: EndScreen = end_screen.instantiate()
-		end.initialize(Teams[current_turn])
-		get_tree().root.add_child(end)
-		get_tree().current_scene. queue_free()
-		get_tree().current_scene = end
 	var target_square: Square = $Board.get_children()[target_square_pos]
-	Teams[current_turn].team_pawn.move_to(target_square.get_available_position())
+	Teams[current_turn].move_to(target_square.get_available_position(), target_square.rotation)
 	Teams[current_turn].square_pos += squares
-	_on_team_moved(target_square)
+	if squares > 0:
+		Teams[current_turn].team_pawn.joy()
+	else:
+		Teams[current_turn].team_pawn.explode()
 
-func _on_team_moved(target : Square) -> void:
-	if target is QuestionSquare:
-		ask_question(Teams[current_turn], target.question_color)
-	if target is ForcedMoveSquare:
-		move_current_pawn(target.forced_move)
+func move_current_pawn(squares: int) -> void:
+	Teams[current_turn].move_left = squares
+	var target_square_pos: int = Teams[current_turn].square_pos + 1
+	if target_square_pos >= $Board.get_children().size():
+		target_square_pos = $Board.get_children().size()
+		Teams[current_turn].move_left = $Board.get_children().size() - Teams[current_turn].square_pos
+	var target_square: Square = $Board.get_children()[target_square_pos]
+	Teams[current_turn].move_to(target_square.get_available_position(), target_square.rotation)
+	Teams[current_turn].team_pawn.hop()
+	Teams[current_turn].square_pos += 1
+
+func _on_team_moved():
+	var target_square_pos: int = Teams[current_turn].square_pos + 1
+	var target_square: Square = $Board.get_children()[target_square_pos]
+	Teams[current_turn].move_to(target_square.get_available_position(), target_square.rotation)
+	Teams[current_turn].team_pawn.hop()
+	Teams[current_turn].square_pos += 1
+
+func _on_team_landed() -> void:
+	$LandingTimer.start()
+	
+func _on_landing_timer_timeout() -> void:
+	$LandingTimer.stop()
+	var team_square : Square = $Board.get_children()[Teams[current_turn].square_pos]
+	if team_square == $Board.get_children()[$Board.get_children().size() - 1]:
+		var end_instance: EndScreen = end_screen.instantiate()
+		end_instance.initialize(Teams[current_turn])
+		get_tree().root.add_child(end_instance)
+		get_tree().current_scene.queue_free()
+		get_tree().current_scene = end_instance
+	if team_square is QuestionSquare:
+		ask_question(Teams[current_turn], team_square.question_color)
+	if team_square is ForcedMoveSquare:
+		forced_move(team_square.forced_move)
 
 func ask_question(team: Team, question_clr: Globals.clr) -> void:
 	var qst_menu: QuestionCard = question_interface.instantiate()
@@ -101,15 +133,49 @@ func ask_question(team: Team, question_clr: Globals.clr) -> void:
 	qst_menu.initialize(question, question_clr, team)
 	$".".add_child(qst_menu)
 	qst_menu.question_answered.connect(_on_question_answered)
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	asking_question = true
 
 func _on_question_answered(result : bool):
 	Teams[current_turn].last_response = result
+	asking_question = false
 	end_turn()
 
 func end_turn() -> void:
-	if current_turn + 1 >= nbTeams:
+	if current_turn + 1 >= Teams.size():
 		current_turn = 0
 	else:
 		current_turn += 1
 	$BoutonLancerDes/Label.text = str("Tour de l'équipe: ", Teams[current_turn].team_name)
 	$BoutonLancerDes/Button.disabled = false
+	%CameraPivot.global_position = Teams[current_turn].team_pawn.pivot_point.global_position
+	%CameraPivot.reparent(Teams[current_turn].team_pawn.pivot_point)
+	
+func _unhandled_input(event: InputEvent) -> void:
+	if !asking_question:
+		if event is InputEventMouseButton:
+			if Input.is_action_pressed("Button_Click"):
+				Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+			else:
+				Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+			if event.button_index == MOUSE_BUTTON_WHEEL_UP :
+				if %CameraPivot/x_pivot/SpringArm3D.spring_length > 5:
+					%CameraPivot/x_pivot/SpringArm3D.spring_length -= 0.3
+			elif event.button_index == MOUSE_BUTTON_WHEEL_DOWN :
+				if %CameraPivot/x_pivot/SpringArm3D.spring_length < 20:
+					%CameraPivot/x_pivot/SpringArm3D.spring_length += 0.3
+		if event is InputEventMouseMotion && Input.is_action_pressed("Button_Click"):
+			_yaw -= event.relative.x * sensitivity
+			_pitch -= event.relative.y * sensitivity
+			_pitch = clamp(_pitch, -65.0, 20.0)
+			%CameraPivot/x_pivot.rotation.x = deg_to_rad(_pitch)
+			
+func _process(_delta: float) -> void:
+	
+	%CameraPivot.global_position = Teams[current_turn].team_pawn.pivot_point.global_position
+
+	%CameraPivot.global_rotation = Vector3.ZERO
+	%CameraPivot.global_rotation.y = deg_to_rad(_yaw)
+
+	%CameraPivot/x_pivot.rotation = Vector3.ZERO
+	%CameraPivot/x_pivot.rotation.x = deg_to_rad(_pitch)

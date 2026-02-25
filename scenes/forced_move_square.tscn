@@ -16,6 +16,21 @@ color = Color(0.09803922, 0.09803922, 0.4392157, 1)
 [node name="MeshInstance3D" parent="." index="0"]
 material_override = SubResource("StandardMaterial3D_35bvw")
 
+[node name="RayCast_Pos1" parent="." index="2"]
+visible = false
+
+[node name="RayCast_Pos2" parent="." index="3"]
+visible = false
+
+[node name="RayCast_Pos3" parent="." index="4"]
+visible = false
+
+[node name="RayCast_Pos4" parent="." index="5"]
+visible = false
+
+[node name="RayCast_Pos5" parent="." index="6"]
+visible = false
+
 [node name="Square" parent="." index="7"]
 surface_material_override/1 = SubResource("StandardMaterial3D_35bvw")
 

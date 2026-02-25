@@ -1,15 +1,16 @@
 @tool
 extends AnimatableBody3D
 class_name Pawn
+@onready var pivot_point: Node3D = $PivotPoint
 
 enum Model { BASE, CAT, DOG, BUNNY, PENGUIN, TORTOISE }
 @onready var models = {
-	Model.BASE: $pawn_basemodel,
-	Model.CAT: $pawn_cat,
-	Model.DOG: $pawn_dog,
-	Model.BUNNY: $pawn_bunny,
-	Model.PENGUIN: $pawn_penguin,
-	Model.TORTOISE: $pawn_tortoise
+	Model.BASE: $MeshBase/pawn_basemodel,
+	Model.CAT: $MeshBase/pawn_cat,
+	Model.DOG: $MeshBase/pawn_dog,
+	Model.BUNNY: $MeshBase/pawn_bunny,
+	Model.PENGUIN: $MeshBase/pawn_penguin,
+	Model.TORTOISE: $MeshBase/pawn_tortoise
 }
 var current_model:Model = Model.BASE
 #permet de changer le modèle du pion
@@ -31,11 +32,23 @@ func _ready() -> void:
 
 @export var color: Color:
 	get:
-		return $pawn_basemodel.get_active_material(0).albedo_color
+		return $MeshBase/pawn_basemodel.get_active_material(0).albedo_color
 	set(value):
-		$pawn_basemodel.material_override = $pawn_basemodel.get_active_material(0).duplicate()
-		$pawn_basemodel.get_active_material(0).albedo_color = value
+		$MeshBase/pawn_basemodel.material_override = $MeshBase/pawn_basemodel.get_active_material(0).duplicate()
+		$MeshBase/pawn_basemodel.get_active_material(0).albedo_color = value
 	
 	
 func move_to(newTarget: Vector3):
 	position = newTarget
+	
+func hop():
+	$AnimationPlayer.play("hop")
+	
+func animation_reset():
+	$AnimationPlayer.play("RESET")
+
+func joy():
+	$AnimationPlayer.play("hop")
+	
+func explode():
+	$AnimationPlayer.play("explode")

@@ -100,19 +100,22 @@ shape = SubResource("BoxShape3D_2eeqm")
 transform = Transform3D(1, 0, 0, 0, -1, 8.742278e-08, 0, -8.742278e-08, -1, 0, -0.054457605, 0)
 
 [node name="RayCast_Pos2" type="RayCast3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -1, 8.742278e-08, 0, -8.742278e-08, -1, 0.6454406, -0.054457605, 0.53180796)
+transform = Transform3D(1, 0, 0, 0, -1, 8.742278e-08, 0, -8.742278e-08, -1, 0.9186559, -0.054457605, 0.90910614)
 
 [node name="RayCast_Pos3" type="RayCast3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -1, 8.742278e-08, 0, -8.742278e-08, -1, -0.6827669, -0.054457605, 0.5135426)
+transform = Transform3D(1, 0, 0, 0, -1, 8.742278e-08, 0, -8.742278e-08, -1, -0.92345786, -0.054457605, 0.89734596)
 
 [node name="RayCast_Pos4" type="RayCast3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -1, 8.742278e-08, 0, -8.742278e-08, -1, 0.6393511, -0.054457605, -0.68154395)
+transform = Transform3D(1, 0, 0, 0, -1, 8.742278e-08, 0, -8.742278e-08, -1, 0.9255774, -0.054457605, -0.93524456)
 
 [node name="RayCast_Pos5" type="RayCast3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -1, 8.742278e-08, 0, -8.742278e-08, -1, -0.6998093, -0.054457605, -0.67059034)
+transform = Transform3D(1, 0, 0, 0, -1, 8.742278e-08, 0, -8.742278e-08, -1, -0.9404998, -0.054457605, -0.94380635)
 
 [node name="Square" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, -0.19392696, 0)
 mesh = SubResource("ArrayMesh_yeqeb")
 skeleton = NodePath("")
 surface_material_override/1 = SubResource("StandardMaterial3D_yeqeb")
+
+[node name="Direction" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.3711385e-08, 0.99999994, 0, -0.99999994, -4.3711385e-08, 0, 0, 1.15)
