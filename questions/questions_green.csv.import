@@ -1,15 +1,3 @@
 [remap]
 
-importer="csv_translation"
-type="Translation"
-uid="uid://c7bicqc00xl8p"
-valid=false
-
-[deps]
-
-source_file="res://questions/questions_green.csv"
-
-[params]
-
-compress=true
-delimiter=0
+importer="keep"

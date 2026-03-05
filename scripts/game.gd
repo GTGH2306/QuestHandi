@@ -98,17 +98,22 @@ func move_current_pawn(squares: int) -> void:
 	if target_square_pos >= $Board.get_children().size():
 		target_square_pos = $Board.get_children().size()
 		Teams[current_turn].move_left = $Board.get_children().size() - Teams[current_turn].square_pos
+	else:
+		Teams[current_turn].square_pos += 1
 	var target_square: Square = $Board.get_children()[target_square_pos]
 	Teams[current_turn].move_to(target_square.get_available_position(), target_square.rotation)
 	Teams[current_turn].team_pawn.hop()
-	Teams[current_turn].square_pos += 1
 
 func _on_team_moved():
 	var target_square_pos: int = Teams[current_turn].square_pos + 1
+	if target_square_pos >= $Board.get_children().size():
+		target_square_pos = $Board.get_children().size() - 1
+		Teams[current_turn].move_left = 0
+	else:
+		Teams[current_turn].square_pos += 1
 	var target_square: Square = $Board.get_children()[target_square_pos]
 	Teams[current_turn].move_to(target_square.get_available_position(), target_square.rotation)
 	Teams[current_turn].team_pawn.hop()
-	Teams[current_turn].square_pos += 1
 
 func _on_team_landed() -> void:
 	$LandingTimer.start()

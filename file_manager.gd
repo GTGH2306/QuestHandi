@@ -13,7 +13,8 @@ var QuestionsPaths : Dictionary[Globals.clr, String] = {
 
 
 func ensure_folders():
-	if not DirAccess.dir_exists_absolute(filepath):
+	var dir = DirAccess.open(filepath)
+	if dir == null:
 		print("Création de fichiers...")
 		create_files("res://questions", filepath)
 

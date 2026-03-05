@@ -2,7 +2,7 @@
 
 [ext_resource type="Theme" uid="uid://bv4c3vimv3v1m" path="res://scenes/theme.tres" id="1_6f23y"]
 [ext_resource type="Script" uid="uid://b8yoa76r0q6ma" path="res://scenes/question_card.gd" id="1_kwf6q"]
-[ext_resource type="Texture2D" uid="uid://vxfftnh1e42w" path="res://questions/images/AccessibleFauteuil.png" id="2_6f23y"]
+[ext_resource type="Texture2D" uid="uid://dnm0ngjfl36r2" path="res://questions/images/AccessibleFauteuil.png" id="2_6f23y"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_nuuas"]
 font_color = Color(0, 0, 0, 1)

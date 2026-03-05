@@ -211,7 +211,6 @@ viewport_path = NodePath("DicesView")
 
 [node name="Game" type="Node3D"]
 script = ExtResource("1_uwrxv")
-sensitivity = null
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.74551547, -0.5727076, -0.3408996, 0.31884915, -0.75562865, 0.5721545, -0.58527076, 0.31785452, 0.74594, 0, 0, 0)
@@ -501,7 +500,6 @@ text = "Tour de l'équipe: Rouge"
 
 [node name="MapModel" parent="." instance=ExtResource("5_iywne")]
 transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0.36101484, -1.1920929e-07, -0.80618525)
-metadata/_edit_lock_ = true
 
 [node name="CameraPivot" type="Node3D" parent="."]
 unique_name_in_owner = true
