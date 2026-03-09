@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://clq3npke6u0g3"]
+[gd_scene format=3 uid="uid://clq3npke6u0g3"]
 
 [ext_resource type="Theme" uid="uid://bv4c3vimv3v1m" path="res://scenes/theme.tres" id="1_6f23y"]
 [ext_resource type="Script" uid="uid://b8yoa76r0q6ma" path="res://scenes/question_card.gd" id="1_kwf6q"]
@@ -11,7 +11,7 @@ font_color = Color(0, 0, 0, 1)
 font_size = 14
 font_color = Color(0, 0, 0, 1)
 
-[node name="QuestionCard" type="Panel"]
+[node name="QuestionCard" type="Panel" unique_id=1570373702]
 anchors_preset = -1
 anchor_left = 0.34300002
 anchor_right = 0.657
@@ -24,7 +24,7 @@ grow_horizontal = 2
 theme = ExtResource("1_6f23y")
 script = ExtResource("1_kwf6q")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=59854887]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -35,26 +35,26 @@ theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 5
 
-[node name="TitleFlow" type="VFlowContainer" parent="MarginContainer"]
+[node name="TitleFlow" type="VFlowContainer" parent="MarginContainer" unique_id=252899448]
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="Title" type="Label" parent="MarginContainer/TitleFlow"]
+[node name="Title" type="Label" parent="MarginContainer/TitleFlow" unique_id=1803052466]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
 text = "Question VIOLETTE pour l'équipe PINGOUIN"
 label_settings = SubResource("LabelSettings_nuuas")
 
-[node name="HSeparator" type="HSeparator" parent="MarginContainer/TitleFlow"]
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/TitleFlow" unique_id=1588211334]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1914159134]
 layout_mode = 2
 size_flags_vertical = 4
 
-[node name="Question" type="Label" parent="MarginContainer/VBoxContainer"]
+[node name="Question" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1094237338]
 custom_minimum_size = Vector2(100, 10)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -64,24 +64,24 @@ label_settings = SubResource("LabelSettings_nuuas")
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="Image" type="TextureRect" parent="MarginContainer/VBoxContainer"]
+[node name="Image" type="TextureRect" parent="MarginContainer/VBoxContainer" unique_id=1521610192]
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("1_6f23y")
 texture = ExtResource("2_6f23y")
 stretch_mode = 3
 
-[node name="HSeparator2" type="HSeparator" parent="MarginContainer/VBoxContainer"]
+[node name="HSeparator2" type="HSeparator" parent="MarginContainer/VBoxContainer" unique_id=1319394161]
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("1_6f23y")
 
-[node name="ShowAnswer" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="ShowAnswer" type="Button" parent="MarginContainer/VBoxContainer" unique_id=119693698]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Afficher la réponse"
 
-[node name="Reponse" type="Label" parent="MarginContainer/VBoxContainer"]
+[node name="Reponse" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1545949914]
 visible = false
 custom_minimum_size = Vector2(100, 10)
 layout_mode = 2
@@ -92,23 +92,23 @@ label_settings = SubResource("LabelSettings_nuuas")
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="HSeparator3" type="HSeparator" parent="MarginContainer/VBoxContainer"]
+[node name="HSeparator3" type="HSeparator" parent="MarginContainer/VBoxContainer" unique_id=396077464]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("1_6f23y")
 
-[node name="TrueFalseSelect" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="TrueFalseSelect" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1454194359]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/TrueFalseSelect"]
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/TrueFalseSelect" unique_id=1643924265]
 layout_mode = 2
 text = "L'équipe a répondu "
 label_settings = SubResource("LabelSettings_6f23y")
 
-[node name="OptionButton" type="OptionButton" parent="MarginContainer/VBoxContainer/TrueFalseSelect"]
+[node name="OptionButton" type="OptionButton" parent="MarginContainer/VBoxContainer/TrueFalseSelect" unique_id=436614777]
 layout_mode = 2
 item_count = 2
 popup/item_0/text = "Faux"
@@ -116,7 +116,7 @@ popup/item_0/id = 0
 popup/item_1/text = "Vrai"
 popup/item_1/id = 1
 
-[node name="Validate" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="Validate" type="Button" parent="MarginContainer/VBoxContainer" unique_id=1984886228]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 4

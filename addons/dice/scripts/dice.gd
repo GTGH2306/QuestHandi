@@ -3,24 +3,23 @@ class_name Dice
 
 var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 #Direction de lancé du dé
-@export var ThrowForce: Vector3 = Vector3(0, 0, 0);
-var faces: Array[FaceMarker]
+@export var throwForce: Vector3 = Vector3(0, 0, 0);
+@onready var _faces: Array[FaceMarker] = [
+	$FaceMarkers/face_1,
+	$FaceMarkers/face_2,
+	$FaceMarkers/face_3,
+	$FaceMarkers/face_4,
+	$FaceMarkers/face_5,
+	$FaceMarkers/face_6,
+]
+
 signal dice_landed(value: int)
 var landed: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	#Ajoute les marqueurs des différentes faces.
-	faces = [
-	get_node('FaceMarkers/face_1'),
-	get_node('FaceMarkers/face_2'),
-	get_node('FaceMarkers/face_3'),
-	get_node('FaceMarkers/face_4'),
-	get_node('FaceMarkers/face_5'),
-	get_node('FaceMarkers/face_6')
-	]
 	#Lance le dé dans la direction configurée
-	apply_impulse(ThrowForce)
+	apply_impulse(throwForce)
 	#Le dé apparait avec une rotation aléatoire
 	rotation = Vector3(rng.randf_range(-180, 180),rng.randf_range(-180, 180),rng.randf_range(-180, 180))
 	#Le dé a aussi une force de rotation aléatoire, ce qui donne une animation ressemblant à un vrai lancé
@@ -33,8 +32,8 @@ func _on_sleeping_state_changed() -> void:
 	
 #Retourne un int de la face la plus élevée
 func get_value() -> int:
-	var highest_face: FaceMarker = faces[0]
-	for face in faces:
+	var highest_face: FaceMarker = _faces[0]
+	for face in _faces:
 		if face.global_position.y > highest_face.global_position.y:
 			highest_face = face
 	return highest_face.face_value

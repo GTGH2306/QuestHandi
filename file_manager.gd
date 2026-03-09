@@ -1,4 +1,6 @@
 extends Node
+## Singleton permettant d'assurer la gestion des fichiers
+## Les vérifications sur les fichiers restent légers car l'utilisateur doit être capable d'ajouter/modifier des questions
 
 var filepath = "user://questions"
 var path_images = "user://questions/images/"
@@ -11,13 +13,14 @@ var QuestionsPaths : Dictionary[Globals.clr, String] = {
 	Globals.clr.PINK : "user://questions/questions_pink.csv"
 }
 
-
+## Si le dossier questions n'est pas trouvé, créer les fichiers
 func ensure_folders():
 	var dir = DirAccess.open(filepath)
 	if dir == null:
 		print("Création de fichiers...")
 		create_files("res://questions", filepath)
 
+## Créer les fichiers questions de façon récursive en ce basant sur celles avec lesquels le jeu est compilé
 func create_files(from:String, to:String):
 	#créer le dossier
 	DirAccess.make_dir_recursive_absolute(to)

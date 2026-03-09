@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://bf4lc4wm0veko"]
+[gd_scene format=3 uid="uid://bf4lc4wm0veko"]
 
 [ext_resource type="Script" uid="uid://bff5jklrm4yru" path="res://addons/dice/scripts/dice.gd" id="1_27nyo"]
 [ext_resource type="PackedScene" uid="uid://cda7sx88eqmiu" path="res://addons/dice/models/dice.glb" id="2_mg5ex"]
@@ -9,40 +9,40 @@ bounce = 0.2
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_27nyo"]
 
-[node name="Dice" type="RigidBody3D"]
+[node name="Dice" type="RigidBody3D" unique_id=325613645]
 mass = 10.0
 physics_material_override = SubResource("PhysicsMaterial_27nyo")
 script = ExtResource("1_27nyo")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=486910466]
 shape = SubResource("BoxShape3D_27nyo")
 
-[node name="Sketchfab_Scene" parent="." instance=ExtResource("2_mg5ex")]
+[node name="Sketchfab_Scene" parent="." unique_id=748765122 instance=ExtResource("2_mg5ex")]
 transform = Transform3D(1.175, 0, 0, 0, 1.175, 0, 0, 0, 1.175, 0, 0, 0)
 
-[node name="FaceMarkers" type="Node3D" parent="."]
+[node name="FaceMarkers" type="Node3D" parent="." unique_id=1603250671]
 
-[node name="face_1" parent="FaceMarkers" instance=ExtResource("3_oi81l")]
+[node name="face_1" parent="FaceMarkers" unique_id=478518620 instance=ExtResource("3_oi81l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 face_value = 1
 
-[node name="face_2" parent="FaceMarkers" instance=ExtResource("3_oi81l")]
+[node name="face_2" parent="FaceMarkers" unique_id=988430542 instance=ExtResource("3_oi81l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0)
 face_value = 2
 
-[node name="face_3" parent="FaceMarkers" instance=ExtResource("3_oi81l")]
+[node name="face_3" parent="FaceMarkers" unique_id=862026441 instance=ExtResource("3_oi81l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)
 face_value = 3
 
-[node name="face_4" parent="FaceMarkers" instance=ExtResource("3_oi81l")]
+[node name="face_4" parent="FaceMarkers" unique_id=598838237 instance=ExtResource("3_oi81l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5)
 face_value = 4
 
-[node name="face_5" parent="FaceMarkers" instance=ExtResource("3_oi81l")]
+[node name="face_5" parent="FaceMarkers" unique_id=305926310 instance=ExtResource("3_oi81l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 0)
 face_value = 5
 
-[node name="face_6" parent="FaceMarkers" instance=ExtResource("3_oi81l")]
+[node name="face_6" parent="FaceMarkers" unique_id=867164918 instance=ExtResource("3_oi81l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 face_value = 6
 

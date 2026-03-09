@@ -38,7 +38,7 @@ func _ready() -> void:
 		$MeshBase/pawn_basemodel.get_active_material(0).albedo_color = value
 	
 	
-func move_to(newTarget: Vector3):
+func move_to(newTarget: Vector3) -> void:
 	position = newTarget
 	
 func hop():

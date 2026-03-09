@@ -1,5 +1,7 @@
 extends Node
+## Variables globales afin d'assurer qu'on utilise les mêmes norme partout
 
+## Le générateur de nombres aléatoire doit rester le même à travers le jeu
 var rng : RandomNumberGenerator : 
 	get:
 		if random == null:
@@ -8,7 +10,7 @@ var rng : RandomNumberGenerator :
 
 var random : RandomNumberGenerator = null
 
-
+## Enum des différentes couleurs de question possible
 enum clr {
 	RED,
 	GREEN,
@@ -16,6 +18,8 @@ enum clr {
 	ORANGE,
 	PINK
 }
+
+## Liaison entre le concept de couleur possible avec leur affichage en jeu et la couleur réel
 var qst_clr:Dictionary[clr, QuestionColor] = {
 	clr.BLUE: QuestionColor.new(Color.DEEP_SKY_BLUE, "Bleue"),
 	clr.GREEN: QuestionColor.new(Color.LIME_GREEN, "Verte"),

@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://dgl3qways310j"]
+[gd_scene format=3 uid="uid://dgl3qways310j"]
 
 [ext_resource type="Script" uid="uid://dhy8nnvj8edw" path="res://scripts/game.gd" id="1_uwrxv"]
 [ext_resource type="PackedScene" uid="uid://bmq8ujnv43jkb" path="res://addons/pawn/scenes/square.tscn" id="2_yqjtg"]
@@ -209,265 +209,265 @@ size = Vector3(1, 5.0078125, 20.375)
 [sub_resource type="ViewportTexture" id="ViewportTexture_iywne"]
 viewport_path = NodePath("DicesView")
 
-[node name="Game" type="Node3D"]
+[node name="Game" type="Node3D" unique_id=431240536]
 script = ExtResource("1_uwrxv")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1997885572]
 transform = Transform3D(-0.74551547, -0.5727076, -0.3408996, 0.31884915, -0.75562865, 0.5721545, -0.58527076, 0.31785452, 0.74594, 0, 0, 0)
 shadow_enabled = true
 metadata/_edit_lock_ = true
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=415632716]
 environment = SubResource("Environment_yqjtg")
 
-[node name="Floor" type="Node3D" parent="."]
+[node name="Floor" type="Node3D" parent="." unique_id=1677596976]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, -17)
 metadata/_edit_lock_ = true
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor" unique_id=1119130017]
 transform = Transform3D(1000, 0, 0, 0, 1000, 0, 0, 0, 1000, 0, 0, 0)
 material_override = SubResource("ShaderMaterial_vtaks")
 transparency = 0.14
 mesh = SubResource("PlaneMesh_uwrxv")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="Floor"]
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Floor" unique_id=784865227]
 transform = Transform3D(1000, 0, 0, 0, 1000, 0, 0, 0, 1000, 0, -8.364729, 0)
 material_override = SubResource("StandardMaterial3D_iywne")
 mesh = SubResource("PlaneMesh_uwrxv")
 
-[node name="Teams" type="Node3D" parent="."]
+[node name="Teams" type="Node3D" parent="." unique_id=1148976004]
 
-[node name="Board" type="Node3D" parent="."]
+[node name="Board" type="Node3D" parent="." unique_id=1720829883]
 metadata/_edit_lock_ = true
 
-[node name="StartSquare" parent="Board" instance=ExtResource("2_yqjtg")]
+[node name="StartSquare" parent="Board" unique_id=1801522456 instance=ExtResource("2_yqjtg")]
 transform = Transform3D(0.22013912, 0.07652971, -0.9724617, -0.039072797, 0.99680936, 0.06960077, 0.97468567, 0.022674978, 0.2224269, 6.1566234, 6.9180164, 9.455688)
 
-[node name="QuestionSquare" parent="Board" instance=ExtResource("3_lnu2h")]
+[node name="QuestionSquare" parent="Board" unique_id=1754516965 instance=ExtResource("3_lnu2h")]
 transform = Transform3D(-0.5335408, -0.01790442, -0.8455848, 0.01574966, 0.9993922, -0.03109874, 0.84562767, -0.029910121, -0.53293455, -2.6122599, 7.037656, 11.667284)
 
-[node name="QuestionSquare2" parent="Board" instance=ExtResource("3_lnu2h")]
+[node name="QuestionSquare2" parent="Board" unique_id=691750643 instance=ExtResource("3_lnu2h")]
 transform = Transform3D(-0.95967543, 0.104111485, -0.26112124, 0.059170164, 0.982891, 0.1744254, 0.27481344, 0.15194114, -0.9494161, -9.400625, 7.5185547, 6.853548)
 question_color = 1
 
-[node name="ForcedMoveSquare2" parent="Board" instance=ExtResource("4_lbhrr")]
+[node name="ForcedMoveSquare2" parent="Board" unique_id=530827438 instance=ExtResource("4_lbhrr")]
 transform = Transform3D(-0.88965464, -0.0068506207, 0.45658278, -0.019229118, 0.9995626, -0.022470562, -0.45622903, -0.028770724, -0.88939714, -11.62358, 8.162377, -1.7798786)
 icon = "Bomb"
 
-[node name="ForcedMoveSquare" parent="Board" instance=ExtResource("4_lbhrr")]
+[node name="ForcedMoveSquare" parent="Board" unique_id=124700368 instance=ExtResource("4_lbhrr")]
 transform = Transform3D(-0.33699638, -0.0011262018, 0.94150543, -0.13195868, 0.990185, -0.04604806, -0.9322126, -0.13975774, -0.33383724, -6.4348, 7.0966644, -11.809622)
 icon = "Ladder"
 forced_move = 7
 color = Color(0.95686275, 0.6431373, 0.3764706, 1)
 
-[node name="QuestionSquare4" parent="Board" instance=ExtResource("3_lnu2h")]
+[node name="QuestionSquare4" parent="Board" unique_id=1396677659 instance=ExtResource("3_lnu2h")]
 transform = Transform3D(-0.9769662, -0.09242957, 0.1923373, -0.09032454, 0.99571735, 0.019703202, -0.1933347, 0.0018766094, -0.98113114, 0.5715866, 7.279668, -14.419996)
 question_color = 2
 
-[node name="QuestionSquare5" parent="Board" instance=ExtResource("3_lnu2h")]
+[node name="QuestionSquare5" parent="Board" unique_id=2087849947 instance=ExtResource("3_lnu2h")]
 transform = Transform3D(-0.75475675, -0.2640702, 0.6005074, 0.08878645, 0.86585736, 0.49234933, -0.6499683, 0.424921, -0.63006586, 4.146838, 8.749059, -25.979897)
 question_color = 3
 
-[node name="QuestionSquare6" parent="Board" instance=ExtResource("3_lnu2h")]
+[node name="QuestionSquare6" parent="Board" unique_id=1343813735 instance=ExtResource("3_lnu2h")]
 transform = Transform3D(-0.9977767, -0.033097547, -0.057845034, -0.047101717, 0.9642602, 0.26073655, 0.04714786, 0.26288146, -0.9636756, 11.981121, 12.693542, -33.37104)
 question_color = 4
 
-[node name="QuestionSquare7" parent="Board" instance=ExtResource("3_lnu2h")]
+[node name="QuestionSquare7" parent="Board" unique_id=1086435718 instance=ExtResource("3_lnu2h")]
 transform = Transform3D(-0.40268075, 0.03121733, -0.9148082, -0.06511913, 0.99590886, 0.06264911, 0.91302073, 0.08479907, -0.3990006, 10.778029, 16.026525, -43.881)
 
-[node name="QuestionSquare8" parent="Board" instance=ExtResource("3_lnu2h")]
+[node name="QuestionSquare8" parent="Board" unique_id=114795816 instance=ExtResource("3_lnu2h")]
 transform = Transform3D(0.18128273, 0.4349013, -0.88204193, -0.0803879, 0.90045404, 0.4274581, 0.9801397, -0.0065852962, 0.19819766, 0.68789005, 18.236124, -46.261425)
 question_color = 1
 
-[node name="QuestionSquare9" parent="Board" instance=ExtResource("3_lnu2h")]
+[node name="QuestionSquare9" parent="Board" unique_id=1081799299 instance=ExtResource("3_lnu2h")]
 transform = Transform3D(0.72715, 0, -0.68647856, 0, 1, 0, 0.68647856, 0, 0.72715, -14.192397, 21.318163, -42.447903)
 question_color = 2
 
-[node name="QuestionSquare10" parent="Board" instance=ExtResource("3_lnu2h")]
+[node name="QuestionSquare10" parent="Board" unique_id=1773295604 instance=ExtResource("3_lnu2h")]
 transform = Transform3D(0.1265453, 0, -0.9919608, 0, 1, 0, 0.9919608, 0, 0.1265453, -20.572134, 21.318163, -35.315235)
 question_color = 3
 
-[node name="QuestionSquare11" parent="Board" instance=ExtResource("3_lnu2h")]
+[node name="QuestionSquare11" parent="Board" unique_id=1661053839 instance=ExtResource("3_lnu2h")]
 transform = Transform3D(-0.6104494, 0, -0.79205525, 0, 1, 0, 0.79205525, 0, -0.6104494, -30.652817, 21.318163, -35.168617)
 question_color = 4
 
-[node name="ForcedMoveSquare3" parent="Board" instance=ExtResource("4_lbhrr")]
+[node name="ForcedMoveSquare3" parent="Board" unique_id=598174156 instance=ExtResource("4_lbhrr")]
 transform = Transform3D(-0.9968582, 0, -0.07920725, 0, 1, 0, 0.07920725, 0, -0.9968582, -36.55497, 21.302826, -41.794094)
 icon = "Ladder"
 forced_move = 7
 color = Color(0.95686275, 0.6431373, 0.3764706, 1)
 
-[node name="QuestionSquare12" parent="Board" instance=ExtResource("3_lnu2h")]
+[node name="QuestionSquare12" parent="Board" unique_id=17823020 instance=ExtResource("3_lnu2h")]
 transform = Transform3D(-0.9001896, 0, -0.43549827, 0, 1, 0, 0.43549827, 0, -0.9001896, -36.10454, 21.318163, -50.105408)
 
-[node name="QuestionSquare13" parent="Board" instance=ExtResource("3_lnu2h")]
+[node name="QuestionSquare13" parent="Board" unique_id=314776084 instance=ExtResource("3_lnu2h")]
 transform = Transform3D(-0.35438892, 0, -0.9350981, 0, 1, 0, 0.9350981, 0, -0.35438892, -40.934597, 21.318163, -58.97069)
 question_color = 1
 
-[node name="ForcedMoveSquare4" parent="Board" instance=ExtResource("4_lbhrr")]
+[node name="ForcedMoveSquare4" parent="Board" unique_id=1732981346 instance=ExtResource("4_lbhrr")]
 transform = Transform3D(-0.48520315, 0.06346389, -0.87209535, 0.025959097, 0.9979685, 0.05818105, 0.874016, 0.0055907667, -0.48586488, -51.25838, 21.536633, -62.54948)
 
-[node name="QuestionSquare14" parent="Board" instance=ExtResource("3_lnu2h")]
+[node name="QuestionSquare14" parent="Board" unique_id=1631062666 instance=ExtResource("3_lnu2h")]
 transform = Transform3D(0.31235772, 0.33601573, -0.8885527, 0.0524377, 0.9278289, 0.36930218, 0.948516, -0.16194803, 0.2721946, -63.814053, 24.508781, -66.89261)
 question_color = 2
 
-[node name="QuestionSquare15" parent="Board" instance=ExtResource("3_lnu2h")]
+[node name="QuestionSquare15" parent="Board" unique_id=2125308757 instance=ExtResource("3_lnu2h")]
 transform = Transform3D(0.95928115, 0.042306304, 0.27926683, -0.08137742, 0.9881916, 0.12982954, -0.27047643, -0.14726901, 0.95139617, -74.227554, 30.396313, -56.694138)
 question_color = 3
 
-[node name="QuestionSquare16" parent="Board" instance=ExtResource("3_lnu2h")]
+[node name="QuestionSquare16" parent="Board" unique_id=488614446 instance=ExtResource("3_lnu2h")]
 transform = Transform3D(0.8518823, 0, 0.52373326, 0, 1, 0, -0.5237332, 0, 0.8518824, -70.51648, 30.931835, -45.287575)
 question_color = 4
 
-[node name="QuestionSquare17" parent="Board" instance=ExtResource("3_lnu2h")]
+[node name="QuestionSquare17" parent="Board" unique_id=468837043 instance=ExtResource("3_lnu2h")]
 transform = Transform3D(0.9936723, 0, -0.112318754, 0, 1, 0, 0.112318724, 0, 0.99367243, -65.69556, 30.931835, -38.162075)
 
-[node name="QuestionSquare18" parent="Board" instance=ExtResource("3_lnu2h")]
+[node name="QuestionSquare18" parent="Board" unique_id=1409882788 instance=ExtResource("3_lnu2h")]
 transform = Transform3D(0.9063816, 0, -0.42246008, 0, 1, 0, 0.42246002, 0, 0.9063817, -66.94823, 30.931835, -31.113953)
 question_color = 1
 
-[node name="QuestionSquare19" parent="Board" instance=ExtResource("3_lnu2h")]
+[node name="QuestionSquare19" parent="Board" unique_id=548100732 instance=ExtResource("3_lnu2h")]
 transform = Transform3D(0.99881554, 0, 0.04865808, 0, 1, 0, -0.048658077, 0, 0.99881566, -70.60918, 30.931835, -24.22654)
 question_color = 2
 
-[node name="ForcedMoveSquare5" parent="Board" instance=ExtResource("4_lbhrr")]
+[node name="ForcedMoveSquare5" parent="Board" unique_id=301167271 instance=ExtResource("4_lbhrr")]
 transform = Transform3D(0.965295, 0, 0.2611616, 0, 1, 0, -0.2611616, 0, 0.965295, -70.298874, 30.895874, -13.95321)
 icon = "Bomb"
 
-[node name="QuestionSquare20" parent="Board" instance=ExtResource("3_lnu2h")]
+[node name="QuestionSquare20" parent="Board" unique_id=1280358621 instance=ExtResource("3_lnu2h")]
 transform = Transform3D(0.8729987, 0, 0.4877227, 0, 1, 0, -0.48772264, 0, 0.87299883, -68.335464, 30.931835, -3.5541573)
 question_color = 3
 
-[node name="ForcedMoveSquare6" parent="Board" instance=ExtResource("4_lbhrr")]
+[node name="ForcedMoveSquare6" parent="Board" unique_id=1198268827 instance=ExtResource("4_lbhrr")]
 transform = Transform3D(0.33954245, 0, 0.9405907, 0, 1, 0, -0.9405907, 0, 0.33954245, -63.39166, 30.895874, 4.671733)
 icon = "Ladder"
 forced_move = 8
 color = Color(0.95686275, 0.6431373, 0.3764706, 1)
 
-[node name="QuestionSquare21" parent="Board" instance=ExtResource("3_lnu2h")]
+[node name="QuestionSquare21" parent="Board" unique_id=288679567 instance=ExtResource("3_lnu2h")]
 transform = Transform3D(0.96104014, 0, 0.27640912, 0, 1, 0, -0.2764091, 0, 0.96104026, -53.45466, 31.15448, 7.7947025)
 question_color = 4
 
-[node name="QuestionSquare22" parent="Board" instance=ExtResource("3_lnu2h")]
+[node name="QuestionSquare22" parent="Board" unique_id=14338897 instance=ExtResource("3_lnu2h")]
 transform = Transform3D(0.97054017, 0, 0.24093965, 0, 1, 0, -0.24093962, 0, 0.9705403, -50.347046, 31.15448, 18.333612)
 
-[node name="QuestionSquare23" parent="Board" instance=ExtResource("3_lnu2h")]
+[node name="QuestionSquare23" parent="Board" unique_id=642867557 instance=ExtResource("3_lnu2h")]
 transform = Transform3D(0.94821393, -0.015617952, 0.3172479, -0.032899894, 0.9885889, 0.14700134, -0.3159236, -0.14982618, 0.9368803, -45.85982, 31.385323, 30.954536)
 question_color = 1
 
-[node name="QuestionSquare24" parent="Board" instance=ExtResource("3_lnu2h")]
+[node name="QuestionSquare24" parent="Board" unique_id=1552170514 instance=ExtResource("3_lnu2h")]
 transform = Transform3D(0.7200421, 0.21970637, -0.6582313, 0.11574531, 0.897242, 0.4260985, 0.6842092, -0.38299596, 0.6206222, -41.945065, 36.616104, 44.752132)
 question_color = 2
 
-[node name="QuestionSquare25" parent="Board" instance=ExtResource("3_lnu2h")]
+[node name="QuestionSquare25" parent="Board" unique_id=1305395234 instance=ExtResource("3_lnu2h")]
 transform = Transform3D(-0.111063115, 0.24120584, -0.9640978, 0.17003454, 0.96040726, 0.22069469, 0.97915924, -0.13941884, -0.14767914, -52.151962, 41.230892, 50.811306)
 question_color = 3
 
-[node name="ForcedMoveSquare7" parent="Board" instance=ExtResource("4_lbhrr")]
+[node name="ForcedMoveSquare7" parent="Board" unique_id=534920092 instance=ExtResource("4_lbhrr")]
 transform = Transform3D(-0.99543124, 0, 0.09548083, 0, 1, 0, -0.09548083, 0, -0.99543124, -69.4778, 42.515297, 48.058495)
 
-[node name="QuestionSquare26" parent="Board" instance=ExtResource("3_lnu2h")]
+[node name="QuestionSquare26" parent="Board" unique_id=15325217 instance=ExtResource("3_lnu2h")]
 transform = Transform3D(-0.8895281, 0, -0.4568807, 0, 1, 0, 0.45688063, 0, -0.8895282, -68.8393, 42.54597, 37.4447)
 question_color = 4
 
-[node name="QuestionSquare27" parent="Board" instance=ExtResource("3_lnu2h")]
+[node name="QuestionSquare27" parent="Board" unique_id=954065863 instance=ExtResource("3_lnu2h")]
 transform = Transform3D(-0.61774987, 0, -0.78637475, 0, 1, 0, 0.7863747, 0, -0.6177499, -73.575134, 42.54597, 29.040665)
 
-[node name="QuestionSquare28" parent="Board" instance=ExtResource("3_lnu2h")]
+[node name="QuestionSquare28" parent="Board" unique_id=1861284055 instance=ExtResource("3_lnu2h")]
 transform = Transform3D(-0.5264513, 0, -0.8502055, 0, 1, 0, 0.85020536, 0, -0.52645135, -81.76716, 42.54597, 22.398485)
 question_color = 1
 
-[node name="QuestionSquare29" parent="Board" instance=ExtResource("3_lnu2h")]
+[node name="QuestionSquare29" parent="Board" unique_id=1534871684 instance=ExtResource("3_lnu2h")]
 transform = Transform3D(-0.5519223, 0, -0.8338957, 0, 1, 0, 0.8338956, 0, -0.5519224, -89.84848, 42.54597, 16.75263)
 question_color = 2
 
-[node name="ForcedMoveSquare9" parent="Board" instance=ExtResource("4_lbhrr")]
+[node name="ForcedMoveSquare9" parent="Board" unique_id=291420554 instance=ExtResource("4_lbhrr")]
 transform = Transform3D(-0.25529394, 0, -0.9668635, 0, 1, 0, 0.9668635, 0, -0.25529394, -99.05153, 42.515297, 9.681416)
 
-[node name="ForcedMoveSquare8" parent="Board" instance=ExtResource("4_lbhrr")]
+[node name="ForcedMoveSquare8" parent="Board" unique_id=1292660849 instance=ExtResource("4_lbhrr")]
 transform = Transform3D(0.29572475, 0, -0.9552732, 0, 1, 0, 0.9552732, 0, 0.29572475, -110.77402, 42.5258, 7.1283283)
 icon = "Ladder"
 forced_move = 7
 color = Color(0.95686275, 0.6431373, 0.3764706, 1)
 
-[node name="QuestionSquare31" parent="Board" instance=ExtResource("3_lnu2h")]
+[node name="QuestionSquare31" parent="Board" unique_id=907998474 instance=ExtResource("3_lnu2h")]
 transform = Transform3D(0.16699259, 0, -0.98595834, 0, 1, 0, 0.9859582, 0, 0.16699259, -121.66993, 42.539883, 10.207326)
 question_color = 3
 
-[node name="QuestionSquare32" parent="Board" instance=ExtResource("3_lnu2h")]
+[node name="QuestionSquare32" parent="Board" unique_id=1972034473 instance=ExtResource("3_lnu2h")]
 transform = Transform3D(-0.019412259, 0.3934178, -0.91915494, -0.01532831, 0.9191031, 0.39371952, 0.99969405, 0.0217321, -0.011811506, -140.16441, 45.336395, 12.457157)
 question_color = 4
 
-[node name="QuestionSquare33" parent="Board" instance=ExtResource("3_lnu2h")]
+[node name="QuestionSquare33" parent="Board" unique_id=103979130 instance=ExtResource("3_lnu2h")]
 transform = Transform3D(-0.94520605, 0.26617026, -0.18904665, 0.19839077, 0.92816216, 0.31489068, 0.2592804, 0.26013142, -0.9301104, -154.00232, 51.79867, 8.742428)
 
-[node name="QuestionSquare34" parent="Board" instance=ExtResource("3_lnu2h")]
+[node name="QuestionSquare34" parent="Board" unique_id=1120531643 instance=ExtResource("3_lnu2h")]
 transform = Transform3D(-0.6883396, 0.04813674, 0.72378963, 0.15336373, 0.9848976, 0.08035012, -0.70899093, 0.1663113, -0.6853266, -154.72656, 56.103836, -6.5879107)
 question_color = 1
 
-[node name="QuestionSquare35" parent="Board" instance=ExtResource("3_lnu2h")]
+[node name="QuestionSquare35" parent="Board" unique_id=982023452 instance=ExtResource("3_lnu2h")]
 transform = Transform3D(0.029613838, 0, 0.9995616, 0, 1, 0, -0.9995615, 0, 0.02961386, -142.63414, 57.66374, -15.76573)
 question_color = 2
 
-[node name="QuestionSquare36" parent="Board" instance=ExtResource("3_lnu2h")]
+[node name="QuestionSquare36" parent="Board" unique_id=280774487 instance=ExtResource("3_lnu2h")]
 transform = Transform3D(-0.2827936, 0, 0.95918095, 0, 1, 0, -0.95918083, 0, -0.28279364, -128.43793, 57.66374, -13.991199)
 question_color = 3
 
-[node name="QuestionSquare37" parent="Board" instance=ExtResource("3_lnu2h")]
+[node name="QuestionSquare37" parent="Board" unique_id=609671357 instance=ExtResource("3_lnu2h")]
 transform = Transform3D(-0.23493862, 0, 0.9720103, 0, 1, 0, -0.9720102, 0, -0.23493864, -115.9275, 57.66374, -16.652992)
 question_color = 4
 
-[node name="QuestionSquare38" parent="Board" instance=ExtResource("3_lnu2h")]
+[node name="QuestionSquare38" parent="Board" unique_id=1852916041 instance=ExtResource("3_lnu2h")]
 transform = Transform3D(-0.40456712, 0, 0.9145085, 0, 1, 0, -0.9145084, 0, -0.40456715, -105.63522, 57.66374, -19.847145)
 
-[node name="QuestionSquare39" parent="Board" instance=ExtResource("3_lnu2h")]
+[node name="QuestionSquare39" parent="Board" unique_id=56935433 instance=ExtResource("3_lnu2h")]
 transform = Transform3D(-0.95056456, 0, 0.31052715, 0, 1, 0, -0.3105271, 0, -0.9505647, -96.94003, 57.66374, -24.194738)
 question_color = 1
 
-[node name="QuestionSquare40" parent="Board" instance=ExtResource("3_lnu2h")]
+[node name="QuestionSquare40" parent="Board" unique_id=450879365 instance=ExtResource("3_lnu2h")]
 transform = Transform3D(-0.6280854, 0, 0.7781446, 0, 1, 0, -0.77814454, 0, -0.62808543, -92.68116, 57.66374, -34.57574)
 question_color = 2
 
-[node name="ForcedMoveSquare10" parent="Board" instance=ExtResource("4_lbhrr")]
+[node name="ForcedMoveSquare10" parent="Board" unique_id=1229902712 instance=ExtResource("4_lbhrr")]
 transform = Transform3D(-0.9434196, 0, 0.33160135, 0, 1, 0, -0.33160135, 0, -0.9434196, -85.47066, 57.205116, -41.00016)
 
-[node name="QuestionSquare41" parent="Board" instance=ExtResource("3_lnu2h")]
+[node name="QuestionSquare41" parent="Board" unique_id=1197195130 instance=ExtResource("3_lnu2h")]
 transform = Transform3D(-0.9899473, 0, -0.14143683, 0, 1, 0, 0.14143682, 0, -0.98994744, -82.00182, 57.24446, -49.61627)
 question_color = 3
 
-[node name="QuestionSquare42" parent="Board" instance=ExtResource("3_lnu2h")]
+[node name="QuestionSquare42" parent="Board" unique_id=1713115279 instance=ExtResource("3_lnu2h")]
 transform = Transform3D(-0.9722589, 0.05011475, -0.22847573, -0.00752645, 0.9695702, 0.24469751, 0.23378624, 0.23962888, -0.94229627, -82.50195, 57.891808, -60.116467)
 question_color = 4
 
-[node name="QuestionSquare43" parent="Board" instance=ExtResource("3_lnu2h")]
+[node name="QuestionSquare43" parent="Board" unique_id=382824025 instance=ExtResource("3_lnu2h")]
 transform = Transform3D(-0.9628402, 0.11086734, -0.24626672, 0.017098602, 0.9350506, 0.35410142, 0.2695302, 0.33673212, -0.9022, -85.16437, 60.42823, -67.1148)
 
-[node name="QuestionSquare44" parent="Board" instance=ExtResource("3_lnu2h")]
+[node name="QuestionSquare44" parent="Board" unique_id=1746868838 instance=ExtResource("3_lnu2h")]
 transform = Transform3D(-0.9126373, 0.12884039, -0.3879344, -0.0012496759, 0.9481446, 0.3178368, 0.40876806, 0.29055443, -0.8651514, -88.171, 63.6158, -74.45683)
 question_color = 1
 
-[node name="QuestionSquare45" parent="Board" instance=ExtResource("3_lnu2h")]
+[node name="QuestionSquare45" parent="Board" unique_id=1813798264 instance=ExtResource("3_lnu2h")]
 transform = Transform3D(-0.92909247, 0.13153271, -0.34566817, 0.009547139, 0.942841, 0.33310664, 0.36972448, 0.30618638, -0.8772426, -91.276436, 66.403824, -81.20005)
 question_color = 2
 
-[node name="QuestionSquare46" parent="Board" instance=ExtResource("3_lnu2h")]
+[node name="QuestionSquare46" parent="Board" unique_id=205659745 instance=ExtResource("3_lnu2h")]
 transform = Transform3D(-0.9287255, 0, -0.37076834, 0, 1, 0, 0.3707683, 0, -0.9287256, -96.0874, 70.09911, -93.396255)
 question_color = 3
 
-[node name="FinishSquare" parent="Board" instance=ExtResource("2_yqjtg")]
+[node name="FinishSquare" parent="Board" unique_id=1308920377 instance=ExtResource("2_yqjtg")]
 transform = Transform3D(-1.3913634, 0, -0.5604532, 0, 1.5000002, 0, 0.5604532, 0, -1.3913634, -98.62309, 70.17082, -100.53924)
 
-[node name="Dices" type="Node3D" parent="."]
+[node name="Dices" type="Node3D" parent="." unique_id=1256322645]
 transform = Transform3D(0.34779277, -0.5701647, 0.7442798, 0, 0.79383796, 0.6081293, -0.93757147, -0.21150298, 0.2760911, 10.73012, 17.920567, -3.4849)
 
-[node name="DiceSpawn" type="Marker3D" parent="."]
+[node name="DiceSpawn" type="Marker3D" parent="." unique_id=1290483091]
 transform = Transform3D(0.6277915, -0.47335666, 0.61790884, 0, 0.7938381, 0.6081294, -0.7783817, -0.38177842, 0.4983648, 9.017854, -74.674545, -2.6226044e-06)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="DiceSpawn"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="DiceSpawn" unique_id=224930148]
 material_override = SubResource("StandardMaterial3D_yqjtg")
 mesh = SubResource("SphereMesh_lnu2h")
 
-[node name="BoutonLancerDes" type="Control" parent="."]
+[node name="BoutonLancerDes" type="Control" parent="." unique_id=1104177913]
 layout_mode = 3
 anchors_preset = 3
 anchor_left = 1.0
@@ -481,7 +481,7 @@ offset_bottom = -19.0
 grow_horizontal = 0
 grow_vertical = 0
 
-[node name="Button" type="Button" parent="BoutonLancerDes"]
+[node name="Button" type="Button" parent="BoutonLancerDes" unique_id=1390124118]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.23700002
@@ -492,89 +492,89 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "Lancer !"
 
-[node name="Label" type="Label" parent="BoutonLancerDes"]
+[node name="Label" type="Label" parent="BoutonLancerDes" unique_id=1934973395]
 layout_mode = 0
 offset_right = 182.0
 offset_bottom = 24.0
 text = "Tour de l'équipe: Rouge"
 
-[node name="MapModel" parent="." instance=ExtResource("5_iywne")]
+[node name="MapModel" parent="." unique_id=1101811649 instance=ExtResource("5_iywne")]
 transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0.36101484, -1.1920929e-07, -0.80618525)
 
-[node name="CameraPivot" type="Node3D" parent="."]
+[node name="CameraPivot" type="Node3D" parent="." unique_id=1504668588]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.227457, 9.0885935, 9.514626)
 
-[node name="x_pivot" type="Node3D" parent="CameraPivot"]
+[node name="x_pivot" type="Node3D" parent="CameraPivot" unique_id=890004001]
 
-[node name="SpringArm3D" type="SpringArm3D" parent="CameraPivot/x_pivot"]
+[node name="SpringArm3D" type="SpringArm3D" parent="CameraPivot/x_pivot" unique_id=1497489564]
 spring_length = 10.0
 
-[node name="Camera3D" type="Camera3D" parent="CameraPivot/x_pivot/SpringArm3D"]
+[node name="Camera3D" type="Camera3D" parent="CameraPivot/x_pivot/SpringArm3D" unique_id=2013920584]
 unique_name_in_owner = true
 
-[node name="DicesView" type="SubViewport" parent="."]
+[node name="DicesView" type="SubViewport" parent="." unique_id=716719320]
 transparent_bg = true
 size = Vector2i(1024, 1024)
 
-[node name="Camera3D" type="Camera3D" parent="DicesView"]
+[node name="Camera3D" type="Camera3D" parent="DicesView" unique_id=7521991]
 transform = Transform3D(-4.371139e-08, -1, -4.371139e-08, 0, -4.371139e-08, 1, -1, 4.371139e-08, 1.9106855e-15, 2.360796, -67.83871, 0)
 projection = 1
 size = 11.29832
 
-[node name="DicesFloor" type="StaticBody3D" parent="."]
+[node name="DicesFloor" type="StaticBody3D" parent="." unique_id=407999922]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -77.733086, 0)
 visible = false
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="DicesFloor"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="DicesFloor" unique_id=1698680698]
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
 visible = false
 mesh = SubResource("PlaneMesh_iywne")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="DicesFloor"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DicesFloor" unique_id=1552352331]
 shape = SubResource("WorldBoundaryShape3D_p57ef")
 
-[node name="Wall" type="StaticBody3D" parent="DicesFloor"]
+[node name="Wall" type="StaticBody3D" parent="DicesFloor" unique_id=609879618]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5249593, 2.278267, 0)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="DicesFloor/Wall"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="DicesFloor/Wall" unique_id=256874798]
 transform = Transform3D(1, 0, 0, 0, 5.03527, 0, 0, 0, 20.38601, 0, 0, 0)
 mesh = SubResource("BoxMesh_iywne")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="DicesFloor/Wall"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DicesFloor/Wall" unique_id=1539026618]
 shape = SubResource("BoxShape3D_p57ef")
 
-[node name="Wall2" type="StaticBody3D" parent="DicesFloor"]
+[node name="Wall2" type="StaticBody3D" parent="DicesFloor" unique_id=608178527]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.900341, -1.3901367, 0)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="DicesFloor/Wall2"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="DicesFloor/Wall2" unique_id=1621895016]
 transform = Transform3D(0.5685331, 4.1423173, 0, -0.8226604, 2.8627179, 0, 0, 0, 20.38601, 1.1974697, 2.042572, -1.9073486e-06)
 mesh = SubResource("BoxMesh_iywne")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="DicesFloor/Wall2"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DicesFloor/Wall2" unique_id=1847401736]
 shape = SubResource("BoxShape3D_p57ef")
 
-[node name="Wall3" type="StaticBody3D" parent="DicesFloor"]
+[node name="Wall3" type="StaticBody3D" parent="DicesFloor" unique_id=1862867738]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.24074185, 2.278267, -5.999114)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="DicesFloor/Wall3"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="DicesFloor/Wall3" unique_id=478669851]
 transform = Transform3D(1, 0, 0, 0, 5.03527, 0, 0, 0, 20.38601, 0, 0, 0)
 mesh = SubResource("BoxMesh_iywne")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="DicesFloor/Wall3"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DicesFloor/Wall3" unique_id=1937593964]
 shape = SubResource("BoxShape3D_p57ef")
 
-[node name="Wall4" type="StaticBody3D" parent="DicesFloor"]
+[node name="Wall4" type="StaticBody3D" parent="DicesFloor" unique_id=1794486573]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.24074185, 2.278267, 6.111122)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="DicesFloor/Wall4"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="DicesFloor/Wall4" unique_id=2050595722]
 transform = Transform3D(1, 0, 0, 0, 5.03527, 0, 0, 0, 20.38601, 0, 0, 0)
 mesh = SubResource("BoxMesh_iywne")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="DicesFloor/Wall4"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DicesFloor/Wall4" unique_id=941883213]
 shape = SubResource("BoxShape3D_p57ef")
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1639416540]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -588,7 +588,7 @@ texture = SubResource("ViewportTexture_iywne")
 expand_mode = 1
 stretch_mode = 4
 
-[node name="LandingTimer" type="Timer" parent="."]
+[node name="LandingTimer" type="Timer" parent="." unique_id=1143512991]
 
 [connection signal="pressed" from="BoutonLancerDes/Button" to="." method="_on_button_pressed"]
 [connection signal="timeout" from="LandingTimer" to="." method="_on_landing_timer_timeout"]

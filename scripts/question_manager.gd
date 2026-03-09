@@ -1,6 +1,6 @@
 extends RefCounted
+## Classe permettant le tirage de question selon le thème, en évitant que la même question ressorte plusieurs fois autant que possible
 class_name QuestionManager
-
 
 var questions: Dictionary[Globals.clr, QuestionList] = {
 	Globals.clr.BLUE: QuestionList.new(),
@@ -10,6 +10,7 @@ var questions: Dictionary[Globals.clr, QuestionList] = {
 	Globals.clr.RED: QuestionList.new()
 }
 
+## Charge toutes les questions à l'initialisation
 func _init():
 	loadQuestions(Globals.clr.BLUE)
 	loadQuestions(Globals.clr.GREEN)
@@ -17,8 +18,8 @@ func _init():
 	loadQuestions(Globals.clr.PINK)
 	loadQuestions(Globals.clr.RED)
 
-func draw_question(question_clr: Globals.clr) -> Question:
-	
+## Tire une question aléatoire et la supprime de la liste pour éviter qu'elle ne réapparaisse plus tard
+func draw_question(question_clr: Globals.clr) -> Question:	
 	var id:int = Globals.rng.randi_range(0, questions[question_clr].qstList.size() - 1)
 	var result:Question = questions[question_clr].qstList[id]
 	questions[question_clr].qstList.remove_at(id)
@@ -28,10 +29,11 @@ func draw_question(question_clr: Globals.clr) -> Question:
 	
 	return result
 
+## Charge les question pour une couleur de thème donné
 func loadQuestions(clr : Globals.clr):
 	questions[clr] = load_csv_to_question_array(FileManager.QuestionsPaths[clr])
 
-
+## Retourne une liste de questions à partir du chemin du CSV
 func load_csv_to_question_array(csv_path: String) -> QuestionList:
 	#Declaration de l'array resultat
 	var result: QuestionList = QuestionList.new()
