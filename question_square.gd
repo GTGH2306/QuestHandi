@@ -21,7 +21,7 @@ func _update_color(new_color: Color) -> void:
 	if has_node('SquareModel'):
 		$SquareModel.set_surface_override_material(1, $MeshInstance3D.get_active_material(0))
 
-## Au démarage, applique la couleur sélectionnée sur la case
+## Au démarrage, applique la couleur sélectionnée sur la case
 func _ready() -> void:
 	if has_node("MeshInstance3D") and has_node('SquareModel'):
 		$SquareModel.set_surface_override_material(1, $MeshInstance3D.get_active_material(0))
@@ -40,7 +40,7 @@ func _ask_question(_game: Game) -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	_game.asking_question = true
 
-## Lorsque la suestion a été répondu, termine le tour de l'équipe courante
+## Lorsque la question a été répondu, termine le tour de l'équipe courante
 func _on_question_answered(result : bool):
 	var game: Game = get_tree().current_scene
 	if game:

@@ -12,8 +12,8 @@ var team_pawn: Pawn
 var square_pos: int = 0
 var move_left: int = 0
 
-var start_transform
-var target_transform
+var start_transform: Transform3D
+var target_transform: Transform3D
 var move_speed : float = 1.8
 var move_progress : float = 0.0
 var move_distance : float = 0.0
@@ -27,13 +27,12 @@ func _init(tpawnmdl: Pawn.Model, tname: String):
 
 ## Déplace le pion au fur et à mesure du temps si il y'a une case cible
 func _process(delta: float) -> void:
-	if target_transform && team_pawn.global_transform != target_transform:
+	if team_pawn.global_transform != target_transform:
 		move_progress += move_speed * delta
 		team_pawn.global_transform = start_transform.interpolate_with(target_transform, move_progress)
 		if move_progress >= 1.0:
 			team_pawn.global_transform = target_transform
 			move_left -= 1
-			target_transform = null
 			if move_left > 0:
 				team_pawn.animation_reset()
 			emit_signal('team_moved')

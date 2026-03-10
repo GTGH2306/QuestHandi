@@ -12,11 +12,11 @@ var questions: Dictionary[Globals.clr, QuestionList] = {
 
 ## Charge toutes les questions à l'initialisation
 func _init():
-	loadQuestions(Globals.clr.BLUE)
-	loadQuestions(Globals.clr.GREEN)
-	loadQuestions(Globals.clr.ORANGE)
-	loadQuestions(Globals.clr.PINK)
-	loadQuestions(Globals.clr.RED)
+	load_questions(Globals.clr.BLUE)
+	load_questions(Globals.clr.GREEN)
+	load_questions(Globals.clr.ORANGE)
+	load_questions(Globals.clr.PINK)
+	load_questions(Globals.clr.RED)
 
 ## Tire une question aléatoire et la supprime de la liste pour éviter qu'elle ne réapparaisse plus tard
 func draw_question(question_clr: Globals.clr) -> Question:	
@@ -25,13 +25,13 @@ func draw_question(question_clr: Globals.clr) -> Question:
 	questions[question_clr].qstList.remove_at(id)
 	
 	if questions[question_clr].qstList.size() < 1:
-		loadQuestions(question_clr)
+		load_questions(question_clr)
 	
 	return result
 
 ## Charge les question pour une couleur de thème donné
-func loadQuestions(clr : Globals.clr):
-	questions[clr] = load_csv_to_question_array(FileManager.QuestionsPaths[clr])
+func load_questions(clr : Globals.clr):
+	questions[clr] = load_csv_to_question_array(FileManager.questions_paths[clr])
 
 ## Retourne une liste de questions à partir du chemin du CSV
 func load_csv_to_question_array(csv_path: String) -> QuestionList:
