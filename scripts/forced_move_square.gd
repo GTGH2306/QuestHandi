@@ -26,7 +26,7 @@ func apply_effect(_game: Game) -> void:
 
 ## Applique le mouvement à l'équipe courante depuis la case sur laquelle elle ce trouve et demande au pion de jouer une animation.
 func _forced_move(_game: Game) -> void:
-	var target_square_pos: int = _game.current_team.square_pos + forced_move
+	var target_square_pos: int = clampi(_game.current_team.square_pos + forced_move, 0 , _game.squares.size() - 1)
 	var target_square: Square = _game.squares[target_square_pos]
 	_game.current_team.move_to(target_square.get_available_position(), target_square.rotation)
 	_game.current_team.square_pos += forced_move

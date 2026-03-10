@@ -29,9 +29,13 @@ func _ready() -> void:
 			squares.append(child)
 		else:
 			push_warning("L'enfant " + child.name + " n'est pas un Square !")
+	assert(!squares.is_empty(), "ERREUR CRITIQUE: Board ne contient aucune cases")
 
 ## Ajoute les pions de chaque équipe dans un ordre de jeu aléatoire et place la camera sur la première équipe
 func initialize(teams_playing: Array[Team]) -> void:
+	if teams_playing.size() < 2 || teams_playing.size() > 5:
+		push_error("Entre 2 et 5 équipes attendues: ", teams_playing.size(), " équipes reçues.")
+		return
 	_teams = teams_playing
 	_teams.shuffle()
 	var start_square: Square = squares[0]
@@ -43,6 +47,7 @@ func initialize(teams_playing: Array[Team]) -> void:
 		var target_pos: Vector3 = start_square.positions[i].global_position
 		var target_rot: Vector3 = start_square.global_rotation
 		_teams[i].team_pawn.transform = Transform3D(Basis.from_euler(target_rot), target_pos)
+		_teams[i].target_transform = Transform3D(Basis.from_euler(target_rot), target_pos)
 	$BoutonLancerDes/Label.text = str("Tour de l'équipe: ", current_team.team_name)
 	%CameraPivot.global_position = current_team.team_pawn.pivot_point.global_position
 	%CameraPivot.reparent(current_team.team_pawn.pivot_point)
@@ -54,14 +59,14 @@ func throw_dice() -> void:
 		die.queue_free()
 	
 	var d1: Dice = _dice_res.instantiate()
-	d1.throwForce = _trw
+	d1.throw_force = _trw
 	d1.connect("dice_landed", _on_dice_landing)
 	$Dices.add_child(d1)
 	d1.global_position = _pos_d1
 
 	if (current_team.last_response):
 		var d2: Dice = _dice_res.instantiate()
-		d2.throwForce = _trw
+		d2.throw_force = _trw
 		d2.connect("dice_landed", _on_dice_landing)
 		$Dices.add_child(d2)
 		d2.global_position = _pos_d2
@@ -104,9 +109,6 @@ func _on_team_moved():
 
 ## Déplace le pion de l'équipe courante sur la case suivante
 func _move_current_pawn():
-	if squares.is_empty():
-		push_error("Le plateau ne contient aucune case")
-		return
 	var next_square_pos: int = current_team.square_pos + 1
 	if next_square_pos >= squares.size():
 		push_error("Case en dehors du plateau")

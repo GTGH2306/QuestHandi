@@ -5,7 +5,7 @@ extends Node
 var filepath = "user://questions"
 var path_images = "user://questions/images/"
 
-var QuestionsPaths : Dictionary[Globals.clr, String] = {
+var questions_paths : Dictionary[Globals.clr, String] = {
 	Globals.clr.RED : "user://questions/questions_red.csv",
 	Globals.clr.GREEN : "user://questions/questions_green.csv",
 	Globals.clr.BLUE : "user://questions/questions_blue.csv",

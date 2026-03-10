@@ -2,7 +2,7 @@ extends Control
 
 var game_scene := preload("res://scenes/game.tscn")
 ## Tableau des équipes possible à jouer
-var TEAMS: Array[Team] = [
+var _teams: Array[Team] = [
 	Team.new(Pawn.Model.CAT, "Chat"),
 	Team.new(Pawn.Model.DOG, "Chien"),
 	Team.new(Pawn.Model.BUNNY, "Lapin"),
@@ -29,13 +29,13 @@ func _on_check_box_pressed() -> void:
 func get_playing_teams() -> Array[Team]:
 	var teams_playing : Array[Team] = []
 	if $GridContainer/PanelContainer/VBoxContainer/CheckBox.button_pressed:
-		teams_playing.append(TEAMS[0])
+		teams_playing.append(_teams[0])
 	if $GridContainer/PanelContainer2/VBoxContainer2/CheckBox.button_pressed:
-		teams_playing.append(TEAMS[1])
+		teams_playing.append(_teams[1])
 	if $GridContainer/PanelContainer3/VBoxContainer3/CheckBox.button_pressed:
-		teams_playing.append(TEAMS[2])
+		teams_playing.append(_teams[2])
 	if $GridContainer/PanelContainer4/VBoxContainer4/CheckBox.button_pressed:
-		teams_playing.append(TEAMS[3])
+		teams_playing.append(_teams[3])
 	if $GridContainer/PanelContainer5/VBoxContainer5/CheckBox.button_pressed:
-		teams_playing.append(TEAMS[4])
+		teams_playing.append(_teams[4])
 	return teams_playing

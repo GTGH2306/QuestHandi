@@ -13,6 +13,6 @@ func initialize(csv_line: Array[String]) -> Question:
 		return
 	question = csv_line[0]
 	answer = csv_line[1]
-	if csv_line[2] != "":
+	if csv_line.size() == 3 && csv_line[2] != "":
 		img_name = csv_line[2]
 	return self

@@ -4,11 +4,11 @@ extends Node
 ## Le générateur de nombres aléatoire doit rester le même à travers le jeu
 var rng : RandomNumberGenerator : 
 	get:
-		if random == null:
-			random = RandomNumberGenerator.new()
-		return random
+		if _random == null:
+			_random = RandomNumberGenerator.new()
+		return _random
 
-var random : RandomNumberGenerator = null
+var _random : RandomNumberGenerator = null
 
 ## Enum des différentes couleurs de question possible
 enum clr {

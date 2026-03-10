@@ -3,7 +3,7 @@ class_name Dice
 
 var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 #Direction de lancé du dé
-@export var throwForce: Vector3 = Vector3(0, 0, 0);
+@export var throw_force: Vector3 = Vector3(0, 0, 0);
 @onready var _faces: Array[FaceMarker] = [
 	$FaceMarkers/face_1,
 	$FaceMarkers/face_2,
@@ -19,7 +19,7 @@ var landed: bool = false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	#Lance le dé dans la direction configurée
-	apply_impulse(throwForce)
+	apply_impulse(throw_force)
 	#Le dé apparait avec une rotation aléatoire
 	rotation = Vector3(rng.randf_range(-180, 180),rng.randf_range(-180, 180),rng.randf_range(-180, 180))
 	#Le dé a aussi une force de rotation aléatoire, ce qui donne une animation ressemblant à un vrai lancé
