@@ -1,4 +1,9 @@
 extends GutTest
+## Ici je ne suis pas d'accord pour cette classe de test.
+##
+## En effet, QuestionList est un "wrapper" simple de liste car je souhaitais mettre une liste de questions dans un dictionnaire.
+## Hors, tester ce wrapper revient trop directement à tester le composant Array fournit par Godot.
+## C'est une mauvaise pratique de "tester le framework".
 
 var qlist: QuestionList
 
