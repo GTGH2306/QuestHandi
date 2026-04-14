@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://ryntqkt6ei88"]
+[gd_scene format=3 uid="uid://ryntqkt6ei88"]
 
 [ext_resource type="Script" uid="uid://chcchq2dxm2dq" path="res://scripts/main_menu.gd" id="1_ekxnf"]
 [ext_resource type="PackedScene" uid="uid://bdqc1nv4s5n7e" path="res://scenes/pawn_rotating.tscn" id="1_l6cm7"]
@@ -33,7 +33,10 @@ viewport_path = NodePath("PenguinRotating/SubViewport")
 [sub_resource type="ViewportTexture" id="ViewportTexture_8ln24"]
 viewport_path = NodePath("TortoiseRotating/SubViewport")
 
-[node name="MainMenu" type="Control"]
+[sub_resource type="Theme" id="Theme_ekxnf"]
+RichTextLabel/constants/outline_size = 5
+
+[node name="MainMenu" type="Control" unique_id=1860413505]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -42,62 +45,77 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ekxnf")
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=2033505044]
 environment = SubResource("Environment_bqqt6")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1033577286]
 transform = Transform3D(-0.8660254, -0.43301278, 0.24999999, 0.3937851, -0.28256494, 0.87469447, -0.30811262, 0.8559538, 0.41522235, 0, 0, 0)
 shadow_enabled = true
 
-[node name="CatRotating" parent="." instance=ExtResource("1_l6cm7")]
+[node name="CatRotating" parent="." unique_id=1127733027 instance=ExtResource("1_l6cm7")]
 
 [node name="Pawn" parent="CatRotating" index="0"]
 transform = Transform3D(0.2531712, 0, 0.9674215, 0, 1, 0, -0.9674215, 0, 0.2531712, 0, 0, 0)
 model = 1
 
-[node name="Camera3D" parent="CatRotating/SubViewport" index="0"]
-transform = Transform3D(1, 0, 0, 0, 0.9832549, 0.18223552, 0, -0.18223552, 0.9832549, 0, 0.8, 1.4)
+[node name="AnimationPlayer" parent="CatRotating" index="1"]
+autoplay = &"rotating"
 
-[node name="DogRotating" parent="." instance=ExtResource("1_l6cm7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
+[node name="Camera3D" parent="CatRotating/SubViewport" index="0"]
+transform = Transform3D(1, 0, 0, 0, 0.9832549, 0.18223552, 0, -0.18223552, 0.9832549, 0, 0.8, 2)
+
+[node name="DogRotating" parent="." unique_id=1920133487 instance=ExtResource("1_l6cm7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, 0)
 
 [node name="Pawn" parent="DogRotating" index="0"]
 transform = Transform3D(-0.6559426, 0, -0.7548108, 0, 1, 0, 0.7548108, 0, -0.6559426, 0, 0, 0)
 model = 2
 
-[node name="Camera3D" parent="DogRotating/SubViewport" index="0"]
-transform = Transform3D(1, 0, 0, 0, 0.9832549, 0.18223552, 0, -0.18223552, 0.9832549, 2, 0.8, 1.4)
+[node name="AnimationPlayer" parent="DogRotating" index="1"]
+autoplay = &"rotating"
 
-[node name="BunnyRotating" parent="." instance=ExtResource("1_l6cm7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
+[node name="Camera3D" parent="DogRotating/SubViewport" index="0"]
+transform = Transform3D(1, 0, 0, 0, 0.9832549, 0.18223552, 0, -0.18223552, 0.9832549, 20, 0.8, 2)
+
+[node name="BunnyRotating" parent="." unique_id=1405171715 instance=ExtResource("1_l6cm7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 0, 0)
 
 [node name="Pawn" parent="BunnyRotating" index="0"]
 transform = Transform3D(0.12476565, 0, 0.99218625, 0, 1, 0, -0.99218625, 0, 0.12476565, 0, 0, 0)
 model = 3
 
-[node name="Camera3D" parent="BunnyRotating/SubViewport" index="0"]
-transform = Transform3D(1, 0, 0, 0, 0.9832549, 0.18223552, 0, -0.18223552, 0.9832549, 4, 0.9, 1.4)
+[node name="AnimationPlayer" parent="BunnyRotating" index="1"]
+autoplay = &"rotating"
 
-[node name="PenguinRotating" parent="." instance=ExtResource("1_l6cm7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 0)
+[node name="Camera3D" parent="BunnyRotating/SubViewport" index="0"]
+transform = Transform3D(1, 0, 0, 0, 0.9832549, 0.18223552, 0, -0.18223552, 0.9832549, 30, 0.9, 2)
+
+[node name="PenguinRotating" parent="." unique_id=740812340 instance=ExtResource("1_l6cm7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 0, 0)
 
 [node name="Pawn" parent="PenguinRotating" index="0"]
 transform = Transform3D(0.7886334, 0, -0.6148637, 0, 1, 0, 0.6148637, 0, 0.7886334, 0, 0, 0)
 
-[node name="Camera3D" parent="PenguinRotating/SubViewport" index="0"]
-transform = Transform3D(1, 0, 0, 0, 0.9832549, 0.18223552, 0, -0.18223552, 0.9832549, 6, 0.8, 1.4)
+[node name="AnimationPlayer" parent="PenguinRotating" index="1"]
+autoplay = &"rotating"
 
-[node name="TortoiseRotating" parent="." instance=ExtResource("1_l6cm7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 0)
+[node name="Camera3D" parent="PenguinRotating/SubViewport" index="0"]
+transform = Transform3D(1, 0, 0, 0, 0.9832549, 0.18223552, 0, -0.18223552, 0.9832549, 40, 0.8, 2)
+
+[node name="TortoiseRotating" parent="." unique_id=145033465 instance=ExtResource("1_l6cm7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 0, 0)
 
 [node name="Pawn" parent="TortoiseRotating" index="0"]
 transform = Transform3D(-0.9481792, 0, -0.3177357, 0, 1, 0, 0.3177357, 0, -0.9481792, 0, 0, 0)
 model = 5
 
-[node name="Camera3D" parent="TortoiseRotating/SubViewport" index="0"]
-transform = Transform3D(1, 0, 0, 0, 0.9832549, 0.18223552, 0, -0.18223552, 0.9832549, 10, 0.8, 1.4)
+[node name="AnimationPlayer" parent="TortoiseRotating" index="1"]
+autoplay = &"rotating"
 
-[node name="GridContainer" type="GridContainer" parent="."]
+[node name="Camera3D" parent="TortoiseRotating/SubViewport" index="0"]
+transform = Transform3D(1, 0, 0, 0, 0.9832549, 0.18223552, 0, -0.18223552, 0.9832549, 50, 0.8, 2)
+
+[node name="GridContainer" type="GridContainer" parent="." unique_id=182324188]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -108,113 +126,113 @@ offset_right = -378.0
 offset_bottom = 62.216003
 columns = 5
 
-[node name="PanelContainer" type="PanelContainer" parent="GridContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="GridContainer" unique_id=1614294061]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="GridContainer/PanelContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="GridContainer/PanelContainer" unique_id=1849396736]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = SubResource("Theme_l6cm7")
 
-[node name="RotateCat" type="TextureRect" parent="GridContainer/PanelContainer/VBoxContainer"]
+[node name="RotateCat" type="TextureRect" parent="GridContainer/PanelContainer/VBoxContainer" unique_id=1045132515]
 layout_mode = 2
 size_flags_vertical = 3
 texture = SubResource("ViewportTexture_l6cm7")
 expand_mode = 5
 stretch_mode = 5
 
-[node name="CheckBox" type="CheckBox" parent="GridContainer/PanelContainer/VBoxContainer"]
+[node name="CheckBox" type="CheckBox" parent="GridContainer/PanelContainer/VBoxContainer" unique_id=1105187406]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Chat"
 
-[node name="PanelContainer2" type="PanelContainer" parent="GridContainer"]
+[node name="PanelContainer2" type="PanelContainer" parent="GridContainer" unique_id=2020192846]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="GridContainer/PanelContainer2"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="GridContainer/PanelContainer2" unique_id=38435219]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="RotateCat" type="TextureRect" parent="GridContainer/PanelContainer2/VBoxContainer2"]
+[node name="RotateCat" type="TextureRect" parent="GridContainer/PanelContainer2/VBoxContainer2" unique_id=687852107]
 layout_mode = 2
 size_flags_vertical = 3
 texture = SubResource("ViewportTexture_ekxnf")
 expand_mode = 5
 stretch_mode = 5
 
-[node name="CheckBox" type="CheckBox" parent="GridContainer/PanelContainer2/VBoxContainer2"]
+[node name="CheckBox" type="CheckBox" parent="GridContainer/PanelContainer2/VBoxContainer2" unique_id=1510404844]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Chien"
 
-[node name="PanelContainer3" type="PanelContainer" parent="GridContainer"]
+[node name="PanelContainer3" type="PanelContainer" parent="GridContainer" unique_id=2008766143]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="VBoxContainer3" type="VBoxContainer" parent="GridContainer/PanelContainer3"]
+[node name="VBoxContainer3" type="VBoxContainer" parent="GridContainer/PanelContainer3" unique_id=1546390349]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="RotateCat" type="TextureRect" parent="GridContainer/PanelContainer3/VBoxContainer3"]
+[node name="RotateCat" type="TextureRect" parent="GridContainer/PanelContainer3/VBoxContainer3" unique_id=1993040290]
 layout_mode = 2
 size_flags_vertical = 3
 texture = SubResource("ViewportTexture_bqqt6")
 expand_mode = 5
 stretch_mode = 5
 
-[node name="CheckBox" type="CheckBox" parent="GridContainer/PanelContainer3/VBoxContainer3"]
+[node name="CheckBox" type="CheckBox" parent="GridContainer/PanelContainer3/VBoxContainer3" unique_id=733919509]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Lapin"
 
-[node name="PanelContainer4" type="PanelContainer" parent="GridContainer"]
+[node name="PanelContainer4" type="PanelContainer" parent="GridContainer" unique_id=198182863]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="VBoxContainer4" type="VBoxContainer" parent="GridContainer/PanelContainer4"]
+[node name="VBoxContainer4" type="VBoxContainer" parent="GridContainer/PanelContainer4" unique_id=76005595]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="RotateCat" type="TextureRect" parent="GridContainer/PanelContainer4/VBoxContainer4"]
+[node name="RotateCat" type="TextureRect" parent="GridContainer/PanelContainer4/VBoxContainer4" unique_id=1766731116]
 layout_mode = 2
 size_flags_vertical = 3
 texture = SubResource("ViewportTexture_wu84c")
 expand_mode = 5
 stretch_mode = 5
 
-[node name="CheckBox" type="CheckBox" parent="GridContainer/PanelContainer4/VBoxContainer4"]
+[node name="CheckBox" type="CheckBox" parent="GridContainer/PanelContainer4/VBoxContainer4" unique_id=2021445412]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Manchot"
 
-[node name="PanelContainer5" type="PanelContainer" parent="GridContainer"]
+[node name="PanelContainer5" type="PanelContainer" parent="GridContainer" unique_id=682339857]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="VBoxContainer5" type="VBoxContainer" parent="GridContainer/PanelContainer5"]
+[node name="VBoxContainer5" type="VBoxContainer" parent="GridContainer/PanelContainer5" unique_id=382590285]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="RotateCat" type="TextureRect" parent="GridContainer/PanelContainer5/VBoxContainer5"]
+[node name="RotateCat" type="TextureRect" parent="GridContainer/PanelContainer5/VBoxContainer5" unique_id=1467648999]
 layout_mode = 2
 size_flags_vertical = 3
 texture = SubResource("ViewportTexture_8ln24")
 expand_mode = 5
 stretch_mode = 5
 
-[node name="CheckBox" type="CheckBox" parent="GridContainer/PanelContainer5/VBoxContainer5"]
+[node name="CheckBox" type="CheckBox" parent="GridContainer/PanelContainer5/VBoxContainer5" unique_id=136193232]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Tortue"
 
-[node name="Play_Button" type="Button" parent="."]
+[node name="Play_Button" type="Button" parent="." unique_id=306147356]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -230,7 +248,7 @@ grow_vertical = 0
 disabled = true
 text = "JOUER"
 
-[node name="RichTextLabel" type="RichTextLabel" parent="."]
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=296674656]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -240,6 +258,7 @@ offset_top = -279.0
 offset_right = 787.0
 offset_bottom = -19.0
 grow_vertical = 0
+theme = SubResource("Theme_ekxnf")
 text = "Règles:
 - A votre tour, lancez les dés.
 - Avancez du nombres de cases indiqué.
@@ -248,15 +267,16 @@ text = "Règles:
 - Sinon, un seul.
 
 
-- Les cases bombes vous font reculer de 2 cases.
-- Les cases échelles vous font avancer jusqu'une case correspondante."
+- Les cases \"peau de banane\" vous font reculer de 2 cases.
+- Les cases \"échelle\" vous font avancer jusqu'une case correspondante."
 
-[node name="Label" type="Label" parent="."]
+[node name="Label" type="Label" parent="." unique_id=521436397]
 layout_mode = 0
 offset_left = 17.0
 offset_top = 20.0
 offset_right = 173.0
 offset_bottom = 43.0
+theme_override_constants/outline_size = 5
 text = "Choisissez vos pions"
 
 [connection signal="pressed" from="GridContainer/PanelContainer/VBoxContainer/CheckBox" to="." method="_on_check_box_pressed"]

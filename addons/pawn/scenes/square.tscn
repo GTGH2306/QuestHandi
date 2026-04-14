@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=4 uid="uid://bmq8ujnv43jkb"]
+[gd_scene format=4 uid="uid://bmq8ujnv43jkb"]
 
 [ext_resource type="Script" uid="uid://84slqlhj8jja" path="res://addons/pawn/scripts/square.gd" id="1_rb13l"]
 
@@ -81,41 +81,41 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_pr6w6")
 
-[node name="Square" type="StaticBody3D"]
+[node name="Square" type="StaticBody3D" unique_id=1970717284]
 script = ExtResource("1_rb13l")
 color = Color(0.77, 0.52052, 0.14629999, 1)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=814729084]
 transform = Transform3D(3, 0, 0, 0, 0.2, 0, 0, 0, 3, 0, -0.1, 0)
 visible = false
 material_override = SubResource("StandardMaterial3D_yeqeb")
 mesh = SubResource("BoxMesh_8lkhj")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=920673774]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1027832, 0)
 visible = false
 shape = SubResource("BoxShape3D_2eeqm")
 
-[node name="RayCast_Pos1" type="RayCast3D" parent="."]
+[node name="RayCast_Pos1" type="RayCast3D" parent="." unique_id=414959120]
 transform = Transform3D(1, 0, 0, 0, -1, 8.742278e-08, 0, -8.742278e-08, -1, 0, -0.054457605, 0)
 
-[node name="RayCast_Pos2" type="RayCast3D" parent="."]
+[node name="RayCast_Pos2" type="RayCast3D" parent="." unique_id=1128522886]
 transform = Transform3D(1, 0, 0, 0, -1, 8.742278e-08, 0, -8.742278e-08, -1, 0.9186559, -0.054457605, 0.90910614)
 
-[node name="RayCast_Pos3" type="RayCast3D" parent="."]
+[node name="RayCast_Pos3" type="RayCast3D" parent="." unique_id=1381775549]
 transform = Transform3D(1, 0, 0, 0, -1, 8.742278e-08, 0, -8.742278e-08, -1, -0.92345786, -0.054457605, 0.89734596)
 
-[node name="RayCast_Pos4" type="RayCast3D" parent="."]
+[node name="RayCast_Pos4" type="RayCast3D" parent="." unique_id=209862616]
 transform = Transform3D(1, 0, 0, 0, -1, 8.742278e-08, 0, -8.742278e-08, -1, 0.9255774, -0.054457605, -0.93524456)
 
-[node name="RayCast_Pos5" type="RayCast3D" parent="."]
+[node name="RayCast_Pos5" type="RayCast3D" parent="." unique_id=969456075]
 transform = Transform3D(1, 0, 0, 0, -1, 8.742278e-08, 0, -8.742278e-08, -1, -0.9404998, -0.054457605, -0.94380635)
 
-[node name="Square" type="MeshInstance3D" parent="."]
+[node name="Square" type="MeshInstance3D" parent="." unique_id=145181222]
 transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, -0.19392696, 0)
 mesh = SubResource("ArrayMesh_yeqeb")
 skeleton = NodePath("")
 surface_material_override/1 = SubResource("StandardMaterial3D_yeqeb")
 
-[node name="Direction" type="RayCast3D" parent="."]
+[node name="Direction" type="RayCast3D" parent="." unique_id=833471464]
 transform = Transform3D(1, 0, 0, 0, -4.3711385e-08, 0.99999994, 0, -0.99999994, -4.3711385e-08, 0, 0, 1.15)

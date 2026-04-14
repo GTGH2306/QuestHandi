@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://rs1udna5gv44"]
+[gd_scene format=3 uid="uid://rs1udna5gv44"]
 
 [ext_resource type="PackedScene" uid="uid://bmq8ujnv43jkb" path="res://addons/pawn/scenes/square.tscn" id="1_qxgqg"]
 [ext_resource type="Script" uid="uid://dmcfd53nc023b" path="res://scripts/forced_move_square.gd" id="2_8qchb"]
@@ -7,34 +7,34 @@
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_35bvw"]
 albedo_color = Color(0.09803922, 0.09803922, 0.4392157, 1)
 
-[node name="ForcedMoveSquare" instance=ExtResource("1_qxgqg")]
+[node name="ForcedMoveSquare" unique_id=348325140 instance=ExtResource("1_qxgqg")]
 script = ExtResource("2_8qchb")
 icon = ""
 forced_move = -2
 color = Color(0.09803922, 0.09803922, 0.4392157, 1)
 
-[node name="MeshInstance3D" parent="." index="0"]
+[node name="MeshInstance3D" parent="." index="0" unique_id=814729084]
 material_override = SubResource("StandardMaterial3D_35bvw")
 
-[node name="RayCast_Pos1" parent="." index="2"]
+[node name="RayCast_Pos1" parent="." index="2" unique_id=414959120]
 visible = false
 
-[node name="RayCast_Pos2" parent="." index="3"]
+[node name="RayCast_Pos2" parent="." index="3" unique_id=1128522886]
 visible = false
 
-[node name="RayCast_Pos3" parent="." index="4"]
+[node name="RayCast_Pos3" parent="." index="4" unique_id=1381775549]
 visible = false
 
-[node name="RayCast_Pos4" parent="." index="5"]
+[node name="RayCast_Pos4" parent="." index="5" unique_id=209862616]
 visible = false
 
-[node name="RayCast_Pos5" parent="." index="6"]
+[node name="RayCast_Pos5" parent="." index="6" unique_id=969456075]
 visible = false
 
-[node name="Square" parent="." index="7"]
+[node name="Square" parent="." index="7" unique_id=145181222]
 surface_material_override/1 = SubResource("StandardMaterial3D_35bvw")
 
-[node name="Icon" type="Sprite3D" parent="." index="8"]
-transform = Transform3D(6, 0, 0, 0, -2.6226832e-07, 6, 0, -6, -2.6226832e-07, 0, -0.06715572, 0)
+[node name="Icon" type="Sprite3D" parent="." index="8" unique_id=206174846]
+transform = Transform3D(-2.6226832e-07, 6, 2.6226832e-07, 0, -2.6226832e-07, 6, 6, 2.6226832e-07, 1.1464113e-14, 0, -0.06715572, 0)
 texture_filter = 0
 texture = ExtResource("3_35bvw")

@@ -28,10 +28,10 @@ func initialize(question: Question, clr: Globals.clr, team: Team):
 	#Changement de l'image
 	if question.img_name != null && question.img_name != "":
 		var compressed: CompressedTexture2D = load(str(FileManager.path_images, question.img_name))
-		var textrect : TextureRect = $MarginContainer/VBoxContainer/Image
+		var textrect : TextureRect = $MarginContainer/VBoxContainer/MarginContainer/Image
 		textrect.texture = compressed
 	else:
-		$MarginContainer/VBoxContainer/Image.visible = false
+		$MarginContainer/VBoxContainer/MarginContainer/Image.visible = false
 	#Changement de la réponse
 	$MarginContainer/VBoxContainer/Reponse.text = question.answer
 	

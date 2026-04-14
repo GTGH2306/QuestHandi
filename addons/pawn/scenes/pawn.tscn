@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://c8gjf0dmpb7ay"]
+[gd_scene format=3 uid="uid://c8gjf0dmpb7ay"]
 
 [ext_resource type="ArrayMesh" uid="uid://d2kgh2wufyvjy" path="res://addons/pawn/models/pawn.obj" id="1_f14ny"]
 [ext_resource type="Script" uid="uid://xdqah1pvavky" path="res://addons/pawn/scripts/pawn.gd" id="1_o6oh4"]
@@ -19,34 +19,6 @@ metallic = 0.23
 metallic_specular = 0.2
 roughness = 0.57
 backlight = Color(0.4310883, 0.23045215, 0.15234518, 1)
-
-[sub_resource type="Animation" id="Animation_3gb7b"]
-resource_name = "hop"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("MeshBase:position")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.23333333, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, 1.3145075, -0.15704972), Vector3(0, 2, 0), Vector3(0, 0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("MeshBase:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.40234256, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0.23164012, 0, 0), Vector3(-0.2565634, 0, 0), Vector3(0, 0, 0)]
-}
 
 [sub_resource type="Animation" id="Animation_jgcxt"]
 length = 0.001
@@ -103,6 +75,34 @@ tracks/1/keys = {
 "values": [Vector3(0, 0, 0), Vector3(-1.2409291, 0.4607669, -2.9862583), Vector3(-1.4688171, -1.3841684, -0.85526365), Vector3(-1.3584148, -0.4805992, -1.659793), Vector3(-0.14381513, 6.841778e-09, 0.26129323), Vector3(0, 0, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_3gb7b"]
+resource_name = "hop"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshBase:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.33333334, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 1.3145075, -0.15704972), Vector3(0, 3, 0), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshBase:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.40234256, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0.23164012, 0, 0), Vector3(-0.2565634, 0, 0), Vector3(0, 0, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_7r2m0"]
 resource_name = "joy"
 length = 1.5
@@ -139,46 +139,44 @@ _data = {
 &"joy": SubResource("Animation_7r2m0")
 }
 
-[node name="Pawn" type="AnimatableBody3D"]
+[node name="Pawn" type="AnimatableBody3D" unique_id=1274679130]
 script = ExtResource("1_o6oh4")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=614911097]
 transform = Transform3D(0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, 0, 0.6085014, 0)
 shape = SubResource("CylinderShape3D_o6oh4")
 
-[node name="MeshBase" type="Node3D" parent="."]
-transform = Transform3D(0.5499999, 0, 0, 0, 0.5500003, 0, 0, 0, 0.5499999, 0, 0, 0)
+[node name="MeshBase" type="Node3D" parent="." unique_id=650073995]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0, 0)
 
-[node name="pawn_basemodel" type="MeshInstance3D" parent="MeshBase"]
+[node name="pawn_basemodel" type="MeshInstance3D" parent="MeshBase" unique_id=1345298331]
 material_override = SubResource("StandardMaterial3D_3gb7b")
 mesh = ExtResource("1_f14ny")
 skeleton = NodePath("../..")
 
-[node name="pawn_cat" parent="MeshBase" instance=ExtResource("3_3gb7b")]
+[node name="pawn_cat" parent="MeshBase" unique_id=1299111104 instance=ExtResource("3_3gb7b")]
 transform = Transform3D(0.51428574, 0, 0, 0, 0.51428574, 0, 0, 0, 0.51428574, 0, 0, 0)
 visible = false
 
-[node name="pawn_tortoise" parent="MeshBase" instance=ExtResource("5_lbydf")]
+[node name="pawn_tortoise" parent="MeshBase" unique_id=1309905595 instance=ExtResource("5_lbydf")]
 transform = Transform3D(0.51428574, 0, 0, 0, 0.51428574, 0, 0, 0, 0.51428574, 0, 0, 0)
 visible = false
 
-[node name="pawn_penguin" parent="MeshBase" instance=ExtResource("6_7r2m0")]
+[node name="pawn_penguin" parent="MeshBase" unique_id=1065733861 instance=ExtResource("6_7r2m0")]
 transform = Transform3D(0.51428574, 0, 0, 0, 0.51428574, 0, 0, 0, 0.51428574, 0, 0, 0)
 visible = false
 
-[node name="pawn_bunny" parent="MeshBase" instance=ExtResource("7_gp3wc")]
+[node name="pawn_bunny" parent="MeshBase" unique_id=1218635155 instance=ExtResource("7_gp3wc")]
 transform = Transform3D(0.51428574, 0, 0, 0, 0.51428574, 0, 0, 0, 0.51428574, 0, 0, 0)
 visible = false
 
-[node name="pawn_dog" parent="MeshBase" instance=ExtResource("4_jgcxt")]
+[node name="pawn_dog" parent="MeshBase" unique_id=162560347 instance=ExtResource("4_jgcxt")]
 transform = Transform3D(0.51428574, 0, 0, 0, 0.51428574, 0, 0, 0, 0.51428574, 0, 0, 0)
 visible = false
 
-[node name="PivotPoint" type="Node3D" parent="."]
+[node name="PivotPoint" type="Node3D" parent="." unique_id=1955165855]
 transform = Transform3D(0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, 0, 2, 0)
 script = ExtResource("8_jgcxt")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_lbydf")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1513574377]
+libraries/ = SubResource("AnimationLibrary_lbydf")
