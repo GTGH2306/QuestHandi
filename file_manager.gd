@@ -40,14 +40,14 @@ func is_dir_empty(dir: DirAccess) -> bool:
 ## Créer les fichiers questions de façon récursive en ce basant sur celles avec lesquels le jeu est compilé
 func create_files(from:String, to:String):
 	#créer le dossier
-	DirAccess.make_dir_recursive_absolute(filepath)
+	DirAccess.make_dir_recursive_absolute(to)
 	var default = DirAccess.open(from)
 	if default:
 		default.list_dir_begin()
 		var file_name = default.get_next()
 		#On itère sur les fichiers par défaut
 		while file_name != "":
-			if file_name != "." && file_name != "..":
+			if file_name != "." && file_name != ".." && not file_name.contains(".import"):
 				#indique un fichier complet, comme user://questions/questions_orange.csv
 				var source = from.path_join(file_name)
 				var destination = to.path_join(file_name)
