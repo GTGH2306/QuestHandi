@@ -16,14 +16,31 @@ var questions_paths : Dictionary[Globals.clr, String] = {
 ## Si le dossier questions n'est pas trouvé, créer les fichiers
 func ensure_folders():
 	var dir = DirAccess.open(filepath)
-	if dir == null:
+	if dir == null or is_dir_empty(dir):
 		print("Création de fichiers...")
+
 		create_files("res://questions", filepath)
+
+
+## Vérifie si le dossier est vide
+func is_dir_empty(dir: DirAccess) -> bool:
+	dir.list_dir_begin()
+	var file_name = dir.get_next()
+
+	while file_name != "":
+		if file_name != "." and file_name != "..":
+			dir.list_dir_end()
+			return false
+		file_name = dir.get_next()
+
+	dir.list_dir_end()
+	return true
+
 
 ## Créer les fichiers questions de façon récursive en ce basant sur celles avec lesquels le jeu est compilé
 func create_files(from:String, to:String):
 	#créer le dossier
-	DirAccess.make_dir_recursive_absolute(to)
+	DirAccess.make_dir_recursive_absolute(filepath)
 	var default = DirAccess.open(from)
 	if default:
 		default.list_dir_begin()

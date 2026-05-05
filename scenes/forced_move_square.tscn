@@ -2,19 +2,19 @@
 
 [ext_resource type="PackedScene" uid="uid://bmq8ujnv43jkb" path="res://addons/pawn/scenes/square.tscn" id="1_qxgqg"]
 [ext_resource type="Script" uid="uid://dmcfd53nc023b" path="res://scripts/forced_move_square.gd" id="2_8qchb"]
-[ext_resource type="Texture2D" uid="uid://0a55cwdfre0a" path="res://icons/Bomb.png" id="3_35bvw"]
+[ext_resource type="Texture2D" uid="uid://dexv2hwu5fit7" path="res://icons/BananaPeel.png" id="3_35bvw"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_35bvw"]
-albedo_color = Color(0.09803922, 0.09803922, 0.4392157, 1)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e5nn5"]
+albedo_color = Color(0, 0.39215687, 0, 1)
 
 [node name="ForcedMoveSquare" unique_id=348325140 instance=ExtResource("1_qxgqg")]
 script = ExtResource("2_8qchb")
 icon = ""
 forced_move = -2
-color = Color(0.09803922, 0.09803922, 0.4392157, 1)
+color = Color(0, 0.39215687, 0, 1)
 
 [node name="MeshInstance3D" parent="." index="0" unique_id=814729084]
-material_override = SubResource("StandardMaterial3D_35bvw")
+material_override = SubResource("StandardMaterial3D_e5nn5")
 
 [node name="RayCast_Pos1" parent="." index="2" unique_id=414959120]
 visible = false
@@ -32,7 +32,7 @@ visible = false
 visible = false
 
 [node name="Square" parent="." index="7" unique_id=145181222]
-surface_material_override/1 = SubResource("StandardMaterial3D_35bvw")
+surface_material_override/1 = SubResource("StandardMaterial3D_e5nn5")
 
 [node name="Icon" type="Sprite3D" parent="." index="8" unique_id=206174846]
 transform = Transform3D(-2.6226832e-07, 6, 2.6226832e-07, 0, -2.6226832e-07, 6, 6, 2.6226832e-07, 1.1464113e-14, 0, -0.06715572, 0)

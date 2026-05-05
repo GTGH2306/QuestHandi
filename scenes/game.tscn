@@ -349,7 +349,6 @@ question_color = 1
 [node name="ForcedMoveSquare4" parent="Board" unique_id=1732981346 instance=ExtResource("4_lbhrr")]
 transform = Transform3D(-0.48520315, 0.06346389, -0.87209535, 0.025959097, 0.9979685, 0.05818105, 0.874016, 0.0055907667, -0.48586488, -51.25838, 21.536633, -62.54948)
 icon = "Bomb"
-color = Color(0, 0.39215687, 0, 1)
 
 [node name="QuestionSquare14" parent="Board" unique_id=1631062666 instance=ExtResource("3_lnu2h")]
 transform = Transform3D(0.31235772, 0.33601573, -0.8885527, 0.0524377, 0.9278289, 0.36930218, 0.948516, -0.16194803, 0.2721946, -63.814053, 24.508781, -66.89261)
@@ -411,7 +410,6 @@ question_color = 3
 [node name="ForcedMoveSquare7" parent="Board" unique_id=534920092 instance=ExtResource("4_lbhrr")]
 transform = Transform3D(-0.99543124, 0, 0.09548083, 0, 1, 0, -0.09548083, 0, -0.99543124, -69.4778, 42.515297, 48.058495)
 icon = "Bomb"
-color = Color(0, 0.39215687, 0, 1)
 
 [node name="QuestionSquare26" parent="Board" unique_id=15325217 instance=ExtResource("3_lnu2h")]
 transform = Transform3D(-0.8895281, 0, -0.4568807, 0, 1, 0, 0.45688063, 0, -0.8895282, -68.8393, 42.54597, 37.4447)
@@ -431,7 +429,6 @@ question_color = 2
 [node name="ForcedMoveSquare9" parent="Board" unique_id=291420554 instance=ExtResource("4_lbhrr")]
 transform = Transform3D(-0.25529394, 0, -0.9668635, 0, 1, 0, 0.9668635, 0, -0.25529394, -99.05153, 42.515297, 9.681416)
 icon = "Bomb"
-color = Color(0, 0.39215687, 0, 1)
 
 [node name="ForcedMoveSquare8" parent="Board" unique_id=1292660849 instance=ExtResource("4_lbhrr")]
 transform = Transform3D(0.29572475, 0, -0.9552732, 0, 1, 0, 0.9552732, 0, 0.29572475, -110.77402, 42.5258, 7.1283283)
@@ -480,7 +477,6 @@ question_color = 2
 [node name="ForcedMoveSquare10" parent="Board" unique_id=1229902712 instance=ExtResource("4_lbhrr")]
 transform = Transform3D(-0.9434196, 0, 0.33160135, 0, 1, 0, -0.33160135, 0, -0.9434196, -85.47066, 57.205116, -41.00016)
 icon = "Bomb"
-color = Color(0, 0.39215687, 0, 1)
 
 [node name="QuestionSquare41" parent="Board" unique_id=1197195130 instance=ExtResource("3_lnu2h")]
 transform = Transform3D(-0.9899473, 0, -0.14143683, 0, 1, 0, 0.14143682, 0, -0.98994744, -82.00182, 57.24446, -49.61627)
