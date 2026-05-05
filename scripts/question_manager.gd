@@ -47,13 +47,19 @@ func load_csv_to_question_array(csv_path: String) -> QuestionList:
 	#Conversion utf8
 	var utf8: String = file.get_as_text()
 	file.close()
+	
+	
 	var raw = utf8.split("\n")
 	#Itère sur chaque ligne du fichier
 	var i = 1
 	while i < raw.size():
-		lines.append(raw[i].split(';'))
+		var cleaned_line: String = raw[i].strip_edges()
+		lines.append(cleaned_line.split(';'))
 		i += 1
 	
 	for line in lines:
-		result.qstList.append(Question.new().initialize(line))
+		for j in range(line.size()):
+			line[j] = line[j].strip_edges()
+		if line.size() > 1:
+			result.qstList.append(Question.new().initialize(line))
 	return result
