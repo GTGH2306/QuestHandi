@@ -1,16 +1,3 @@
 [remap]
 
-importer="csv_translation"
-type="Translation"
-uid="uid://beae4kq2ecy1s"
-
-[deps]
-
-source_file="res://questions/questions_blue.csv"
-
-[params]
-
-compress=1
-delimiter=0
-unescape_keys=false
-unescape_translations=true
+importer="keep"
