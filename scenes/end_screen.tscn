@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://bo5iwseembe12"]
+[gd_scene format=3 uid="uid://bo5iwseembe12"]
 
 [ext_resource type="Script" uid="uid://dclvbu8k5hqup" path="res://scripts/end_screen.gd" id="1_kq7ac"]
 
@@ -7,7 +7,7 @@ font_size = 32
 outline_size = 2
 outline_color = Color(0, 0, 0, 1)
 
-[node name="EndScreen" type="Control"]
+[node name="EndScreen" type="Control" unique_id=541064458]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -16,7 +16,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_kq7ac")
 
-[node name="Label" type="Label" parent="."]
+[node name="Label" type="Label" parent="." unique_id=2110877900]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -29,7 +29,7 @@ grow_horizontal = 2
 text = "L'équipe ROUGE a gagnée !"
 label_settings = SubResource("LabelSettings_pddrx")
 
-[node name="Button" type="Button" parent="."]
+[node name="Button" type="Button" parent="." unique_id=1757319260]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5

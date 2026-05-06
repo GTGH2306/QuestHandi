@@ -3,24 +3,43 @@
 [ext_resource type="Theme" uid="uid://bv4c3vimv3v1m" path="res://scenes/theme.tres" id="1_6f23y"]
 [ext_resource type="Script" uid="uid://b8yoa76r0q6ma" path="res://scenes/question_card.gd" id="1_kwf6q"]
 [ext_resource type="Texture2D" uid="uid://dnm0ngjfl36r2" path="res://questions/images/AccessibleFauteuil.png" id="2_6f23y"]
+[ext_resource type="FontFile" uid="uid://citcpvw3mw40b" path="res://Coolvetica Rg.otf" id="3_1eu0x"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_nuuas"]
+font = ExtResource("3_1eu0x")
+font_size = 24
 font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Theme" id="Theme_6f23y"]
+Button/font_sizes/font_size = 24
+
+[sub_resource type="Theme" id="Theme_1eu0x"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_6f23y"]
-font_size = 14
+font = ExtResource("3_1eu0x")
+font_size = 24
 font_color = Color(0, 0, 0, 1)
 
+[sub_resource type="Theme" id="Theme_hy6qy"]
+PopupMenu/font_sizes/font_separator_size = 24
+PopupMenu/font_sizes/font_size = 24
+PopupMenu/font_sizes/title_font_size = 24
+PopupMenu/fonts/font = null
+
 [node name="QuestionCard" type="Panel" unique_id=1570373702]
-anchors_preset = -1
-anchor_left = 0.34300002
-anchor_right = 0.657
-anchor_bottom = 1.0
-offset_left = -0.13601685
-offset_top = 50.0
-offset_right = 0.13598633
-offset_bottom = -50.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -282.5
+offset_top = -421.5
+offset_right = 282.5
+offset_bottom = 421.5
 grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 theme = ExtResource("1_6f23y")
 script = ExtResource("1_kwf6q")
 
@@ -64,12 +83,17 @@ label_settings = SubResource("LabelSettings_nuuas")
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="Image" type="TextureRect" parent="MarginContainer/VBoxContainer" unique_id=1521610192]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer" unique_id=147157359]
 layout_mode = 2
-size_flags_horizontal = 3
+theme_override_constants/margin_left = 150
+theme_override_constants/margin_right = 150
+
+[node name="Image" type="TextureRect" parent="MarginContainer/VBoxContainer/MarginContainer" unique_id=1521610192]
+layout_mode = 2
 theme = ExtResource("1_6f23y")
 texture = ExtResource("2_6f23y")
-stretch_mode = 3
+expand_mode = 5
+stretch_mode = 4
 
 [node name="HSeparator2" type="HSeparator" parent="MarginContainer/VBoxContainer" unique_id=1319394161]
 layout_mode = 2
@@ -77,8 +101,11 @@ size_flags_horizontal = 3
 theme = ExtResource("1_6f23y")
 
 [node name="ShowAnswer" type="Button" parent="MarginContainer/VBoxContainer" unique_id=119693698]
+z_index = 10
 layout_mode = 2
 size_flags_horizontal = 4
+mouse_default_cursor_shape = 2
+theme = SubResource("Theme_6f23y")
 text = "Afficher la réponse"
 
 [node name="Reponse" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1545949914]
@@ -102,6 +129,9 @@ theme = ExtResource("1_6f23y")
 visible = false
 layout_mode = 2
 size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = SubResource("Theme_1eu0x")
+theme_override_constants/separation = 5
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer/TrueFalseSelect" unique_id=1643924265]
 layout_mode = 2
@@ -110,6 +140,8 @@ label_settings = SubResource("LabelSettings_6f23y")
 
 [node name="OptionButton" type="OptionButton" parent="MarginContainer/VBoxContainer/TrueFalseSelect" unique_id=436614777]
 layout_mode = 2
+theme = SubResource("Theme_hy6qy")
+theme_override_font_sizes/font_size = 24
 item_count = 2
 popup/item_0/text = "Faux"
 popup/item_0/id = 0
@@ -121,6 +153,7 @@ visible = false
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
+theme_override_font_sizes/font_size = 24
 disabled = true
 text = "Valider"
 

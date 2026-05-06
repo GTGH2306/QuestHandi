@@ -8,8 +8,8 @@ class_name ForcedMoveSquare
 	set(value):
 		icon = value
 		if value == "Bomb":
-			$Icon.texture = load("res://icons/Bomb.png")
-			color = Color.MIDNIGHT_BLUE
+			$Icon.texture = load("res://icons/BananaPeel.png")
+			color = Color.DARK_GREEN
 		if value == "Ladder":
 			$Icon.texture = load("res://icons/Ladder.png")
 			color = Color.SANDY_BROWN

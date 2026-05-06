@@ -1,4 +1,5 @@
 extends RefCounted
+## Données d'une question
 class_name Question
 
 var question : String

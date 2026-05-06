@@ -2,19 +2,20 @@ extends Node3D
 ## Gère les règles du jeu et la gestion des tours
 class_name Game
 
+var asking_question: bool = false
+var question_manager: QuestionManager
+var squares: Array[Square] = []
+@export var sensitivity: float = 0.5
+
 var _dice_res := preload("res://addons/dice/scenes/dice.tscn")
 var _end_screen := preload("res://scenes/end_screen.tscn")
 @onready var _pos_d1: Vector3 = $DiceSpawn.position
 var _trw: Vector3 = Vector3(-8, 0, 0)
 @onready var _pos_d2: Vector3 = $DiceSpawn.position + Vector3(1.5,0,0)
-var asking_question: bool = false
 var _pitch: float = 0.0
 var _yaw: float = 0.0
-var question_manager: QuestionManager
 var _current_turn:int = 0
 var _teams: Array[Team]
-var squares: Array[Square] = []
-@export var sensitivity: float = 0.5
 
 var current_team: Team:
 	get:
@@ -30,12 +31,11 @@ func _ready() -> void:
 		else:
 			push_warning("L'enfant " + child.name + " n'est pas un Square !")
 	assert(!squares.is_empty(), "ERREUR CRITIQUE: Board ne contient aucune cases")
-
+	
 ## Ajoute les pions de chaque équipe dans un ordre de jeu aléatoire et place la camera sur la première équipe
 func initialize(teams_playing: Array[Team]) -> void:
 	if teams_playing.size() < 2 || teams_playing.size() > 5:
-		push_error("Entre 2 et 5 équipes attendues: ", teams_playing.size(), " équipes reçues.")
-		return
+		push_warning("Entre 2 et 5 équipes attendues: ", teams_playing.size(), " équipes reçues.")
 	_teams = teams_playing
 	_teams.shuffle()
 	var start_square: Square = squares[0]
@@ -48,9 +48,7 @@ func initialize(teams_playing: Array[Team]) -> void:
 		var target_rot: Vector3 = start_square.global_rotation
 		_teams[i].team_pawn.transform = Transform3D(Basis.from_euler(target_rot), target_pos)
 		_teams[i].target_transform = Transform3D(Basis.from_euler(target_rot), target_pos)
-	$BoutonLancerDes/Label.text = str("Tour de l'équipe: ", current_team.team_name)
-	%CameraPivot.global_position = current_team.team_pawn.pivot_point.global_position
-	%CameraPivot.reparent(current_team.team_pawn.pivot_point)
+	$Label.text = str("Tour de l'équipe: ", current_team.team_name)
 
 ## Supprime les dés existants et lance des nouveaux dés.[br]
 ## 1 seul en cas de dernière réponse fausse.
@@ -129,6 +127,7 @@ func _on_landing_timer_timeout() -> void:
 		_end_game()
 	elif team_square is SpecialSquare:
 		team_square.apply_effect(self)
+		
 ## Gère la rotation de la caméra, si le curseur n'est pas sur un bouton
 func _unhandled_input(event: InputEvent) -> void:
 	if !asking_question:
@@ -138,11 +137,11 @@ func _unhandled_input(event: InputEvent) -> void:
 			else:
 				Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 			if event.button_index == MOUSE_BUTTON_WHEEL_UP :
-				if %CameraPivot/x_pivot/SpringArm3D.spring_length > 5:
-					%CameraPivot/x_pivot/SpringArm3D.spring_length -= 0.3
+				if %CameraPivot/x_pivot/SpringArm3D.spring_length > 10:
+					%CameraPivot/x_pivot/SpringArm3D.spring_length -= 0.5
 			elif event.button_index == MOUSE_BUTTON_WHEEL_DOWN :
-				if %CameraPivot/x_pivot/SpringArm3D.spring_length < 20:
-					%CameraPivot/x_pivot/SpringArm3D.spring_length += 0.3
+				if %CameraPivot/x_pivot/SpringArm3D.spring_length < 30:
+					%CameraPivot/x_pivot/SpringArm3D.spring_length += 0.5
 		if event is InputEventMouseMotion && Input.is_action_pressed("Button_Click"):
 			_yaw -= event.relative.x * sensitivity
 			_pitch -= event.relative.y * sensitivity
@@ -154,7 +153,7 @@ func end_turn() -> void:
 		_current_turn = 0
 	else:
 		_current_turn += 1
-	$BoutonLancerDes/Label.text = str("Tour de l'équipe: ", current_team.team_name)
+	$Label.text = str("Tour de l'équipe: ", current_team.team_name)
 	$BoutonLancerDes/Button.disabled = false
 	%CameraPivot.global_position = current_team.team_pawn.pivot_point.global_position
 	%CameraPivot.reparent(current_team.team_pawn.pivot_point)
@@ -176,3 +175,18 @@ func _process(_delta: float) -> void:
 
 	%CameraPivot/x_pivot.rotation = Vector3.ZERO
 	%CameraPivot/x_pivot.rotation.x = deg_to_rad(_pitch)
+
+
+func _on_quit_pressed() -> void:
+	var dialog : ConfirmationDialog = ConfirmationDialog.new()
+	dialog.cancel_button_text = "Annuler"
+	dialog.title = "Confirmation..."
+	dialog.dialog_text = "Êtes-vous sûr de vouloir retourner au menu?"
+	$".".add_child(dialog)
+	dialog.visible = true
+	dialog.move_to_center()
+	dialog.confirmed.connect(_quit_accept)
+
+var home_scene = load("res://scenes/accueil.tscn")
+func _quit_accept() -> void:
+	get_tree().change_scene_to_packed(home_scene)

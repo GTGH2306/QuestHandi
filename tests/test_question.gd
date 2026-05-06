@@ -28,6 +28,15 @@ func test_initialize_without_image() -> void:
 	assert_eq(result.answer, "4")
 	assert_eq(result.img_name, "")
 
+## Cas avec colonne image manquante
+func test_initialize_two_cols() -> void:
+	var line: Array[String] = ["Combien font 2 + 2 ?", "4"]
+	var result = question.initialize(line)
+	assert_not_null(result)
+	assert_eq(result.question, "Combien font 2 + 2 ?")
+	assert_eq(result.answer, "4")
+	assert_eq(result.img_name, "")
+
 ## Verifie que initialize() retourne bien la même question
 func test_initialize_returns_self() -> void:
 	var line: Array[String] = ["Question ?", "Réponse", ""]

@@ -35,7 +35,7 @@ func _ask_question(_game: Game) -> void:
 	var qst_menu: QuestionCard = _question_interface.instantiate()
 	var question: Question = _game.question_manager.draw_question(question_color)
 	qst_menu.initialize(question, question_color, _game.current_team)
-	$".".add_child(qst_menu)
+	_game.add_child(qst_menu)
 	qst_menu.question_answered.connect(_on_question_answered)
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	_game.asking_question = true

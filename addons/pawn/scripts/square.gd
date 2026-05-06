@@ -1,7 +1,9 @@
 @tool
 extends StaticBody3D
+## Défini une case de base sans effet
 class_name Square
 
+## Positions possible sur la case
 @onready var positions: Array[RayCast3D] = [
 	$RayCast_Pos1,
 	$RayCast_Pos2,
@@ -9,14 +11,6 @@ class_name Square
 	$RayCast_Pos4, 
 	$RayCast_Pos5,
 ]
-
-## Fonction helper pour mettre à jour la couleur sans passer par le setter/getter
-func _update_color(new_color: Color) -> void:
-	if has_node("MeshInstance3D"):
-		$MeshInstance3D.material_override = $MeshInstance3D.get_active_material(0).duplicate()
-		$MeshInstance3D.get_active_material(0).albedo_color = new_color
-	if has_node('Square'):
-		$Square.set_surface_override_material(1, $MeshInstance3D.get_active_material(0))
 
 ## Permet de changer la couleur de la case.[/br]
 ## Différent de "QuestionSquare" qui a une liste de couleures pré-défini.
@@ -27,6 +21,14 @@ func _update_color(new_color: Color) -> void:
 		return Color.WHITE
 	set(value):
 		_update_color(value)
+
+## Fonction helper pour mettre à jour la couleur sans passer par le setter/getter
+func _update_color(new_color: Color) -> void:
+	if has_node("MeshInstance3D"):
+		$MeshInstance3D.material_override = $MeshInstance3D.get_active_material(0).duplicate()
+		$MeshInstance3D.get_active_material(0).albedo_color = new_color
+	if has_node('Square'):
+		$Square.set_surface_override_material(1, $MeshInstance3D.get_active_material(0))
 
 ## Retourne une position sur la case sur laquelle aucun pion n'est détecté
 func get_available_position() -> Vector3:

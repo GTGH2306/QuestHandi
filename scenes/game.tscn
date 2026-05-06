@@ -5,6 +5,8 @@
 [ext_resource type="PackedScene" uid="uid://j2wpvjcri7bv" path="res://scenes/question_square.tscn" id="3_lnu2h"]
 [ext_resource type="PackedScene" uid="uid://rs1udna5gv44" path="res://scenes/forced_move_square.tscn" id="4_lbhrr"]
 [ext_resource type="PackedScene" uid="uid://bilco4ruiyb6k" path="res://models/map.glb" id="5_iywne"]
+[ext_resource type="FontFile" uid="uid://citcpvw3mw40b" path="res://Coolvetica Rg.otf" id="5_p57ef"]
+[ext_resource type="Theme" uid="uid://dfflw6klk3uex" path="res://NegativeButtons.tres" id="7_u5sy4"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_8cj0n"]
 sky_top_color = Color(0.3102792, 0.45425737, 0.65523547, 1)
@@ -197,6 +199,71 @@ albedo_color = Color(1, 0, 0.916667, 1)
 
 [sub_resource type="SphereMesh" id="SphereMesh_lnu2h"]
 
+[sub_resource type="FontVariation" id="FontVariation_iywne"]
+base_font = ExtResource("5_p57ef")
+variation_transform = Transform2D(1, 0.2, 0, 1, 0, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p57ef"]
+bg_color = Color(0.87, 0.674395, 0.25230002, 0.78431374)
+skew = Vector2(0.3, 0)
+border_width_left = 6
+border_width_top = 6
+border_width_right = 6
+border_width_bottom = 6
+border_color = Color(0.76, 0.35466668, 0, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+shadow_color = Color(0.6658166, 0.28760007, 1.0588765e-06, 0.28235295)
+shadow_size = 5
+shadow_offset = Vector2(2, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iywne"]
+bg_color = Color(0.49, 0.41552, 0.2548, 0.78431374)
+skew = Vector2(0.3, 0)
+border_width_left = 6
+border_width_top = 6
+border_width_right = 6
+border_width_bottom = 6
+border_color = Color(0.58540964, 0.26524344, 2.8878452e-07, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+shadow_color = Color(0.6658166, 0.28760007, 1.0588765e-06, 0.28235295)
+shadow_size = 5
+shadow_offset = Vector2(2, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u5sy4"]
+bg_color = Color(0.87, 0.7029601, 0.03480002, 0.78431374)
+skew = Vector2(0.3, 0)
+border_width_left = 6
+border_width_top = 6
+border_width_right = 6
+border_width_bottom = 6
+border_color = Color(0.98, 0.60433334, 0, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+shadow_color = Color(0.6658166, 0.28760007, 1.0588765e-06, 0.28235295)
+shadow_size = 5
+shadow_offset = Vector2(2, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gee14"]
+bg_color = Color(0.49, 0.40465835, 0.22049999, 0.49411765)
+skew = Vector2(0.3, 0)
+border_width_left = 6
+border_width_top = 6
+border_width_right = 6
+border_width_bottom = 6
+border_color = Color(0.51, 0.22950003, 0, 0.7058824)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
 [sub_resource type="PlaneMesh" id="PlaneMesh_iywne"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_p57ef"]
@@ -208,6 +275,70 @@ size = Vector3(1, 5.0078125, 20.375)
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_iywne"]
 viewport_path = NodePath("DicesView")
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_iywne"]
+points = PackedVector3Array(3.8028083, 0.9505896, 2.0334969, -3.719367, -1, -2.00701, -3.995579, -1, -1.8689445, -4.111123, 0.95684296, -1.9227256, 4.111123, 0.95684296, -1.9227256, 4.409034, -1, 1.4371967, -3.719367, -1, 1.9886765, -4.1280665, 0.9609329, 1.9122787, 3.719367, -1, -2.00701, 3.719367, -1, 1.9886765, -4.409034, -1, 1.4371967, 4.6085877, 0.9726047, -1.3766786, -4.6085877, 0.9726047, -1.3766786, 4.541398, 0.9579069, 1.4806181, 4.409034, -1, -1.3174646, -3.782723, 0.9453812, -2.0410414, -4.541398, 0.9579069, 1.4806181, -4.409034, -1, -1.3174646, -3.8028083, 0.9505896, 2.0334969, 3.782723, 0.9453812, -2.0410414, 4.1280665, 0.9609329, 1.9122787, 4.2709274, -1, -1.5932045, 3.995579, -1, 1.8506111, -3.995579, -1, 1.8506111, -4.2709274, -1, -1.5932045, 3.995579, -1, -1.8689445, -4.4111304, 0.96061325, -1.645204, 4.4111304, 0.96061325, -1.645204)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_p57ef"]
+points = PackedVector3Array(-2.7734382, 0.8711024, 1.4214648, -0.77994305, -0.98037004, -1.7116784, 4.19711, 0.9553952, -1.5663002, 3.8619418, -1, 1.4502171, -5.137419, -0.99863726, 0.43268248, -3.4390314, 0.99813455, -1.263848, 4.284081, 0.91290355, 1.3416559, 4.153149, -1, -1.3095424, -0.78064966, -0.98284525, 1.7115614, -4.9897075, 1, 0.41884533, 1.6103172, 1, 1.6832415, -5.1301527, -0.9970477, -0.43670225, -0.7805766, 0.87343276, -1.7154826, -3.5219076, -0.9920863, 1.2946688, 1.6824359, -1, -1.7453297, -5.1571374, 0.89088434, -0.43923205, -3.400044, -1, -1.3095424, 1.6824359, -1, 1.7409695, 1.6103172, 1, -1.6876017, -0.77292174, 0.98945105, 1.6651576, 4.153149, -1, 1.3048409, -4.4157414, 0.8881779, 0.8692172, -3.444111, 0.9998279, 1.261335, -3.522979, -0.70396465, -1.2998269, 3.8619418, -1, -1.4545773, 4.2781343, 0.9117885, -1.3446944, 3.8325863, 0.8824838, 1.440432, -4.4102592, 0.88695943, -0.87235886, -2.7677767, 0.86897945, -1.422287, 2.1716845, 1, 0.8405307, -4.7081437, 1, -0.5637674, -0.6344778, 0.9952648, -1.6794842)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_u5sy4"]
+points = PackedVector3Array(-13.127711, -3.7580051, -0.9046719, 14.712208, 0.34711406, 1.3768095, 14.540102, -0.13174818, 1.3607037, 1.3764057, 0.34704134, -14.712334, -7.4313645, 2.4322999, 9.181489, 7.6669164, -6.0070996, 9.4733305, 4.959501, -6.0070996, -11.276429, -7.667567, -6.0070996, 9.4733305, 5.452003, 0.77808225, 13.63254, -8.778722, 2.00984, -10.095923, 10.928478, 2.4322999, -4.8071337, -7.667567, -6.0070996, -9.4733305, -13.632471, 0.77806395, 5.4524064, 11.27586, -6.0070996, -4.9599333, 10.968925, 0.3349013, -10.053216, -5.9436607, 0.33559886, 13.714363, 10.095598, 2.0099204, 8.778774, 0.44902614, -6.0070996, 12.1779785, -13.714466, 0.33560985, -5.9434953, 0.4351831, 2.4322999, -11.802815, -5.943661, 0.33559898, -13.714364, -11.802886, 2.4322999, -0.43551812, -11.72869, -6.0070996, 3.156835, 11.27586, -6.0070996, 4.9599333, 10.9689245, 0.33490124, 10.053216, -0.45250356, -6.0070996, -12.1779785, 0.4351831, 2.4322999, 11.802815, 13.714281, 0.33567965, -5.943697, -10.967978, 0.33513814, 10.054374, -11.273686, -6.0070996, -4.9599333, 5.2919903, 2.0281386, -12.350846, -10.967977, 0.33513802, -10.054373)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_gee14"]
+points = PackedVector3Array(-3.5087738, -0.98849547, 1.3042643, -1.496803, -0.9915089, -1.7224454, -1.4804133, 1.0128804, -1.6943449, 4.510584, -1.0742832, 1.4145412, -1.4762017, 1.0086673, 1.705757, 4.510584, 1.1120499, -1.3959081, -5.162629, 1.041732, -0.4289613, 4.510584, 1.1120499, 1.4145412, 4.510584, -1.0742832, -1.3959081, -5.127131, -0.99619997, -0.425634, -5.146088, 1.0381136, 0.445702, -1.4871163, -0.98181903, 1.7244705, -3.5318863, -0.99619997, -1.295535, -5.127131, -0.99619997, 0.4439265, -3.4874625, 1.0191581, 1.2951324, -3.4923139, 1.0207753, -1.278578, -0.7700963, -0.97360724, 1.7103959, -0.767677, 1.0028996, 1.6958715, -0.62612945, 0.99837667, -1.6694862, -0.6273661, -0.96930075, -1.6843817, -4.097529, -0.9922931, 1.0200688, -4.6807275, -0.99348336, -0.71354777, -4.3725877, 1.0265273, -0.8542092, -3.8053179, 0.595915, 1.1633799, -2.9260156, -0.98575157, -1.4253705, -4.09324, 0.018883348, 1.0188682)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_0tnpc"]
+points = PackedVector3Array(0.76833427, -0.12408888, 1.0987566, -0.11290325, -0.12408888, -1.3358889, -0.28094587, -0.12408888, -1.2938125, -0.66323644, 0.3531428, 0.3078868, -1.2463361, -0.12408888, 0.5110019, 0.6703484, 0.27389804, -0.24824968, 1.2301227, -0.12408888, -0.5382782, -0.62537855, 0.31549114, -0.33039, -0.09980815, 0.240592, 0.83452797, -1.2463361, -0.12408888, -0.4962018, -0.5328783, -0.12408888, 1.2247227, 0.04963849, 0.31266537, -0.6950802, 1.1880463, -0.0400676, 0.5110019, 0.3110184, 0.27687237, 0.6783331, 0.5164018, -0.0400676, -1.2099227, -0.8687005, -0.0400676, -0.9579902, 0.3486222, -0.08207825, 1.3086126, -0.5328783, -0.0400676, 1.1826464, -0.84368664, 0.28352058, 0.16303617, 1.3560889, -0.12408888, 0.049213454, 0.7049655, 0.27352458, 0.043697633, 1.3140125, -0.0400676, -0.034413382, 1.1459699, -0.0400676, -0.58009166, 0.08281488, 0.33798704, -0.23776187, 0.50672877, 0.24176818, -0.6005489, -0.071089834, -0.0400676, -1.2938125, 0.85222405, -0.0400676, 0.9727903, 0.85222405, -0.12408888, -1.041617, -1.3304889, -0.12408888, -0.118303195, -0.28740135, 0.2778637, -0.6679942, -0.9944037, -0.12408888, 0.8889005, -0.071089834, -0.0400676, 1.3086126)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_vtaks"]
+points = PackedVector3Array(0.36738017, 0.20265353, 0.82199454, -0.41518226, 0.9574207, -0.8539934, -0.4159706, 0.98646814, -0.8555208, 0.9060566, 0.27620786, -0.47764927, -0.8090106, 0.014647514, -0.5649793, -0.6053953, 1.003019, 0.80125046, 0.9057239, 0.98637915, 0.24126104, -0.57643753, 0.014647514, 0.7721404, 0.7116405, 8.095251e-06, -0.66112953, 0.7655154, 0.9866307, -0.6867746, 0.7639589, 0.0028995655, 0.4935679, -0.86639696, 0.98669326, 0.3539375, 0.28490078, 0.98225355, 0.8807331, 0.034044087, 0.03156949, -0.8247865, -0.80848366, 0.985816, -0.6014046, -0.8093653, 0.0021520825, 0.38184392, -0.6427594, 0.00071532483, -0.7448722, 0.62295765, 0.9851906, 0.71756595, 0.23144369, 0.98792934, -0.85793775, 0.28581002, 0.0044600847, 0.82782006, -0.8660851, 0.48036328, 0.4383191, 0.84302664, 0.31288946, 0.49063393, 0.9097576, 0.9886565, -0.35072276, 0.25794113, 0.284177, 0.8845759, -0.6680547, 0.31168306, -0.7979349, 0.87060493, 0.08985375, 0.23941256, -0.8379684, 0.33447626, -0.5649793, 0.93257076, 0.53637815, -0.011606885, -0.6053953, 0.24712346, 0.80125046, 0.1181103, 0.28369477, -0.8537214, 0.53471327, 0.3413159, 0.767479, 0.7603556, 0.2847194, -0.68181485)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_iywne"]
+height = 13.86676
+radius = 2.1918945
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0tnpc"]
+bg_color = Color(1, 0.120000005, 0.120000005, 0.59607846)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0.44, 0.057200022, 0.04400001, 0.69411767)
+corner_radius_top_left = 24
+corner_radius_top_right = 24
+corner_radius_bottom_right = 24
+corner_radius_bottom_left = 24
+shadow_color = Color(0, 0, 0, 0.11764706)
+shadow_offset = Vector2(2, 5)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vtaks"]
+bg_color = Color(0.38, 0.1178, 0.1178, 0.59607846)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0.3, 0.044999994, 0.044999994, 0.5254902)
+corner_radius_top_left = 24
+corner_radius_top_right = 24
+corner_radius_bottom_right = 24
+corner_radius_bottom_left = 24
+shadow_color = Color(0, 0, 0, 0.11764706)
+shadow_offset = Vector2(2, 5)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kvpfn"]
+bg_color = Color(1, 0.6175, 0.49, 0.59607846)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0.55, 0.1375, 0.1375, 0.69411767)
+corner_radius_top_left = 24
+corner_radius_top_right = 24
+corner_radius_bottom_right = 24
+corner_radius_bottom_left = 24
+shadow_color = Color(0, 0, 0, 0.11764706)
+shadow_offset = Vector2(2, 5)
 
 [node name="Game" type="Node3D" unique_id=431240536]
 script = ExtResource("1_uwrxv")
@@ -241,7 +372,7 @@ mesh = SubResource("PlaneMesh_uwrxv")
 metadata/_edit_lock_ = true
 
 [node name="StartSquare" parent="Board" unique_id=1801522456 instance=ExtResource("2_yqjtg")]
-transform = Transform3D(0.22013912, 0.07652971, -0.9724617, -0.039072797, 0.99680936, 0.06960077, 0.97468567, 0.022674978, 0.2224269, 6.1566234, 6.9180164, 9.455688)
+transform = Transform3D(0.26416704, 0.09183567, -1.1669544, -0.05829626, 1.1958492, 0.08091289, 1.16911, 0.038878787, 0.26771456, 6.1566234, 6.964176, 9.455688)
 
 [node name="QuestionSquare" parent="Board" unique_id=1754516965 instance=ExtResource("3_lnu2h")]
 transform = Transform3D(-0.5335408, -0.01790442, -0.8455848, 0.01574966, 0.9993922, -0.03109874, 0.84562767, -0.029910121, -0.53293455, -2.6122599, 7.037656, 11.667284)
@@ -253,6 +384,7 @@ question_color = 1
 [node name="ForcedMoveSquare2" parent="Board" unique_id=530827438 instance=ExtResource("4_lbhrr")]
 transform = Transform3D(-0.88965464, -0.0068506207, 0.45658278, -0.019229118, 0.9995626, -0.022470562, -0.45622903, -0.028770724, -0.88939714, -11.62358, 8.162377, -1.7798786)
 icon = "Bomb"
+color = Color(0.13333334, 0.54509807, 0.13333334, 1)
 
 [node name="ForcedMoveSquare" parent="Board" unique_id=124700368 instance=ExtResource("4_lbhrr")]
 transform = Transform3D(-0.33699638, -0.0011262018, 0.94150543, -0.13195868, 0.990185, -0.04604806, -0.9322126, -0.13975774, -0.33383724, -6.4348, 7.0966644, -11.809622)
@@ -306,6 +438,7 @@ question_color = 1
 
 [node name="ForcedMoveSquare4" parent="Board" unique_id=1732981346 instance=ExtResource("4_lbhrr")]
 transform = Transform3D(-0.48520315, 0.06346389, -0.87209535, 0.025959097, 0.9979685, 0.05818105, 0.874016, 0.0055907667, -0.48586488, -51.25838, 21.536633, -62.54948)
+icon = "Bomb"
 
 [node name="QuestionSquare14" parent="Board" unique_id=1631062666 instance=ExtResource("3_lnu2h")]
 transform = Transform3D(0.31235772, 0.33601573, -0.8885527, 0.0524377, 0.9278289, 0.36930218, 0.948516, -0.16194803, 0.2721946, -63.814053, 24.508781, -66.89261)
@@ -333,6 +466,7 @@ question_color = 2
 [node name="ForcedMoveSquare5" parent="Board" unique_id=301167271 instance=ExtResource("4_lbhrr")]
 transform = Transform3D(0.965295, 0, 0.2611616, 0, 1, 0, -0.2611616, 0, 0.965295, -70.298874, 30.895874, -13.95321)
 icon = "Bomb"
+color = Color(0.13333334, 0.54509807, 0.13333334, 1)
 
 [node name="QuestionSquare20" parent="Board" unique_id=1280358621 instance=ExtResource("3_lnu2h")]
 transform = Transform3D(0.8729987, 0, 0.4877227, 0, 1, 0, -0.48772264, 0, 0.87299883, -68.335464, 30.931835, -3.5541573)
@@ -365,6 +499,7 @@ question_color = 3
 
 [node name="ForcedMoveSquare7" parent="Board" unique_id=534920092 instance=ExtResource("4_lbhrr")]
 transform = Transform3D(-0.99543124, 0, 0.09548083, 0, 1, 0, -0.09548083, 0, -0.99543124, -69.4778, 42.515297, 48.058495)
+icon = "Bomb"
 
 [node name="QuestionSquare26" parent="Board" unique_id=15325217 instance=ExtResource("3_lnu2h")]
 transform = Transform3D(-0.8895281, 0, -0.4568807, 0, 1, 0, 0.45688063, 0, -0.8895282, -68.8393, 42.54597, 37.4447)
@@ -383,6 +518,7 @@ question_color = 2
 
 [node name="ForcedMoveSquare9" parent="Board" unique_id=291420554 instance=ExtResource("4_lbhrr")]
 transform = Transform3D(-0.25529394, 0, -0.9668635, 0, 1, 0, 0.9668635, 0, -0.25529394, -99.05153, 42.515297, 9.681416)
+icon = "Bomb"
 
 [node name="ForcedMoveSquare8" parent="Board" unique_id=1292660849 instance=ExtResource("4_lbhrr")]
 transform = Transform3D(0.29572475, 0, -0.9552732, 0, 1, 0, 0.9552732, 0, 0.29572475, -110.77402, 42.5258, 7.1283283)
@@ -430,6 +566,7 @@ question_color = 2
 
 [node name="ForcedMoveSquare10" parent="Board" unique_id=1229902712 instance=ExtResource("4_lbhrr")]
 transform = Transform3D(-0.9434196, 0, 0.33160135, 0, 1, 0, -0.33160135, 0, -0.9434196, -85.47066, 57.205116, -41.00016)
+icon = "Bomb"
 
 [node name="QuestionSquare41" parent="Board" unique_id=1197195130 instance=ExtResource("3_lnu2h")]
 transform = Transform3D(-0.9899473, 0, -0.14143683, 0, 1, 0, 0.14143682, 0, -0.98994744, -82.00182, 57.24446, -49.61627)
@@ -484,31 +621,39 @@ grow_vertical = 0
 [node name="Button" type="Button" parent="BoutonLancerDes" unique_id=1390124118]
 layout_mode = 1
 anchors_preset = -1
-anchor_top = 0.23700002
+anchor_left = -0.47400004
+anchor_top = -0.13100001
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -0.047002792
+offset_left = 0.057891846
+offset_top = -0.031018257
+offset_right = 1.5390015
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(0.9831879, 1)
+mouse_default_cursor_shape = 2
+theme_override_colors/font_color = Color(0.7607843, 0.3529412, 0, 1)
+theme_override_colors/font_outline_color = Color(0.40178582, 0.17342025, 9.62615e-08, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = SubResource("FontVariation_iywne")
+theme_override_font_sizes/font_size = 54
+theme_override_styles/normal = SubResource("StyleBoxFlat_p57ef")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_iywne")
+theme_override_styles/hover = SubResource("StyleBoxFlat_u5sy4")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_gee14")
 text = "Lancer !"
-
-[node name="Label" type="Label" parent="BoutonLancerDes" unique_id=1934973395]
-layout_mode = 0
-offset_right = 182.0
-offset_bottom = 24.0
-text = "Tour de l'équipe: Rouge"
 
 [node name="MapModel" parent="." unique_id=1101811649 instance=ExtResource("5_iywne")]
 transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0.36101484, -1.1920929e-07, -0.80618525)
 
 [node name="CameraPivot" type="Node3D" parent="." unique_id=1504668588]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.227457, 9.0885935, 9.514626)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.227457, 18.44905, 31.036106)
 
 [node name="x_pivot" type="Node3D" parent="CameraPivot" unique_id=890004001]
 
 [node name="SpringArm3D" type="SpringArm3D" parent="CameraPivot/x_pivot" unique_id=1497489564]
-spring_length = 10.0
+spring_length = 15.0
 
 [node name="Camera3D" type="Camera3D" parent="CameraPivot/x_pivot/SpringArm3D" unique_id=2013920584]
 unique_name_in_owner = true
@@ -590,5 +735,68 @@ stretch_mode = 4
 
 [node name="LandingTimer" type="Timer" parent="." unique_id=1143512991]
 
+[node name="MapCollision2" type="StaticBody3D" parent="." unique_id=864667593]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0)
+visible = false
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="MapCollision2" unique_id=1368841919]
+transform = Transform3D(8.054189, 0, -6.626835, 0, 10.430001, 0, 6.626835, 0, 8.054189, -116.1189, 43.234997, 28.495417)
+shape = SubResource("ConvexPolygonShape3D_iywne")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="MapCollision2" unique_id=565233073]
+transform = Transform3D(9.829183, 0, 3.9682698, 0, 10.6, 0, -3.9682698, 0, 9.829183, -136.00426, 61.804153, -36.968586)
+shape = SubResource("ConvexPolygonShape3D_p57ef")
+
+[node name="CollisionShape3D6" type="CollisionShape3D" parent="MapCollision2" unique_id=1507863325]
+transform = Transform3D(0.96555763, 0, -0.26018924, 0, 1, 0, 0.26018924, 0, 0.96555763, -123.68994, 84.897354, -124.994064)
+shape = SubResource("ConvexPolygonShape3D_u5sy4")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="MapCollision2" unique_id=865580107]
+transform = Transform3D(-3.142499, 0, 10.54157, 0, 11, 0, -10.54157, 0, -3.142499, -77.23989, 27.884048, -20.128153)
+shape = SubResource("ConvexPolygonShape3D_gee14")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MapCollision2" unique_id=539186012]
+transform = Transform3D(29.74, 0, 0, 0, 29.74, 0, 0, 0, 29.74, 0.0978775, 0.082586184, -0.036369324)
+shape = SubResource("ConvexPolygonShape3D_0tnpc")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="MapCollision2" unique_id=1074695431]
+transform = Transform3D(-25.46077, 0, -17.684715, 0, 31, 0, 17.684715, 0, -25.46077, -38.77729, -3.5655441, -60.4319)
+shape = SubResource("ConvexPolygonShape3D_vtaks")
+
+[node name="CollisionShape3D7" type="CollisionShape3D" parent="MapCollision2" unique_id=1153635831]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.6077504, 15.695015, -9.063667)
+shape = SubResource("CylinderShape3D_iywne")
+
+[node name="Label" type="Label" parent="." unique_id=1934973395]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -113.0
+offset_top = 6.0
+offset_right = 114.0
+offset_bottom = 33.916664
+grow_horizontal = 2
+size_flags_vertical = 1
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("5_p57ef")
+theme_override_font_sizes/font_size = 48
+text = "Tour de l'équipe: Rouge"
+
+[node name="Button" type="Button" parent="." unique_id=1139604168]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -78.612915
+offset_top = 15.0
+offset_right = -15.0
+offset_bottom = 73.0
+grow_horizontal = 0
+theme = ExtResource("7_u5sy4")
+theme_override_styles/normal = SubResource("StyleBoxFlat_0tnpc")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_vtaks")
+theme_override_styles/hover = SubResource("StyleBoxFlat_kvpfn")
+text = "X"
+
 [connection signal="pressed" from="BoutonLancerDes/Button" to="." method="_on_button_pressed"]
 [connection signal="timeout" from="LandingTimer" to="." method="_on_landing_timer_timeout"]
+[connection signal="pressed" from="Button" to="." method="_on_quit_pressed"]
