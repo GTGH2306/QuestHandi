@@ -2,8 +2,8 @@
 
 [ext_resource type="Theme" uid="uid://bv4c3vimv3v1m" path="res://scenes/theme.tres" id="1_6f23y"]
 [ext_resource type="Script" uid="uid://b8yoa76r0q6ma" path="res://scenes/question_card.gd" id="1_kwf6q"]
-[ext_resource type="Texture2D" uid="uid://dnm0ngjfl36r2" path="res://questions/images/AccessibleFauteuil.png" id="2_6f23y"]
 [ext_resource type="FontFile" uid="uid://citcpvw3mw40b" path="res://Coolvetica Rg.otf" id="3_1eu0x"]
+[ext_resource type="Texture2D" uid="uid://c0puxvubu3b37" path="res://AccessibleFauteuil.png" id="4_1eu0x"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_nuuas"]
 font = ExtResource("3_1eu0x")
@@ -91,7 +91,7 @@ theme_override_constants/margin_right = 150
 [node name="Image" type="TextureRect" parent="MarginContainer/VBoxContainer/MarginContainer" unique_id=1521610192]
 layout_mode = 2
 theme = ExtResource("1_6f23y")
-texture = ExtResource("2_6f23y")
+texture = ExtResource("4_1eu0x")
 expand_mode = 5
 stretch_mode = 4
 

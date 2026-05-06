@@ -37,7 +37,7 @@ func is_dir_empty(dir: DirAccess) -> bool:
 	return true
 
 
-## Créer les fichiers questions de façon récursive en ce basant sur celles avec lesquels le jeu est compilé
+## Créer les fichiers questions de façon récurs 	ive en ce basant sur celles avec lesquels le jeu est compilé
 func create_files(from:String, to:String):
 	#créer le dossier
 	DirAccess.make_dir_recursive_absolute(to)
