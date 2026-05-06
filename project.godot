@@ -15,7 +15,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 [application]
 
 config/name="QuestHandi"
-run/main_scene="uid://ryntqkt6ei88"
+run/main_scene="uid://bfv250nlatm33"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -30,6 +30,10 @@ window/size/viewport_width=1920
 window/size/viewport_height=1080
 window/size/mode=3
 window/stretch/mode="canvas_items"
+
+[editor]
+
+movie_writer/movie_file="C:/Users/TGrandgirard/Documents/projets godot/quest-handi/screenshot.png"
 
 [editor_plugins]
 

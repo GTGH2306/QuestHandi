@@ -31,7 +31,7 @@ func _ready() -> void:
 		else:
 			push_warning("L'enfant " + child.name + " n'est pas un Square !")
 	assert(!squares.is_empty(), "ERREUR CRITIQUE: Board ne contient aucune cases")
-
+	
 ## Ajoute les pions de chaque équipe dans un ordre de jeu aléatoire et place la camera sur la première équipe
 func initialize(teams_playing: Array[Team]) -> void:
 	if teams_playing.size() < 2 || teams_playing.size() > 5:
@@ -49,8 +49,6 @@ func initialize(teams_playing: Array[Team]) -> void:
 		_teams[i].team_pawn.transform = Transform3D(Basis.from_euler(target_rot), target_pos)
 		_teams[i].target_transform = Transform3D(Basis.from_euler(target_rot), target_pos)
 	$Label.text = str("Tour de l'équipe: ", current_team.team_name)
-	%CameraPivot.global_position = current_team.team_pawn.pivot_point.global_position
-	%CameraPivot.reparent(current_team.team_pawn.pivot_point)
 
 ## Supprime les dés existants et lance des nouveaux dés.[br]
 ## 1 seul en cas de dernière réponse fausse.
@@ -177,3 +175,18 @@ func _process(_delta: float) -> void:
 
 	%CameraPivot/x_pivot.rotation = Vector3.ZERO
 	%CameraPivot/x_pivot.rotation.x = deg_to_rad(_pitch)
+
+
+func _on_quit_pressed() -> void:
+	var dialog : ConfirmationDialog = ConfirmationDialog.new()
+	dialog.cancel_button_text = "Annuler"
+	dialog.title = "Confirmation..."
+	dialog.dialog_text = "Êtes-vous sûr de vouloir retourner au menu?"
+	$".".add_child(dialog)
+	dialog.visible = true
+	dialog.move_to_center()
+	dialog.confirmed.connect(_quit_accept)
+
+var home_scene = load("res://scenes/accueil.tscn")
+func _quit_accept() -> void:
+	get_tree().change_scene_to_packed(home_scene)
