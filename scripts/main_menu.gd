@@ -1,4 +1,5 @@
 extends Control
+class_name SelectionMenu
 
 var game_scene := preload("res://scenes/game.tscn")
 ## Tableau des équipes possible à jouer
