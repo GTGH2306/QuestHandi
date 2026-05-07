@@ -11,7 +11,7 @@ Quest'Handi est un jeu de plateau multijoueur (2 à 5 équipes) où les joueurs 
 3. **Cases Question** (colorées) : une question est posée à l'équipe
 4. **Bonne réponse** → 2 dés au prochain tour
 5. **Mauvaise réponse** → 1 seul dé
-6. **Cases Bombe** : Force l'équipe à reculer de deux cases
+6. **Cases Banane** : Force l'équipe à reculer de deux cases
 7. **Cases Echelle** : Aide l'équipe à avancer plus vite sur le plateau
 8. La première équipe à atteindre la dernière case gagne
 ## 🏗️ Modification des questions
@@ -23,7 +23,7 @@ Si au moins une partie a été lancée, les fichiers questions ont du être cré
 
 ### Modifier les questions
 
-Les questions sont enregistrées au format CSV, vous pouvez normalement utiliser Excel ou n'importe quel éditeur de texte pour modifier les questions existantes ou ajouter les vôtres.
+Les questions sont enregistrées au format CSV, vous pouvez normalement utiliser Excel pour modifier les questions existantes ou ajouter les vôtres.
 N'incluez pas de point-virgule dans vos questions, il s'agit du caractère de séparation permettant de différencier les colonnes dans le format CSV.
 Si les caractères ne s'affichent pas tous correctement c'est que l'encodage de votre éditeur n'est pas réglé sur UTF-8.
 
