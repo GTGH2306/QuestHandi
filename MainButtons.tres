@@ -6,43 +6,13 @@
 base_font = ExtResource("1_e24ps")
 spacing_bottom = 5
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q2s5x"]
-bg_color = Color(0.30939996, 0.39, 0.26909998, 0.35686275)
-border_width_left = 10
-border_width_top = 10
-border_width_right = 10
-border_width_bottom = 10
-border_color = Color(0.35373, 0.39, 0.3198, 0.43529412)
-corner_radius_top_left = 32
-corner_radius_top_right = 32
-corner_radius_bottom_right = 32
-corner_radius_bottom_left = 32
-shadow_color = Color(0, 0, 0, 0.11764706)
-shadow_size = 16
-shadow_offset = Vector2(2, 5)
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e24ps"]
-bg_color = Color(0.70000005, 1, 0, 0.59607846)
+bg_color = Color(0.1764, 0.22105995, 0.42, 0.7058824)
 border_width_left = 10
 border_width_top = 10
 border_width_right = 10
 border_width_bottom = 10
-border_color = Color(0.55, 0.52250004, 0.1375, 0.69411767)
-corner_radius_top_left = 32
-corner_radius_top_right = 32
-corner_radius_bottom_right = 32
-corner_radius_bottom_left = 32
-shadow_color = Color(0, 0, 0, 0.11764706)
-shadow_size = 16
-shadow_offset = Vector2(2, 5)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5hq01"]
-bg_color = Color(0.33333325, 1, 0, 0.59607846)
-border_width_left = 10
-border_width_top = 10
-border_width_right = 10
-border_width_bottom = 10
-border_color = Color(0.275625, 0.45, 0.1125, 0.69411767)
+border_color = Color(0.102, 0.11996665, 0.2, 0.78431374)
 corner_radius_top_left = 32
 corner_radius_top_right = 32
 corner_radius_bottom_right = 32
@@ -52,12 +22,42 @@ shadow_size = 16
 shadow_offset = Vector2(2, 5)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2nams"]
-bg_color = Color(0.32993335, 0.49, 0.29400003, 0.59607846)
+bg_color = Color(0.1575, 0.24412492, 0.63, 0.78431374)
 border_width_left = 10
 border_width_top = 10
 border_width_right = 10
 border_width_bottom = 10
-border_color = Color(0.3644233, 0.59, 0.15339999, 0.5254902)
+border_color = Color(0.0875, 0.13562495, 0.35, 0.78431374)
+corner_radius_top_left = 32
+corner_radius_top_right = 32
+corner_radius_bottom_right = 32
+corner_radius_bottom_left = 32
+shadow_color = Color(0, 0, 0, 0.11764706)
+shadow_size = 16
+shadow_offset = Vector2(2, 5)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5hq01"]
+bg_color = Color(0.105, 0.16274995, 0.42, 0.78431374)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0.05, 0.07749998, 0.2, 0.78431374)
+corner_radius_top_left = 32
+corner_radius_top_right = 32
+corner_radius_bottom_right = 32
+corner_radius_bottom_left = 32
+shadow_color = Color(0, 0, 0, 0.11764706)
+shadow_size = 16
+shadow_offset = Vector2(2, 5)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q2s5x"]
+bg_color = Color(0.08627451, 0.13725491, 0.34901962, 0.78431374)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0.1764706, 0.21960784, 0.41960785, 0.7058824)
 corner_radius_top_left = 32
 corner_radius_top_right = 32
 corner_radius_bottom_right = 32
@@ -67,10 +67,9 @@ shadow_size = 16
 shadow_offset = Vector2(2, 5)
 
 [resource]
-Button/colors/font_color = Color(0.13508156, 0.23366204, 0.13449368, 1)
 Button/font_sizes/font_size = 32
 Button/fonts/font = SubResource("FontVariation_2nams")
-Button/styles/disabled = SubResource("StyleBoxFlat_q2s5x")
-Button/styles/hover = SubResource("StyleBoxFlat_e24ps")
+Button/styles/disabled = SubResource("StyleBoxFlat_e24ps")
+Button/styles/hover = SubResource("StyleBoxFlat_2nams")
 Button/styles/normal = SubResource("StyleBoxFlat_5hq01")
-Button/styles/pressed = SubResource("StyleBoxFlat_2nams")
+Button/styles/pressed = SubResource("StyleBoxFlat_q2s5x")

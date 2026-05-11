@@ -996,7 +996,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.3127999, 0.2142, 0.51, 1)
+color = Color(0.105882354, 0.16078432, 0.41568628, 1)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=2033505044]
 environment = SubResource("Environment_bqqt6")
@@ -1008,7 +1008,6 @@ shadow_enabled = true
 [node name="CatRotating" parent="." unique_id=1127733027 instance=ExtResource("1_l6cm7")]
 
 [node name="Pawn" parent="CatRotating" index="0"]
-transform = Transform3D(0.2531712, 0, 0.9674215, 0, 1, 0, -0.9674215, 0, 0.2531712, 0, 0, 0)
 model = 1
 
 [node name="AnimationPlayer" parent="CatRotating" index="1"]
