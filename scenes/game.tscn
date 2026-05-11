@@ -299,12 +299,12 @@ height = 13.86676
 radius = 2.1918945
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0tnpc"]
-bg_color = Color(1, 0.120000005, 0.120000005, 0.59607846)
+bg_color = Color(0.93, 0.40951, 0.25109997, 0.78431374)
 border_width_left = 10
 border_width_top = 10
 border_width_right = 10
 border_width_bottom = 10
-border_color = Color(0.44, 0.057200022, 0.04400001, 0.69411767)
+border_color = Color(0.4392157, 0.05882353, 0.043137256, 0.69411767)
 corner_radius_top_left = 24
 corner_radius_top_right = 24
 corner_radius_bottom_right = 24
