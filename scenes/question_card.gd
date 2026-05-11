@@ -40,7 +40,7 @@ func initialize(question: Question, clr: Globals.clr, team: Team):
 	else:
 		$MarginContainer/VBoxContainer/MarginContainer/Image.visible = false
 	#Changement de la réponse
-	$MarginContainer/VBoxContainer/Reponse.text = question.answer
+	$MarginContainer/VBoxContainer/Reponse.text = str("Réponse:\n", question.answer)
 	
 
 
