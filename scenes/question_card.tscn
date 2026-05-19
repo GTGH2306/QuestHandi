@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://clq3npke6u0g3"]
 
 [ext_resource type="Theme" uid="uid://bv4c3vimv3v1m" path="res://scenes/theme.tres" id="1_6f23y"]
-[ext_resource type="Script" uid="uid://b8yoa76r0q6ma" path="res://scenes/question_card.gd" id="1_kwf6q"]
-[ext_resource type="FontFile" uid="uid://citcpvw3mw40b" path="res://Coolvetica Rg.otf" id="3_1eu0x"]
+[ext_resource type="Script" uid="uid://10d8ct0gkky7" path="res://scenes/question_card.gd" id="1_kwf6q"]
+[ext_resource type="FontFile" uid="uid://bj4ojyuxrde2o" path="res://Coolvetica Rg_MSDF.otf" id="3_1eu0x"]
 [ext_resource type="Texture2D" uid="uid://c0puxvubu3b37" path="res://AccessibleFauteuil.png" id="4_1eu0x"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_nuuas"]
@@ -50,7 +50,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0.5, 0.5)]
+"values": [Vector2(1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_hy6qy"]
@@ -99,7 +99,6 @@ offset_right = 282.5
 offset_bottom = 421.4995
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(0.5, 0.5)
 pivot_offset_ratio = Vector2(0.5, 0)
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -169,6 +168,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 mouse_default_cursor_shape = 2
 theme = SubResource("Theme_6f23y")
+theme_override_fonts/font = ExtResource("3_1eu0x")
 text = "Afficher la réponse"
 
 [node name="Reponse" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1545949914]
@@ -204,6 +204,7 @@ label_settings = SubResource("LabelSettings_6f23y")
 [node name="OptionButton" type="OptionButton" parent="MarginContainer/VBoxContainer/TrueFalseSelect" unique_id=436614777]
 layout_mode = 2
 theme = SubResource("Theme_hy6qy")
+theme_override_fonts/font = ExtResource("3_1eu0x")
 theme_override_font_sizes/font_size = 24
 item_count = 2
 popup/item_0/text = "Incorrecte"
