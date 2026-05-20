@@ -11,6 +11,11 @@ func load_questions() -> void:
 	if err == OK:
 		filepath = config.get_value("CONFIG", "chemin_questions")
 	else:
+		var dialog : AcceptDialog = AcceptDialog.new()
+		dialog.dialog_text = "Fichier config.cfg introuvable\nUtilisation des questions par défaut."
+		$".".add_child(dialog)
+		dialog.visible = true
+		dialog.move_to_center()
 		print("Utilisation des questions par défaut")
 
 

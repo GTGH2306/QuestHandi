@@ -1,13 +1,19 @@
 [gd_scene format=3 uid="uid://clq3npke6u0g3"]
 
 [ext_resource type="Theme" uid="uid://bv4c3vimv3v1m" path="res://scenes/theme.tres" id="1_6f23y"]
-[ext_resource type="Script" uid="uid://10d8ct0gkky7" path="res://scenes/question_card.gd" id="1_kwf6q"]
+[ext_resource type="Script" uid="uid://b8yoa76r0q6ma" path="res://scenes/question_card.gd" id="1_kwf6q"]
 [ext_resource type="FontFile" uid="uid://bj4ojyuxrde2o" path="res://Coolvetica Rg_MSDF.otf" id="3_1eu0x"]
-[ext_resource type="Texture2D" uid="uid://c0puxvubu3b37" path="res://AccessibleFauteuil.png" id="4_1eu0x"]
+[ext_resource type="FontFile" uid="uid://c7c2sh4gobdm6" path="res://ARIALBD.TTF" id="3_hy6qy"]
+[ext_resource type="Texture2D" uid="uid://mb3yhqveeywo" path="res://DefaultError.png" id="4_wj1xp"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_c2wvf"]
+font = ExtResource("3_hy6qy")
+font_size = 26
+font_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_nuuas"]
-font = ExtResource("3_1eu0x")
-font_size = 24
+font = ExtResource("3_hy6qy")
+font_size = 32
 font_color = Color(0, 0, 0, 1)
 
 [sub_resource type="Theme" id="Theme_6f23y"]
@@ -95,8 +101,8 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -282.5
 offset_top = -421.5
-offset_right = 282.5
-offset_bottom = 421.4995
+offset_right = 341.5
+offset_bottom = 534.4995
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset_ratio = Vector2(0.5, 0)
@@ -124,8 +130,9 @@ size_flags_horizontal = 4
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
+theme_override_font_sizes/font_size = 16
 text = "Question VIOLETTE pour l'équipe PINGOUIN"
-label_settings = SubResource("LabelSettings_nuuas")
+label_settings = SubResource("LabelSettings_c2wvf")
 
 [node name="HSeparator" type="HSeparator" parent="MarginContainer/TitleFlow" unique_id=1588211334]
 layout_mode = 2
@@ -153,9 +160,10 @@ theme_override_constants/margin_left = 150
 theme_override_constants/margin_right = 150
 
 [node name="Image" type="TextureRect" parent="MarginContainer/VBoxContainer/MarginContainer" unique_id=1521610192]
+visible = false
 layout_mode = 2
 theme = ExtResource("1_6f23y")
-texture = ExtResource("4_1eu0x")
+texture = ExtResource("4_wj1xp")
 expand_mode = 5
 stretch_mode = 4
 

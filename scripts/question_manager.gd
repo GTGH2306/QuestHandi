@@ -42,6 +42,11 @@ func load_csv_to_question_array(csv_path: String) -> QuestionList:
 	var lines: Array = []
 	#Annule si aucun fichier trouver
 	if file == null:
+		var dialog : AcceptDialog = AcceptDialog.new()
+		dialog.dialog_text = str("Fichier CSV introuvable\n", csv_path)
+		Engine.get_main_loop().root.add_child(dialog)
+		dialog.visible = true
+		dialog.move_to_center()
 		printerr("No CSV found:", csv_path)
 		return result
 	#Conversion utf8
