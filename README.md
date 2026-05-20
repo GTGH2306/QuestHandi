@@ -66,6 +66,7 @@ Vous pouvez modifier les questions existantes ou en ajouter de nouvelles avec **
 #### Important
 
 - **N’ajoutez pas de point-virgule `;` dans le texte des questions ou des réponses**, car ce caractère est utilisé pour séparer les colonnes dans le fichier CSV.
+- Vous pouvez forcer un retour à la ligne au sein des questions ou des réponses en saisissant `\n`
 - Si certains caractères s’affichent mal, vérifiez que votre logiciel est bien réglé en **UTF-8**.
 
 ---
