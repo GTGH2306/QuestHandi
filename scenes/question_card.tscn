@@ -140,7 +140,9 @@ custom_minimum_size = Vector2(100, 10)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
-text = "Comment s’appelle l’aide financière personnalisée attribuée par la MDPH, versée par le Conseil Départemental et destinée à compenser des charges précises ? (aides humaines, techniques, aménagements,…)"
+text = "Erreur:
+Erreur lors du chargement de la question.
+Assurez-vous que le CSV de ce thème est bien présent sous le bon nom dans le dossier indiqué par \"config.cfg\""
 label_settings = SubResource("LabelSettings_nuuas")
 horizontal_alignment = 1
 autowrap_mode = 2
