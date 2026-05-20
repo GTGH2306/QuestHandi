@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://citcpvw3mw40b"
-path="res://.godot/imported/Coolvetica Rg.otf-c3dc9c6e066451a9ec6f1e9372224e62.fontdata"
+uid="uid://bj4ojyuxrde2o"
+path="res://.godot/imported/Coolvetica Rg_MSDF.otf-156515703722f5a051e818437f3fbd71.fontdata"
 
 [deps]
 
-source_file="res://Coolvetica Rg.otf"
-dest_files=["res://.godot/imported/Coolvetica Rg.otf-c3dc9c6e066451a9ec6f1e9372224e62.fontdata"]
+source_file="res://Coolvetica Rg_MSDF.otf"
+dest_files=["res://.godot/imported/Coolvetica Rg_MSDF.otf-156515703722f5a051e818437f3fbd71.fontdata"]
 
 [params]
 
@@ -16,7 +16,7 @@ Rendering=null
 antialiasing=1
 generate_mipmaps=true
 disable_embedded_bitmaps=true
-multichannel_signed_distance_field=false
+multichannel_signed_distance_field=true
 msdf_pixel_range=8
 msdf_size=64
 allow_system_fallback=true

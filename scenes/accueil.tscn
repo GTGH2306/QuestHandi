@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://l8plc2l051h2" path="res://questhandi-title.png" id="4_5mrkc"]
 [ext_resource type="Theme" uid="uid://bix34cku2baid" path="res://MainButtons.tres" id="5_ikera"]
 [ext_resource type="Theme" uid="uid://dfflw6klk3uex" path="res://NegativeButtons.tres" id="6_qof0r"]
+[ext_resource type="Texture2D" uid="uid://bp2y821kns2wh" path="res://CRM_logo-vertical-baseline_rvb.png" id="7_3le7r"]
 
 [sub_resource type="Animation" id="Animation_w3kyk"]
 length = 0.001
@@ -143,5 +144,40 @@ theme = ExtResource("6_qof0r")
 theme_override_font_sizes/font_size = 64
 text = "QUITTER"
 
+[node name="CrmLogoVerticalBaselineRvb" type="Sprite2D" parent="." unique_id=1504515238]
+position = Vector2(159, 86.00001)
+scale = Vector2(0.3196464, 0.31964642)
+texture = ExtResource("7_3le7r")
+
+[node name="LinkButton" type="LinkButton" parent="." unique_id=523783969]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 31.0
+offset_top = -61.0
+offset_right = 527.0
+offset_bottom = -21.0
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.4805637, 0.16067037, 0.85591286, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 24
+text = "https://github.com/GTGH2306/QuestHandi"
+
+[node name="Label" type="Label" parent="." unique_id=1035879050]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 31.0
+offset_top = -103.0
+offset_right = 409.0
+offset_bottom = -60.0
+grow_vertical = 0
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 24
+text = "Réalisé par Tristan Grandgirard"
+
 [connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/Button2" to="." method="_on_button_quit_pressed"]
+[connection signal="pressed" from="LinkButton" to="." method="_on_link_button_pressed"]

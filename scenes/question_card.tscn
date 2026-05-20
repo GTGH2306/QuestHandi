@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://clq3npke6u0g3"]
 
 [ext_resource type="Theme" uid="uid://bv4c3vimv3v1m" path="res://scenes/theme.tres" id="1_6f23y"]
-[ext_resource type="Script" uid="uid://b8yoa76r0q6ma" path="res://scenes/question_card.gd" id="1_kwf6q"]
-[ext_resource type="FontFile" uid="uid://citcpvw3mw40b" path="res://Coolvetica Rg.otf" id="3_1eu0x"]
+[ext_resource type="Script" uid="uid://10d8ct0gkky7" path="res://scenes/question_card.gd" id="1_kwf6q"]
+[ext_resource type="FontFile" uid="uid://bj4ojyuxrde2o" path="res://Coolvetica Rg_MSDF.otf" id="3_1eu0x"]
 [ext_resource type="Texture2D" uid="uid://c0puxvubu3b37" path="res://AccessibleFauteuil.png" id="4_1eu0x"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_nuuas"]
@@ -26,6 +26,67 @@ PopupMenu/font_sizes/font_size = 24
 PopupMenu/font_sizes/title_font_size = 24
 PopupMenu/fonts/font = null
 
+[sub_resource type="Animation" id="Animation_1eu0x"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(677.5, 118.5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_hy6qy"]
+resource_name = "draw"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.36666667, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(677.5, 1099), Vector2(677.5, 86.405), Vector2(677.5, 118.5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.27704373, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0.5, 0.5), Vector2(1.1, 1.1), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wj1xp"]
+_data = {
+&"RESET": SubResource("Animation_1eu0x"),
+&"draw": SubResource("Animation_hy6qy")
+}
+
 [node name="QuestionCard" type="Panel" unique_id=1570373702]
 anchors_preset = 8
 anchor_left = 0.5
@@ -35,9 +96,10 @@ anchor_bottom = 0.5
 offset_left = -282.5
 offset_top = -421.5
 offset_right = 282.5
-offset_bottom = 421.5
+offset_bottom = 421.4995
 grow_horizontal = 2
 grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0)
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme = ExtResource("1_6f23y")
@@ -78,7 +140,9 @@ custom_minimum_size = Vector2(100, 10)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
-text = "Comment s’appelle l’aide financière personnalisée attribuée par la MDPH, versée par le Conseil Départemental et destinée à compenser des charges précises ? (aides humaines, techniques, aménagements,…)"
+text = "Erreur:
+Erreur lors du chargement de la question.
+Assurez-vous que le CSV de ce thème est bien présent sous le bon nom dans le dossier indiqué par \"config.cfg\""
 label_settings = SubResource("LabelSettings_nuuas")
 horizontal_alignment = 1
 autowrap_mode = 2
@@ -106,6 +170,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 mouse_default_cursor_shape = 2
 theme = SubResource("Theme_6f23y")
+theme_override_fonts/font = ExtResource("3_1eu0x")
 text = "Afficher la réponse"
 
 [node name="Reponse" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1545949914]
@@ -135,17 +200,18 @@ theme_override_constants/separation = 5
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer/TrueFalseSelect" unique_id=1643924265]
 layout_mode = 2
-text = "L'équipe a répondu "
+text = "L'équipe a donnée une réponse: "
 label_settings = SubResource("LabelSettings_6f23y")
 
 [node name="OptionButton" type="OptionButton" parent="MarginContainer/VBoxContainer/TrueFalseSelect" unique_id=436614777]
 layout_mode = 2
 theme = SubResource("Theme_hy6qy")
+theme_override_fonts/font = ExtResource("3_1eu0x")
 theme_override_font_sizes/font_size = 24
 item_count = 2
-popup/item_0/text = "Faux"
+popup/item_0/text = "Incorrecte"
 popup/item_0/id = 0
-popup/item_1/text = "Vrai"
+popup/item_1/text = "Correcte"
 popup/item_1/id = 1
 
 [node name="Validate" type="Button" parent="MarginContainer/VBoxContainer" unique_id=1984886228]
@@ -156,6 +222,10 @@ size_flags_vertical = 8
 theme_override_font_sizes/font_size = 24
 disabled = true
 text = "Valider"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=761115848]
+libraries/ = SubResource("AnimationLibrary_wj1xp")
+autoplay = &"draw"
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/ShowAnswer" to="." method="_on_show_answer_pressed"]
 [connection signal="item_selected" from="MarginContainer/VBoxContainer/TrueFalseSelect/OptionButton" to="." method="_on_option_button_item_selected"]

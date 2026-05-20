@@ -17,7 +17,11 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 config/name="QuestHandi"
 run/main_scene="uid://bfv250nlatm33"
 config/features=PackedStringArray("4.6", "Forward Plus")
+boot_splash/bg_color=Color(1, 1, 1, 1)
+boot_splash/stretch_mode=0
+boot_splash/image="uid://bp2y821kns2wh"
 config/icon="res://icon.svg"
+boot_splash/minimum_display_time=1000
 
 [autoload]
 
@@ -28,7 +32,7 @@ FileManager="*res://file_manager.gd"
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
-window/size/mode=3
+window/size/mode=2
 window/stretch/mode="canvas_items"
 
 [editor]

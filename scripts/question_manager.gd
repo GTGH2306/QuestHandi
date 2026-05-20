@@ -59,7 +59,7 @@ func load_csv_to_question_array(csv_path: String) -> QuestionList:
 	
 	for line in lines:
 		for j in range(line.size()):
-			line[j] = line[j].strip_edges()
+			line[j] = line[j].strip_edges().replace("\\n", "\n")
 		if line.size() > 1:
 			result.qstList.append(Question.new().initialize(line))
 	return result

@@ -2,24 +2,32 @@ extends Node
 ## Singleton permettant d'assurer la gestion des fichiers
 ## Les vérifications sur les fichiers restent légers car l'utilisateur doit être capable d'ajouter/modifier des questions
 
-var filepath = "user://questions"
-var path_images = "user://questions/images/"
+var config: ConfigFile = ConfigFile.new()
 
-var questions_paths : Dictionary[Globals.clr, String] = {
-	Globals.clr.RED : "user://questions/questions_red.csv",
-	Globals.clr.GREEN : "user://questions/questions_green.csv",
-	Globals.clr.BLUE : "user://questions/questions_blue.csv",
-	Globals.clr.ORANGE : "user://questions/questions_orange.csv",
-	Globals.clr.PINK : "user://questions/questions_pink.csv"
+func load_questions() -> void:
+	var err = config.load(OS.get_executable_path().get_base_dir().path_join("config.cfg"))
+	print("Chemin Exe: ", OS.get_executable_path().get_base_dir().path_join("config.cfg"))
+	print("Chemin Config: ", config.get_value("CONFIG", "chemin_questions"))
+	if err == OK:
+		filepath = config.get_value("CONFIG", "chemin_questions")
+	else:
+		print("Utilisation des questions par défaut")
+
+
+var filepath = "res://questions"
+var path_images: String:
+	get:
+		return filepath.path_join("images")
+
+var questions_paths : Dictionary[Globals.clr, String]:
+	get:
+		return {
+	Globals.clr.RED : filepath.path_join("questions_red.csv"),
+	Globals.clr.GREEN : filepath.path_join("questions_green.csv"),
+	Globals.clr.BLUE : filepath.path_join("questions_blue.csv"),
+	Globals.clr.ORANGE : filepath.path_join("questions_orange.csv"),
+	Globals.clr.PINK : filepath.path_join("questions_pink.csv")
 }
-
-## Si le dossier questions n'est pas trouvé, créer les fichiers
-func ensure_folders():
-	var dir = DirAccess.open(filepath)
-	if dir == null or is_dir_empty(dir):
-		print("Création de fichiers...")
-
-		create_files("res://questions", filepath)
 
 
 ## Vérifie si le dossier est vide

@@ -22,8 +22,6 @@ var current_team: Team:
 		return _teams[_current_turn]
 
 func _ready() -> void:
-	#Assure la présence des fichiers et créer l'objet permettant de gérer les questions
-	FileManager.ensure_folders()
 	question_manager = QuestionManager.new()
 	for child in $Board.get_children():
 		if child is Square:
