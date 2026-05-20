@@ -11,6 +11,12 @@ var _teams: Array[Team] = [
 	Team.new(Pawn.Model.TORTOISE, "Tortue")
 ]
 
+@onready var cat_check: CheckBox = $GridContainer/PanelContainer/VBoxContainer/CheckBox
+@onready var dog_check: CheckBox = $GridContainer/PanelContainer2/VBoxContainer2/CheckBox
+@onready var bunny_check: CheckBox = $GridContainer/PanelContainer3/VBoxContainer3/CheckBox
+@onready var pinguin_check: CheckBox = $GridContainer/PanelContainer4/VBoxContainer4/CheckBox
+@onready var tortoise_check: CheckBox = $GridContainer/PanelContainer5/VBoxContainer5/CheckBox
+
 ## Lorsque le bouton est appuyé, lance la partie
 func _on_play_pressed() -> void:
 	var game_instance: Game = game_scene.instantiate()
@@ -29,14 +35,44 @@ func _on_check_box_pressed() -> void:
 ## Retourne un tableau des équipes qui sont cochées comme jouant cette partie
 func get_playing_teams() -> Array[Team]:
 	var teams_playing : Array[Team] = []
-	if $GridContainer/PanelContainer/VBoxContainer/CheckBox.button_pressed:
+	if cat_check.button_pressed:
 		teams_playing.append(_teams[0])
-	if $GridContainer/PanelContainer2/VBoxContainer2/CheckBox.button_pressed:
+	if dog_check.button_pressed:
 		teams_playing.append(_teams[1])
-	if $GridContainer/PanelContainer3/VBoxContainer3/CheckBox.button_pressed:
+	if bunny_check.button_pressed:
 		teams_playing.append(_teams[2])
-	if $GridContainer/PanelContainer4/VBoxContainer4/CheckBox.button_pressed:
+	if pinguin_check.button_pressed:
 		teams_playing.append(_teams[3])
-	if $GridContainer/PanelContainer5/VBoxContainer5/CheckBox.button_pressed:
+	if tortoise_check.button_pressed:
 		teams_playing.append(_teams[4])
 	return teams_playing
+
+
+func _on_rotate_cat_gui_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+		cat_check.button_pressed = not cat_check.button_pressed
+		_on_check_box_pressed()
+
+
+func _on_rotate_dog_gui_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+		dog_check.button_pressed = not dog_check.button_pressed
+		_on_check_box_pressed()
+
+
+func _on_rotate_bunny_gui_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+		bunny_check.button_pressed = not bunny_check.button_pressed
+		_on_check_box_pressed()
+
+
+func _on_rotate_pinguin_gui_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+		pinguin_check.button_pressed = not pinguin_check.button_pressed
+		_on_check_box_pressed()
+
+
+func _on_rotate_tortoise_gui_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+		tortoise_check.button_pressed = not tortoise_check.button_pressed
+		_on_check_box_pressed()

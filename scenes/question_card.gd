@@ -27,6 +27,7 @@ func initialize(question: Question, clr: Globals.clr, team: Team):
 	$MarginContainer/VBoxContainer/Question.text = question.question
 	#Changement de l'image
 	if question.img_name != null && question.img_name != "":
+		$MarginContainer/VBoxContainer/MarginContainer/Image.visible = true
 		var image_path := FileManager.path_images.path_join(question.img_name)
 		var img : Image = Image.new()
 		var err : Error = img.load(image_path)
